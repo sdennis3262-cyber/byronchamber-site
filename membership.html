@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Membership — Byron Area Chamber of Commerce</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; color: #1a1a2e; background: #fff; }
+  nav { position: sticky; top: 0; z-index: 100; background: #0d1e4a; display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; height: 72px; box-shadow: 0 2px 12px rgba(0,0,0,0.3); }
+  .nav-brand { display: flex; align-items: center; gap: 14px; }
+  .nav-brand img { height: 52px; width: auto; }
+  .nav-brand-text { color: #fff; font-size: 13px; font-weight: 500; line-height: 1.4; }
+  .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+  .nav-links a { color: rgba(255,255,255,0.82); font-size: 13px; text-decoration: none; }
+  .nav-links a:hover { color: #c8a227; }
+  .nav-links a.active { color: #c8a227; }
+  .nav-dropdown { position: relative; }
+  .nav-dropdown > a { display: flex; align-items: center; gap: 4px; }
+  .nav-dropdown > a::after { content: '▾'; font-size: 10px; opacity: 0.7; }
+  .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #0d1e4a; border: 1px solid rgba(255,255,255,0.12); border-top: 2px solid #c8a227; border-radius: 0 0 8px 8px; min-width: 220px; padding: 0.5rem 0; box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+  .nav-dropdown:hover .dropdown-menu { display: block; }
+  .dropdown-menu a { display: block; padding: 9px 18px; color: rgba(255,255,255,0.82); font-size: 13px; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .dropdown-menu a:last-child { border-bottom: none; }
+  .dropdown-menu a:hover { color: #c8a227; background: rgba(255,255,255,0.05); }
+  .btn-gold { background: #c8a227; color: #0d1e4a; border: none; padding: 9px 20px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; text-decoration: none; display: inline-block; }
+  .page-hero { background: #0d1e4a; padding: 3.5rem 2.5rem; text-align: center; }
+  .page-hero .eyebrow { color: #c8a227; font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .page-hero h1 { color: #fff; font-size: 2.2rem; font-weight: 600; margin-bottom: 0.75rem; }
+  .page-hero p { color: rgba(255,255,255,0.72); font-size: 15px; max-width: 560px; margin: 0 auto; line-height: 1.7; }
+  .content-wrap { max-width: 900px; margin: 0 auto; padding: 3rem 2.5rem; }
+  .content-wrap h2 { font-size: 20px; font-weight: 600; color: #0d1e4a; margin: 2.5rem 0 0.75rem; }
+  .content-wrap p { font-size: 15px; color: #444; line-height: 1.8; margin-bottom: 1rem; }
+  .tier-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0; }
+  .tier-card { border: 2px solid #e8e8e8; border-radius: 12px; padding: 2rem; position: relative; }
+  .tier-card.featured { border-color: #c8a227; }
+  .tier-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #c8a227; color: #0d1e4a; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 14px; border-radius: 20px; white-space: nowrap; }
+  .tier-card h3 { font-size: 20px; font-weight: 600; color: #0d1e4a; margin-bottom: 6px; }
+  .tier-card .price { font-size: 36px; font-weight: 600; color: #0d1e4a; line-height: 1; margin: 12px 0 4px; }
+  .tier-card .price span { font-size: 15px; font-weight: 400; color: #888; }
+  .tier-card .desc { font-size: 13px; color: #666; margin-bottom: 1.5rem; line-height: 1.5; }
+  .tier-card ul { list-style: none; margin-bottom: 1.75rem; }
+  .tier-card ul li { font-size: 13px; color: #444; padding: 6px 0; border-bottom: 1px solid #f0f0f0; display: flex; align-items: flex-start; gap: 8px; }
+  .tier-card ul li::before { content: '✓'; color: #c8a227; font-weight: 700; flex-shrink: 0; }
+  .tier-card ul li:last-child { border-bottom: none; }
+  .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0; }
+  .benefit-card { background: #f7f7f5; border-radius: 10px; padding: 1.25rem; border-left: 4px solid #c8a227; }
+  .benefit-card h4 { font-size: 14px; font-weight: 600; color: #0d1e4a; margin-bottom: 5px; }
+  .benefit-card p { font-size: 12px; color: #555; line-height: 1.6; margin: 0; }
+  .application-box { background: #f7f7f5; border-radius: 12px; padding: 2.5rem; margin-top: 2.5rem; }
+  .application-box h3 { font-size: 18px; font-weight: 600; color: #0d1e4a; margin-bottom: 0.5rem; }
+  .application-box p { font-size: 14px; color: #555; margin-bottom: 1.5rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 5px; }
+  .form-group label { font-size: 12px; font-weight: 600; color: #444; text-transform: uppercase; letter-spacing: 0.5px; }
+  .form-group input, .form-group select, .form-group textarea { border: 1.5px solid #ddd; border-radius: 6px; padding: 9px 12px; font-size: 14px; font-family: 'Inter', sans-serif; color: #1a1a2e; background: #fff; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #c8a227; }
+  .form-group textarea { resize: vertical; min-height: 80px; }
+  .form-full { margin-bottom: 1rem; }
+  .form-submit { text-align: center; margin-top: 1.5rem; }
+  .form-note { font-size: 12px; color: #888; margin-top: 0.5rem; }
+  footer { background: #0d1e4a; padding: 2rem 2.5rem; margin-top: 4rem; }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+  .footer-bottom span { color: rgba(255,255,255,0.38); font-size: 12px; }
+  footer a { color: rgba(255,255,255,0.6); font-size: 13px; text-decoration: none; }
+  footer a:hover { color: #c8a227; }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-brand">
+    <img src="images/logo.jpg" alt="Byron Area Chamber of Commerce">
+    <span class="nav-brand-text">Byron Area<br>Chamber of Commerce</span>
+  </div>
+  <div class="nav-links">
+    <a href="about.html">About Us</a>
+    <a href="membership.html" class="active">Membership</a>
+    <a href="directory.html">Business Directory</a>
+    <a href="events.html">Events &amp; Calendar</a>
+    <div class="nav-dropdown">
+      <a href="#">Community Guide</a>
+      <div class="dropdown-menu">
+        <a href="community/welcome.html">Welcome to Byron</a>
+        <a href="community/ogle-county.html">Ogle County Welcome</a>
+        <a href="community/quality-of-life.html">Quality of Life</a>
+        <a href="community/economic-development.html">Economic Development</a>
+        <a href="community/tourism.html">Tourism</a>
+        <a href="community/organizations.html">Community Organizations</a>
+      </div>
+    </div>
+    <a href="contact.html">Contact Us</a>
+  </div>
+  <a href="membership.html" class="btn-gold">Become a Member</a>
+</nav>
+
+<div class="page-hero">
+  <p class="eyebrow">Byron Area Chamber of Commerce</p>
+  <h1>Chamber Membership</h1>
+  <p>Join Byron's business community and get the connections, visibility, and support your business needs to grow.</p>
+</div>
+
+<div class="content-wrap">
+
+  <h2>Membership options</h2>
+  <div class="tier-wrap">
+    <div class="tier-card featured">
+      <div class="tier-badge">Most Popular</div>
+      <h3>Solo / Startup</h3>
+      <div class="price">$175 <span>/ year</span></div>
+      <p class="desc">Perfect for sole proprietors, home-based businesses, startups, and independent professionals just getting established in Byron.</p>
+      <ul>
+        <li>Listing in the Byron Business Directory</li>
+        <li>Access to Chamber networking events</li>
+        <li>Ribbon cutting support for new locations</li>
+        <li>Member-only event pricing</li>
+        <li>Business spotlight opportunities</li>
+        <li>Inclusion in Chamber communications</li>
+        <li>Referrals from the Chamber office</li>
+      </ul>
+      <a href="#apply" class="btn-gold" style="width:100%;text-align:center;padding:11px;">Join Now — $175/yr</a>
+    </div>
+    <div class="tier-card">
+      <h3>Business / Organization</h3>
+      <div class="price">$175 <span>/ year</span></div>
+      <p class="desc">For established businesses, non-profits, and organizations with a local presence and a team to represent.</p>
+      <ul>
+        <li>Everything in Solo / Startup</li>
+        <li>Multiple staff listed as members</li>
+        <li>Event sponsorship opportunities</li>
+        <li>Premium directory placement options</li>
+        <li>ByronFest vendor & sponsorship access</li>
+        <li>Board nomination eligibility</li>
+        <li>Co-marketing with Chamber events</li>
+      </ul>
+      <a href="#apply" class="btn-gold" style="width:100%;text-align:center;padding:11px;background:#0d1e4a;color:#c8a227;">Join Now</a>
+    </div>
+  </div>
+
+  <h2>Why Chamber membership matters</h2>
+  <div class="benefits-grid">
+    <div class="benefit-card">
+      <h4>Visibility in Byron</h4>
+      <p>Your business is listed in the Byron Business Directory, promoted in Chamber communications, and featured at events throughout the year.</p>
+    </div>
+    <div class="benefit-card">
+      <h4>Real connections</h4>
+      <p>Chamber events put you in the room with Byron's decision-makers, fellow business owners, and community leaders who want to see local businesses succeed.</p>
+    </div>
+    <div class="benefit-card">
+      <h4>Ribbon cutting service</h4>
+      <p>Opening a new location or celebrating a milestone? The Chamber organizes ribbon cuttings that get your business noticed and bring the community out to celebrate with you.</p>
+    </div>
+    <div class="benefit-card">
+      <h4>Event access</h4>
+      <p>Member pricing and first access to Chamber events — from the Annual Golf Play Day to the Wine Dinner to ByronFest vendor spots.</p>
+    </div>
+    <div class="benefit-card">
+      <h4>Community advocacy</h4>
+      <p>The Chamber advocates for Byron's business community with local government and regional partners, giving your business a voice it wouldn't have alone.</p>
+    </div>
+    <div class="benefit-card">
+      <h4>Community guide listing</h4>
+      <p>Your business is part of Byron's official resource for residents, newcomers, and visitors looking for local goods and services.</p>
+    </div>
+  </div>
+
+  <div class="application-box" id="apply">
+    <h3>Membership application</h3>
+    <p>Fill out the form below and the Chamber office will follow up within one business day to complete your enrollment and process payment.</p>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Business / Organization name</label>
+        <input type="text" placeholder="Business name">
+      </div>
+      <div class="form-group">
+        <label>Your name</label>
+        <input type="text" placeholder="First and last name">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Phone</label>
+        <input type="tel" placeholder="(815) 000-0000">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="you@yourbusiness.com">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Business address</label>
+        <input type="text" placeholder="Street address, Byron IL">
+      </div>
+      <div class="form-group">
+        <label>Business category</label>
+        <select>
+          <option value="">Select a category…</option>
+          <option>Auto</option>
+          <option>Education</option>
+          <option>Financial Services</option>
+          <option>Fitness &amp; Health</option>
+          <option>Food &amp; Dining</option>
+          <option>Government</option>
+          <option>Healthcare</option>
+          <option>Home &amp; Construction</option>
+          <option>Manufacturing</option>
+          <option>Non-Profit / Community</option>
+          <option>Professional Services</option>
+          <option>Real Estate</option>
+          <option>Recreation</option>
+          <option>Retail</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-full form-group">
+      <label>Website (optional)</label>
+      <input type="url" placeholder="https://yourbusiness.com">
+    </div>
+    <div class="form-full form-group">
+      <label>Anything you'd like us to know?</label>
+      <textarea placeholder="Tell us about your business or any questions you have about membership…"></textarea>
+    </div>
+    <div class="form-submit">
+      <button class="btn-gold" style="font-size:14px;padding:12px 32px;" onclick="alert('Thank you! The Chamber office will be in touch within one business day.')">Submit Application</button>
+      <p class="form-note">Annual dues of $175 are due upon enrollment. The Chamber office will contact you to process payment.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Byron Area Chamber of Commerce &nbsp;|&nbsp; 232 W 2nd Street, Byron, IL 61010 &nbsp;|&nbsp; (815) 234-5500</span>
+    <a href="index.html">Back to Home</a>
+  </div>
+</footer>
+</body>
+</html>

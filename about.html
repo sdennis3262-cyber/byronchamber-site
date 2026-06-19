@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — Byron Area Chamber of Commerce</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; color: #1a1a2e; background: #fff; }
+  nav { position: sticky; top: 0; z-index: 100; background: #0d1e4a; display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; height: 72px; box-shadow: 0 2px 12px rgba(0,0,0,0.3); }
+  .nav-brand { display: flex; align-items: center; gap: 14px; }
+  .nav-brand img { height: 52px; width: auto; }
+  .nav-brand-text { color: #fff; font-size: 13px; font-weight: 500; line-height: 1.4; }
+  .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+  .nav-links a { color: rgba(255,255,255,0.82); font-size: 13px; text-decoration: none; }
+  .nav-links a:hover { color: #c8a227; }
+  .nav-links a.active { color: #c8a227; }
+  .nav-dropdown { position: relative; }
+  .nav-dropdown > a { display: flex; align-items: center; gap: 4px; }
+  .nav-dropdown > a::after { content: '▾'; font-size: 10px; opacity: 0.7; }
+  .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #0d1e4a; border: 1px solid rgba(255,255,255,0.12); border-top: 2px solid #c8a227; border-radius: 0 0 8px 8px; min-width: 220px; padding: 0.5rem 0; box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+  .nav-dropdown:hover .dropdown-menu { display: block; }
+  .dropdown-menu a { display: block; padding: 9px 18px; color: rgba(255,255,255,0.82); font-size: 13px; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .dropdown-menu a:last-child { border-bottom: none; }
+  .dropdown-menu a:hover { color: #c8a227; background: rgba(255,255,255,0.05); }
+  .btn-gold { background: #c8a227; color: #0d1e4a; border: none; padding: 9px 20px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; text-decoration: none; display: inline-block; }
+  .page-hero { background: #0d1e4a; padding: 3.5rem 2.5rem; text-align: center; }
+  .page-hero .eyebrow { color: #c8a227; font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .page-hero h1 { color: #fff; font-size: 2.2rem; font-weight: 600; margin-bottom: 0.75rem; }
+  .page-hero p { color: rgba(255,255,255,0.72); font-size: 15px; max-width: 560px; margin: 0 auto; line-height: 1.7; }
+  .content-wrap { max-width: 900px; margin: 0 auto; padding: 3rem 2.5rem; }
+  .content-wrap h2 { font-size: 20px; font-weight: 600; color: #0d1e4a; margin: 2.5rem 0 0.75rem; }
+  .content-wrap p { font-size: 15px; color: #444; line-height: 1.8; margin-bottom: 1rem; }
+  .mission-block { background: #f7f7f5; border-left: 4px solid #c8a227; border-radius: 0 10px 10px 0; padding: 1.75rem 2rem; margin: 2rem 0; }
+  .mission-block p { font-size: 16px; color: #0d1e4a; font-style: italic; line-height: 1.8; margin: 0; }
+  .staff-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin: 2rem 0; }
+  .staff-card { background: #f7f7f5; border-radius: 10px; padding: 1.5rem; border-top: 3px solid #c8a227; }
+  .staff-card .title { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #c8a227; margin-bottom: 6px; }
+  .staff-card h3 { font-size: 17px; font-weight: 600; color: #0d1e4a; margin-bottom: 6px; }
+  .staff-card p { font-size: 13px; color: #555; line-height: 1.6; margin: 0; }
+  .board-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0; }
+  .board-card { background: #f7f7f5; border-radius: 8px; padding: 1rem 1.25rem; }
+  .board-card .role { font-size: 11px; font-weight: 600; color: #c8a227; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .board-card h4 { font-size: 14px; font-weight: 600; color: #0d1e4a; }
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0; text-align: center; }
+  .stat-item .num { font-size: 32px; font-weight: 600; color: #0d1e4a; }
+  .stat-item .label { font-size: 12px; color: #888; margin-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
+  .cta-band { background: #0d1e4a; border-radius: 12px; padding: 2rem; text-align: center; margin-top: 3rem; }
+  .cta-band h3 { color: #fff; font-size: 18px; font-weight: 600; margin-bottom: 0.5rem; }
+  .cta-band p { color: rgba(255,255,255,0.72); font-size: 14px; margin-bottom: 1.25rem; }
+  footer { background: #0d1e4a; padding: 2rem 2.5rem; margin-top: 4rem; }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+  .footer-bottom span { color: rgba(255,255,255,0.38); font-size: 12px; }
+  footer a { color: rgba(255,255,255,0.6); font-size: 13px; text-decoration: none; }
+  footer a:hover { color: #c8a227; }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-brand">
+    <img src="images/logo.jpg" alt="Byron Area Chamber of Commerce">
+    <span class="nav-brand-text">Byron Area<br>Chamber of Commerce</span>
+  </div>
+  <div class="nav-links">
+    <a href="about.html" class="active">About Us</a>
+    <a href="membership.html">Membership</a>
+    <a href="directory.html">Business Directory</a>
+    <a href="events.html">Events &amp; Calendar</a>
+    <div class="nav-dropdown">
+      <a href="#">Community Guide</a>
+      <div class="dropdown-menu">
+        <a href="community/welcome.html">Welcome to Byron</a>
+        <a href="community/ogle-county.html">Ogle County Welcome</a>
+        <a href="community/quality-of-life.html">Quality of Life</a>
+        <a href="community/economic-development.html">Economic Development</a>
+        <a href="community/tourism.html">Tourism</a>
+        <a href="community/organizations.html">Community Organizations</a>
+      </div>
+    </div>
+    <a href="contact.html">Contact Us</a>
+  </div>
+  <a href="membership.html" class="btn-gold">Become a Member</a>
+</nav>
+
+<div class="page-hero">
+  <p class="eyebrow">Byron Area Chamber of Commerce</p>
+  <h1>About the Chamber</h1>
+  <p>Serving Byron's business community since 1958 — connecting members, advocating for growth, and bringing the community together year-round.</p>
+</div>
+
+<div class="content-wrap">
+
+  <h2>Our mission</h2>
+  <div class="mission-block">
+    <p>"The Byron Area Chamber of Commerce exists to promote the economic vitality of the Byron area, to foster a favorable business climate, and to enhance the quality of life for residents and businesses in our community."</p>
+  </div>
+
+  <p>For over 65 years, the Byron Area Chamber has been the connective tissue of Byron's business community. From ribbon cuttings and annual awards to ByronFest and local advocacy, the Chamber is where Byron's business leaders show up for each other — and for the community they serve.</p>
+
+  <div class="stat-row">
+    <div class="stat-item">
+      <div class="num">1958</div>
+      <div class="label">Founded</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">65+</div>
+      <div class="label">Years serving Byron</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">7</div>
+      <div class="label">Annual events</div>
+    </div>
+  </div>
+
+  <h2>Chamber staff</h2>
+  <div class="staff-grid">
+    <div class="staff-card">
+      <div class="title">Executive Director</div>
+      <h3>Michelle Lorenz</h3>
+      <p>Michelle leads the Chamber's strategic direction, oversees community programming, and serves as the primary liaison between Byron's business community and local government. She also directs ByronFest and represents Byron on regional and civic boards.</p>
+    </div>
+    <div class="staff-card">
+      <div class="title">Office Manager</div>
+      <h3>Sheila McCammond</h3>
+      <p>Sheila manages day-to-day Chamber operations, member services, and event coordination. She is your first point of contact for membership inquiries, event questions, and Chamber business. Reach her at <strong>(815) 234-5500</strong> or <strong>office@byronchamber.com</strong>.</p>
+    </div>
+  </div>
+
+  <h2>Board of Directors</h2>
+  <p>The Chamber is governed by an elected Board of Directors representing a cross-section of Byron's business and professional community.</p>
+  <div class="board-grid">
+    <div class="board-card">
+      <div class="role">President</div>
+      <h4>Trent Snodgrass</h4>
+    </div>
+    <div class="board-card">
+      <div class="role">Vice President</div>
+      <h4>Charles Schaeffer</h4>
+    </div>
+    <div class="board-card">
+      <div class="role">Past President</div>
+      <h4>Brian Peterson</h4>
+    </div>
+    <div class="board-card">
+      <div class="role">Treasurer</div>
+      <h4>Amanda Monette</h4>
+    </div>
+    <div class="board-card">
+      <div class="role">Director</div>
+      <h4>City of Byron Representative</h4>
+    </div>
+    <div class="board-card">
+      <div class="role">Director</div>
+      <h4>At-Large Director</h4>
+    </div>
+    <div class="board-card">
+      <div class="role">Director</div>
+      <h4>At-Large Director</h4>
+    </div>
+    <div class="board-card">
+      <div class="role">Director</div>
+      <h4>At-Large Director</h4>
+    </div>
+    <div class="board-card">
+      <div class="role">Director</div>
+      <h4>At-Large Director</h4>
+    </div>
+  </div>
+
+  <h2>What the Chamber does</h2>
+  <p>The Chamber organizes Byron's signature annual events including ByronFest, ChiliFest, Miracle on 2nd Street, the Annual Golf Play Day, the Wine Dinner, the Annual Awards Banquet, and the Byron Rocks 5K. We host ribbon cuttings for new and expanding businesses, publish the Byron Community Guide, and maintain the Business Directory for the greater Byron area.</p>
+  <p>Beyond events, the Chamber advocates for policies that support a strong local economy, connects members with networking and visibility opportunities, and serves as the front door for businesses looking to establish roots in Byron.</p>
+
+  <div class="cta-band">
+    <h3>Join the Byron Area Chamber</h3>
+    <p>Membership starts at $175/year. Get connected, get visible, and get involved in everything Byron has to offer.</p>
+    <a href="membership.html" class="btn-gold" style="font-size:14px;padding:10px 22px;">View Membership Options</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Byron Area Chamber of Commerce &nbsp;|&nbsp; 232 W 2nd Street, Byron, IL 61010 &nbsp;|&nbsp; (815) 234-5500</span>
+    <a href="index.html">Back to Home</a>
+  </div>
+</footer>
+</body>
+</html>
