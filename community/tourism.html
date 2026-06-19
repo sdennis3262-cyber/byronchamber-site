@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tourism — Byron Area Chamber of Commerce</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; color: #1a1a2e; background: #fff; }
+  nav { position: sticky; top: 0; z-index: 100; background: #0d1e4a; display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; height: 72px; box-shadow: 0 2px 12px rgba(0,0,0,0.3); }
+  .nav-brand { display: flex; align-items: center; gap: 14px; }
+  .nav-brand img { height: 52px; width: auto; }
+  .nav-brand-text { color: #fff; font-size: 13px; font-weight: 500; line-height: 1.4; }
+  .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+  .nav-links a { color: rgba(255,255,255,0.82); font-size: 13px; text-decoration: none; }
+  .nav-links a:hover { color: #c8a227; }
+  .nav-dropdown { position: relative; }
+  .nav-dropdown > a { display: flex; align-items: center; gap: 4px; color: #c8a227; }
+  .nav-dropdown > a::after { content: '▾'; font-size: 10px; opacity: 0.7; }
+  .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #0d1e4a; border: 1px solid rgba(255,255,255,0.12); border-top: 2px solid #c8a227; border-radius: 0 0 8px 8px; min-width: 220px; padding: 0.5rem 0; box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+  .nav-dropdown:hover .dropdown-menu { display: block; }
+  .dropdown-menu a { display: block; padding: 9px 18px; color: rgba(255,255,255,0.82); font-size: 13px; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .dropdown-menu a:last-child { border-bottom: none; }
+  .dropdown-menu a:hover, .dropdown-menu a.active { color: #c8a227; background: rgba(255,255,255,0.05); }
+  .btn-gold { background: #c8a227; color: #0d1e4a; border: none; padding: 9px 20px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; }
+  .page-hero { background: #0d1e4a; padding: 3rem 2.5rem; text-align: center; }
+  .page-hero .eyebrow { color: #c8a227; font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .page-hero h1 { color: #fff; font-size: 2rem; font-weight: 600; }
+  .content-wrap { max-width: 860px; margin: 0 auto; padding: 3rem 2.5rem; }
+  .content-wrap h2 { font-size: 20px; font-weight: 600; color: #0d1e4a; margin: 2rem 0 0.75rem; }
+  .content-wrap p { font-size: 15px; color: #444; line-height: 1.8; margin-bottom: 1rem; }
+  .subnav { background: #f7f7f5; border-bottom: 1px solid #e8e8e8; padding: 0 2.5rem; display: flex; }
+  .subnav a { display: block; padding: 14px 18px; font-size: 13px; color: #555; text-decoration: none; border-bottom: 3px solid transparent; }
+  .subnav a:hover { color: #0d1e4a; }
+  .subnav a.active { color: #0d1e4a; font-weight: 600; border-bottom-color: #c8a227; }
+  .attraction-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin: 2rem 0; }
+  .attraction-card { background: #f7f7f5; border-radius: 10px; padding: 1.5rem; border-left: 4px solid #c8a227; }
+  .attraction-card h3 { font-size: 15px; font-weight: 600; color: #0d1e4a; margin-bottom: 0.5rem; }
+  .attraction-card p { font-size: 13px; color: #555; line-height: 1.7; }
+  .attraction-card a { font-size: 12px; color: #0d1e4a; font-weight: 600; text-decoration: none; display: inline-block; margin-top: 8px; }
+  footer { background: #0d1e4a; padding: 2rem 2.5rem; margin-top: 4rem; }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+  .footer-bottom span { color: rgba(255,255,255,0.38); font-size: 12px; }
+  footer a { color: rgba(255,255,255,0.6); font-size: 13px; text-decoration: none; }
+  footer a:hover { color: #c8a227; }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-brand">
+    <img src="../images/logo.jpg" alt="Byron Area Chamber of Commerce">
+    <span class="nav-brand-text">Byron Area<br>Chamber of Commerce</span>
+  </div>
+  <div class="nav-links">
+    <a href="../index.html">About Us</a>
+    <a href="../index.html">Membership</a>
+    <a href="../directory.html">Business Directory</a>
+    <a href="../index.html">Events &amp; Calendar</a>
+    <div class="nav-dropdown">
+      <a href="#">Community Guide</a>
+      <div class="dropdown-menu">
+        <a href="welcome.html">Welcome</a>
+        <a href="ogle-county.html">Ogle County Welcome</a>
+        <a href="quality-of-life.html">Quality of Life</a>
+        <a href="economic-development.html">Economic Development</a>
+        <a href="tourism.html" class="active">Tourism</a>
+        <a href="organizations.html">Community Organizations</a>
+      </div>
+    </div>
+    <a href="../index.html">Contact Us</a>
+  </div>
+  <button class="btn-gold">Become a Member</button>
+</nav>
+
+<div class="page-hero">
+  <p class="eyebrow">Community Guide</p>
+  <h1>Visit Byron, Illinois</h1>
+</div>
+
+<div class="subnav">
+  <a href="welcome.html">Welcome</a>
+  <a href="ogle-county.html">Ogle County</a>
+  <a href="quality-of-life.html">Quality of Life</a>
+  <a href="economic-development.html">Economic Development</a>
+  <a href="tourism.html" class="active">Tourism</a>
+  <a href="organizations.html">Organizations</a>
+</div>
+
+<div class="content-wrap">
+  <p>Byron is a destination worth the drive. Whether you're coming for ByronFest, a round of golf on the Rock River, a weekend of drag racing, or just the charm of a genuine Illinois small town, you'll find more to do — and more reasons to come back — than you expected.</p>
+
+  <h2>Attractions &amp; activities</h2>
+  <div class="attraction-grid">
+    <div class="attraction-card">
+      <h3>Byron Dragway</h3>
+      <p>One of the Midwest's premier drag racing facilities, drawing competitors and fans from across the region all season long. Located along the Rock River at 7287 N. River Rd.</p>
+      <a href="https://byrondragway.com" target="_blank">byrondragway.com &rarr;</a>
+    </div>
+    <div class="attraction-card">
+      <h3>PrairieView Golf Club</h3>
+      <p>A beautiful 18-hole public golf course set against the rolling landscape of northern Illinois. Host of the Chamber's Annual Golf Play Day each August.</p>
+      <a href="https://prairieviewgolf.com" target="_blank">prairieviewgolf.com &rarr;</a>
+    </div>
+    <div class="attraction-card">
+      <h3>Byron Forest Preserve</h3>
+      <p>Acres of natural land with hiking trails, the Rock River, fishing access, and wildlife habitat. A gem for outdoor enthusiasts in every season.</p>
+      <a href="https://byronforestpreserve.com" target="_blank">byronforestpreserve.com &rarr;</a>
+    </div>
+    <div class="attraction-card">
+      <h3>Byron Museum of History</h3>
+      <p>Explore the rich history of Byron and the surrounding Rock River Valley at the Byron Museum, located in the heart of downtown at 110 N. Union St.</p>
+      <a href="https://byronmuseum.org" target="_blank">byronmuseum.org &rarr;</a>
+    </div>
+    <div class="attraction-card">
+      <h3>Rock River</h3>
+      <p>The Rock River runs through Byron and offers fishing, kayaking, and scenic views. Riverfront Park provides public access and a beautiful backdrop for community events.</p>
+    </div>
+    <div class="attraction-card">
+      <h3>Hairy Cow Brewing Company</h3>
+      <p>Byron's local craft brewery at 450 E. Blackhawk Dr. A great stop for a cold pint and local flavor before or after your Byron adventures.</p>
+      <a href="https://hairycowbrewing.com" target="_blank">hairycowbrewing.com &rarr;</a>
+    </div>
+  </div>
+
+  <h2>Annual events</h2>
+  <p>Byron's event calendar gives visitors a reason to come back every season. <strong>ByronFest</strong> (July) is the crown jewel — a three-day festival drawing thousands from across the region with live music, carnival rides, food vendors, and the famous bags tournament. <strong>ChiliFest</strong> (October) brings the heat in the fall, and <strong>Miracle on 2nd Street</strong> transforms downtown into a winter wonderland each December.</p>
+
+  <h2>Dining in Byron</h2>
+  <p>From Costa's Ristorante and Dos Amigos to the Swedish Pancake House, Sweetbean Cafe, and Hairy Cow Brewing — Byron's dining scene punches well above its weight for a city its size. Check the <a href="../directory.html" style="color:#0d1e4a;font-weight:600;">Business Directory</a> for a full list of local restaurants and cafes.</p>
+
+  <h2>Directions &amp; lodging</h2>
+  <p>Byron is located along Illinois Route 2 and Route 72, approximately 20 miles west of Rockford. Lodging is available in nearby Rockford, Dixon, and Oregon. For visitors staying in the area, Byron is an easy day trip destination or a convenient base for exploring the Rock River Valley.</p>
+</div>
+
+<footer>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Byron Area Chamber of Commerce &nbsp;|&nbsp; 232 W 2nd Street, Byron, IL 61010 &nbsp;|&nbsp; (815) 234-5500</span>
+    <a href="../index.html">Back to Home</a>
+  </div>
+</footer>
+</body>
+</html>
