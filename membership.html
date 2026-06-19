@@ -8,7 +8,7 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Inter', sans-serif; color: #1a1a2e; background: #fff; }
-  nav { position: sticky; top: 0; z-index: 100; background: #0d1e4a; display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; height: 72px; box-shadow: 0 2px 12px rgba(0,0,0,0.3); }
+  nav { position: sticky; top: 0; z-index: 100; background: #1a1b5b; display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; height: 72px; box-shadow: 0 2px 12px rgba(0,0,0,0.3); }
   .nav-brand { display: flex; align-items: center; gap: 14px; }
   .nav-brand img { height: 52px; width: auto; }
   .nav-brand-text { color: #fff; font-size: 13px; font-weight: 500; line-height: 1.4; }
@@ -19,18 +19,18 @@
   .nav-dropdown { position: relative; }
   .nav-dropdown > a { display: flex; align-items: center; gap: 4px; }
   .nav-dropdown > a::after { content: '▾'; font-size: 10px; opacity: 0.7; }
-  .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #0d1e4a; border: 1px solid rgba(255,255,255,0.12); border-top: 2px solid #c8a227; border-radius: 0 0 8px 8px; min-width: 220px; padding: 0.5rem 0; box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+  .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #1a1b5b; border: 1px solid rgba(255,255,255,0.12); border-top: 2px solid #c8a227; border-radius: 0 0 8px 8px; min-width: 220px; padding: 0.5rem 0; box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
   .nav-dropdown:hover .dropdown-menu { display: block; }
   .dropdown-menu a { display: block; padding: 9px 18px; color: rgba(255,255,255,0.82); font-size: 13px; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
   .dropdown-menu a:last-child { border-bottom: none; }
   .dropdown-menu a:hover { color: #c8a227; background: rgba(255,255,255,0.05); }
-  .btn-gold { background: #c8a227; color: #0d1e4a; border: none; padding: 9px 20px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; text-decoration: none; display: inline-block; }
-  .page-hero { background: #0d1e4a; padding: 3.5rem 2.5rem; text-align: center; }
+  .btn-gold { background: #c8a227; color: #1a1b5b; border: none; padding: 9px 20px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; text-decoration: none; display: inline-block; }
+  .page-hero { background: #1a1b5b; padding: 3.5rem 2.5rem; text-align: center; }
   .page-hero .eyebrow { color: #c8a227; font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 0.75rem; }
   .page-hero h1 { color: #fff; font-size: 2.2rem; font-weight: 600; margin-bottom: 0.75rem; }
   .page-hero p { color: rgba(255,255,255,0.72); font-size: 15px; max-width: 560px; margin: 0 auto; line-height: 1.7; }
   .content-wrap { max-width: 1100px; margin: 0 auto; padding: 3rem 2.5rem; }
-  .content-wrap > h2 { font-size: 20px; font-weight: 600; color: #0d1e4a; margin: 2.5rem 0 0.75rem; }
+  .content-wrap > h2 { font-size: 20px; font-weight: 600; color: #1a1b5b; margin: 2.5rem 0 0.75rem; }
   .content-wrap > p { font-size: 15px; color: #444; line-height: 1.8; margin-bottom: 1rem; }
 
   /* Tier grid — 3 up top, 2 centered below */
@@ -39,10 +39,10 @@
 
   .tier-card { border: 1.5px solid #e8e8e8; border-radius: 12px; padding: 1.75rem 1.5rem; display: flex; flex-direction: column; }
   .tier-card .tier-name { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #c8a227; margin-bottom: 10px; }
-  .tier-card h3 { font-size: 18px; font-weight: 600; color: #0d1e4a; margin-bottom: 12px; }
+  .tier-card h3 { font-size: 18px; font-weight: 600; color: #1a1b5b; margin-bottom: 12px; }
   .tier-card .price { display: flex; align-items: flex-start; gap: 2px; margin-bottom: 12px; }
-  .tier-card .price .dollar { font-size: 18px; font-weight: 600; color: #0d1e4a; margin-top: 6px; }
-  .tier-card .price .amount { font-size: 40px; font-weight: 600; color: #0d1e4a; line-height: 1; }
+  .tier-card .price .dollar { font-size: 18px; font-weight: 600; color: #1a1b5b; margin-top: 6px; }
+  .tier-card .price .amount { font-size: 40px; font-weight: 600; color: #1a1b5b; line-height: 1; }
   .tier-card .price .per { font-size: 13px; color: #999; align-self: flex-end; margin-bottom: 4px; }
   .tier-card .desc { font-size: 13px; color: #666; line-height: 1.65; margin-bottom: 1.25rem; flex: 1; }
   .tier-divider { border: none; border-top: 1px solid #eee; margin-bottom: 1.25rem; }
@@ -50,12 +50,12 @@
   .tier-card ul li { font-size: 13px; color: #444; padding: 6px 0; border-bottom: 1px solid #f5f5f5; display: flex; align-items: flex-start; gap: 8px; line-height: 1.5; }
   .tier-card ul li:last-child { border-bottom: none; }
   .tier-card ul li::before { content: '✓'; color: #c8a227; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
-  .tier-card .join-btn { display: block; text-align: center; background: #0d1e4a; color: #fff; border: none; padding: 11px; border-radius: 7px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; text-decoration: none; margin-top: auto; }
-  .tier-card .join-btn:hover { background: #c8a227; color: #0d1e4a; }
+  .tier-card .join-btn { display: block; text-align: center; background: #1a1b5b; color: #fff; border: none; padding: 11px; border-radius: 7px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; text-decoration: none; margin-top: auto; }
+  .tier-card .join-btn:hover { background: #c8a227; color: #1a1b5b; }
 
   /* Application form */
   .application-box { background: #f7f7f5; border-radius: 12px; padding: 2.5rem; margin-top: 1rem; }
-  .application-box h3 { font-size: 18px; font-weight: 600; color: #0d1e4a; margin-bottom: 0.5rem; }
+  .application-box h3 { font-size: 18px; font-weight: 600; color: #1a1b5b; margin-bottom: 0.5rem; }
   .application-box p { font-size: 14px; color: #555; margin-bottom: 1.5rem; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
   .form-group { display: flex; flex-direction: column; gap: 5px; }
@@ -67,7 +67,7 @@
   .form-submit { text-align: center; margin-top: 1.5rem; }
   .form-note { font-size: 12px; color: #888; margin-top: 0.5rem; }
 
-  footer { background: #0d1e4a; padding: 2rem 2.5rem; margin-top: 4rem; }
+  footer { background: #1a1b5b; padding: 2rem 2.5rem; margin-top: 4rem; }
   .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
   .footer-bottom span { color: rgba(255,255,255,0.38); font-size: 12px; }
   footer a { color: rgba(255,255,255,0.6); font-size: 13px; text-decoration: none; }
@@ -77,7 +77,7 @@
 <body>
 <nav>
   <div class="nav-brand">
-    <img src="images/logo.jpg" alt="Byron Area Chamber of Commerce">
+    <img src="images/logo2026.jpg" alt="Byron Area Chamber of Commerce">
     <span class="nav-brand-text">Byron Area<br>Chamber of Commerce</span>
   </div>
   <div class="nav-links">
