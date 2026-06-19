@@ -36,6 +36,8 @@
   .dropdown-menu a { display: block; padding: 9px 18px; color: rgba(255,255,255,0.82); font-size: 13px; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
   .dropdown-menu a:last-child { border-bottom: none; }
   .dropdown-menu a:hover { color: #c8a227; background: rgba(255,255,255,0.05); }
+  .btn-outline-nav { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.5); padding: 9px 20px; border-radius: 6px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; text-decoration: none; display: inline-block; }
+  .btn-outline-nav:hover { border-color: #c8a227; color: #c8a227; }
   .btn-gold { background: #c8a227; color: #1a1b5b; border: none; padding: 9px 20px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; }
 
   .page-hero {
@@ -113,10 +115,10 @@
     <span class="nav-brand-text">Byron Area<br>Chamber of Commerce</span>
   </div>
   <div class="nav-links">
-    <a href="index.html">About Us</a>
-    <a href="index.html">Membership</a>
+    <a href="about.html">About Us</a>
+    <a href="membership.html">Membership</a>
     <a href="directory.html" class="active">Business Directory</a>
-    <a href="index.html">Events &amp; Calendar</a>
+    <a href="events.html">Events &amp; Calendar</a>
     <div class="nav-dropdown">
       <a href="#">Community Guide</a>
       <div class="dropdown-menu">
@@ -128,9 +130,10 @@
         <a href="community/organizations.html">Community Organizations</a>
       </div>
     </div>
-    <a href="index.html">Contact Us</a>
+    <a href="contact.html">Contact Us</a>
   </div>
-  <button class="btn-gold">Become a Member</button>
+  <a href="#" class="btn-outline-nav" onclick="alert('Member portal coming soon!');return false;">Member Login</a>
+  <a href="membership.html" class="btn-gold" style="text-decoration:none;">Become a Member</a>
 </nav>
 
 <div class="page-hero">
@@ -227,7 +230,7 @@
       <a href="index.html">Become a Member</a>
       <a href="directory.html">Business Directory</a>
       <a href="index.html">Community Guide</a>
-      <a href="index.html">Contact Us</a>
+      <a href="contact.html">Contact Us</a>
     </div>
     <div>
       <h4>Events</h4>
