@@ -131,7 +131,7 @@
         <li>Networking opportunities with local businesses</li>
         <li>Member pricing on select events</li>
       </ul>
-      <a href="#apply" class="join-btn">Join at $175/yr</a>
+      <a href="#apply" class="join-btn" onclick="document.getElementById('membership-level').value='Solo / Start Up — $175/yr'">Join at $175/yr</a>
     </div>
 
     <!-- Business -->
@@ -152,7 +152,7 @@
         <li>Networking and community involvement opportunities</li>
         <li>Member pricing on events and programs</li>
       </ul>
-      <a href="#apply" class="join-btn">Join at $225/yr</a>
+      <a href="#apply" class="join-btn" onclick="document.getElementById('membership-level').value='Business — $225/yr'">Join at $225/yr</a>
     </div>
 
     <!-- Business Plus -->
@@ -173,7 +173,7 @@
         <li>Digital advertising placement</li>
         <li>Vendor priority for Chamber events and promotions</li>
       </ul>
-      <a href="#apply" class="join-btn">Join at $395/yr</a>
+      <a href="#apply" class="join-btn" onclick="document.getElementById('membership-level').value='Business Plus — $395/yr'">Join at $395/yr</a>
     </div>
 
   </div>
@@ -199,7 +199,7 @@
         <li>Two featured promotions or spotlights</li>
         <li>Speaking opportunities at a Chamber event</li>
       </ul>
-      <a href="#apply" class="join-btn">Join at $750/yr</a>
+      <a href="#apply" class="join-btn" onclick="document.getElementById('membership-level').value='Corporate Partner — $750/yr'">Join at $750/yr</a>
     </div>
 
     <!-- Executive Community Partner -->
@@ -220,7 +220,7 @@
         <li>Event recognition and participation opportunities</li>
         <li>Complimentary booth space at select Chamber events</li>
       </ul>
-      <a href="#apply" class="join-btn">Join at $1,500/yr</a>
+      <a href="#apply" class="join-btn" onclick="document.getElementById('membership-level').value='Executive Community Partner — $1,500/yr'">Join at $1,500/yr</a>
     </div>
 
   </div>
@@ -252,7 +252,7 @@
     <div class="form-row">
       <div class="form-group">
         <label>Membership level</label>
-        <select>
+        <select id="membership-level">
           <option value="">Select a level…</option>
           <option>Solo / Start Up — $175/yr</option>
           <option>Business — $225/yr</option>
