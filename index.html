@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Byron Area Chamber of Commerce</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; color: #1a1a2e; background: #fff; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: #0d1e4a;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem; height: 72px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  }
+  .nav-brand { display: flex; align-items: center; gap: 14px; }
+  .nav-brand img { height: 52px; width: auto; }
+  .nav-brand-text { color: #fff; font-size: 13px; font-weight: 500; line-height: 1.4; }
+  .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+  .nav-links a { color: rgba(255,255,255,0.82); font-size: 13px; text-decoration: none; }
+  .nav-links a:hover { color: #c8a227; }
+  .nav-dropdown { position: relative; }
+  .nav-dropdown > a { display: flex; align-items: center; gap: 4px; }
+  .nav-dropdown > a::after { content: '▾'; font-size: 10px; opacity: 0.7; }
+  .dropdown-menu {
+    display: none; position: absolute; top: 100%; left: 0;
+    background: #0d1e4a; border: 1px solid rgba(255,255,255,0.12);
+    border-top: 2px solid #c8a227; border-radius: 0 0 8px 8px;
+    min-width: 220px; padding: 0.5rem 0;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  }
+  .nav-dropdown:hover .dropdown-menu { display: block; }
+  .dropdown-menu a { display: block; padding: 9px 18px; color: rgba(255,255,255,0.82); font-size: 13px; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .dropdown-menu a:last-child { border-bottom: none; }
+  .dropdown-menu a:hover { color: #c8a227; background: rgba(255,255,255,0.05); }
+  .btn-gold { background: #c8a227; color: #0d1e4a; border: none; padding: 9px 20px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; }
+  .btn-gold:hover { background: #e0b82e; }
+
+  .hero {
+    position: relative; height: 520px;
+    background: url('images/hero.jpg') center center / cover no-repeat;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(13,30,74,0.72) 0%, rgba(13,30,74,0.55) 100%);
+  }
+  .hero-content { position: relative; z-index: 1; text-align: center; padding: 0 2rem; max-width: 680px; }
+  .hero-eyebrow { color: #c8a227; font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1rem; }
+  .hero-content h1 { color: #fff; font-size: 2.6rem; font-weight: 600; line-height: 1.2; margin-bottom: 1rem; }
+  .hero-content p { color: rgba(255,255,255,0.78); font-size: 16px; line-height: 1.7; margin-bottom: 1.75rem; }
+  .hero-btns { display: flex; gap: 12px; justify-content: center; }
+  .btn-outline-white { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.55); padding: 9px 20px; border-radius: 6px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; }
+
+  .gold-strip { background: #c8a227; padding: 14px 2.5rem; text-align: center; }
+  .gold-strip p { color: #0d1e4a; font-size: 15px; font-weight: 600; letter-spacing: 0.5px; }
+
+  section { padding: 4rem 2.5rem; }
+  .section-bg { background: #f7f7f5; }
+  .section-title { text-align: center; font-size: 26px; font-weight: 600; color: #0d1e4a; margin-bottom: 0.5rem; }
+  .section-sub { text-align: center; font-size: 15px; color: #666; margin-bottom: 2.5rem; }
+
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-top: 1.25rem; }
+
+  .benefit-card {
+    background: #fff; border: 1px solid #e8e8e8; border-radius: 12px;
+    padding: 2rem 1.5rem; border-top: 4px solid #c8a227;
+  }
+  .benefit-card h3 { font-size: 16px; font-weight: 600; color: #0d1e4a; margin-bottom: 0.75rem; }
+  .benefit-card p { font-size: 14px; color: #555; line-height: 1.7; margin-bottom: 1.25rem; }
+  .benefit-card a { font-size: 13px; font-weight: 600; color: #c8a227; text-decoration: none; }
+
+  .event-card { background: #fff; border: 1px solid #e8e8e8; border-radius: 12px; overflow: hidden; }
+  .event-card img { width: 100%; height: 200px; object-fit: cover; display: block; }
+  .event-card-sm img { height: 140px; }
+  .event-body { padding: 1.25rem; }
+  .event-body-sm { padding: 1rem; }
+  .event-date { font-size: 11px; font-weight: 700; color: #c8a227; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+  .event-title { font-size: 17px; font-weight: 600; color: #0d1e4a; margin-bottom: 8px; }
+  .event-title-sm { font-size: 14px; font-weight: 600; color: #0d1e4a; margin-bottom: 6px; }
+  .event-desc { font-size: 13px; color: #666; line-height: 1.6; }
+  .event-desc-sm { font-size: 12px; color: #666; line-height: 1.5; }
+
+  .event-card-placeholder {
+    background: #0d1e4a; border-radius: 12px; overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .event-placeholder-img {
+    height: 140px; background: linear-gradient(135deg, #0d1e4a 0%, #1a3570 100%);
+    display: flex; align-items: center; justify-content: center;
+    border-bottom: 3px solid #c8a227;
+  }
+  .event-placeholder-img span { color: #c8a227; font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+  .event-placeholder-body { padding: 1rem; background: #fff; flex: 1; }
+
+  .ribbon-section { display: grid; grid-template-columns: 1fr 1fr; }
+  .ribbon-photo { position: relative; height: 380px; overflow: hidden; }
+  .ribbon-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ribbon-photo-overlay {
+    position: absolute; inset: 0;
+    background: rgba(13,30,74,0.65);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 2rem;
+  }
+  .ribbon-photo-overlay h3 { color: #fff; font-size: 22px; font-weight: 600; margin-bottom: 0.5rem; }
+  .ribbon-photo-overlay p { color: rgba(255,255,255,0.82); font-size: 14px; line-height: 1.6; }
+  .ribbon-gold-tag { background: #c8a227; color: #0d1e4a; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 1rem; display: inline-block; }
+
+  .dir-promo {
+    background: #0d1e4a; margin: 0 2.5rem 3rem; border-radius: 12px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.75rem 2rem;
+  }
+  .dir-promo-text h3 { color: #fff; font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+  .dir-promo-text p { color: rgba(255,255,255,0.7); font-size: 14px; }
+
+  .cta-banner { background: #0d1e4a; padding: 4.5rem 2.5rem; text-align: center; }
+  .cta-banner h2 { color: #fff; font-size: 2rem; font-weight: 600; margin-bottom: 0.75rem; }
+  .cta-banner p { color: rgba(255,255,255,0.75); font-size: 16px; max-width: 520px; margin: 0 auto 2rem; line-height: 1.7; }
+
+  .sponsors { padding: 2.5rem; background: #f7f7f5; }
+  .sponsors-label { text-align: center; font-size: 11px; font-weight: 600; color: #999; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.5rem; }
+  .sponsors-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .sponsor-pill { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 10px 24px; font-size: 13px; font-weight: 500; color: #444; }
+
+  footer { background: #0d1e4a; padding: 3rem 2.5rem 2rem; }
+  .footer-grid { display: grid; grid-template-columns: 1.75fr 1fr 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+  .footer-logo img { height: 70px; width: auto; margin-bottom: 1rem; }
+  .footer-logo p { color: rgba(255,255,255,0.6); font-size: 13px; line-height: 1.7; }
+  footer h4 { color: #c8a227; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; }
+  footer a { color: rgba(255,255,255,0.65); font-size: 13px; text-decoration: none; display: block; margin-bottom: 8px; line-height: 1.5; }
+  footer a:hover { color: #c8a227; }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-bottom span { color: rgba(255,255,255,0.38); font-size: 12px; }
+  .footer-social { display: flex; gap: 10px; }
+  .social-btn { width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.25); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.65); font-size: 13px; font-weight: 700; text-decoration: none; }
+  .social-btn:hover { border-color: #c8a227; color: #c8a227; }
+  .view-all { text-align: center; margin-top: 2rem; }
+  .view-all a { font-size: 14px; font-weight: 600; color: #0d1e4a; text-decoration: none; border-bottom: 2px solid #c8a227; padding-bottom: 2px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">
+    <img src="images/logo.jpg" alt="Byron Area Chamber of Commerce">
+    <span class="nav-brand-text">Byron Area<br>Chamber of Commerce</span>
+  </div>
+  <div class="nav-links">
+    <a href="#">About Us</a>
+    <a href="#">Membership</a>
+    <a href="#">Business Directory</a>
+    <a href="#">Events &amp; Calendar</a>
+    <div class="nav-dropdown">
+      <a href="#">Community Guide</a>
+      <div class="dropdown-menu">
+        <a href="community/welcome.html">Welcome</a>
+        <a href="community/ogle-county.html">Ogle County Welcome</a>
+        <a href="community/quality-of-life.html">Quality of Life</a>
+        <a href="community/economic-development.html">Economic Development</a>
+        <a href="community/tourism.html">Tourism</a>
+        <a href="community/organizations.html">Community Organizations</a>
+      </div>
+    </div>
+    <a href="#">Contact Us</a>
+  </div>
+  <button class="btn-gold">Become a Member</button>
+</nav>
+
+<div class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Gateway to the Rock River</p>
+    <h1>Enjoy the Byron Life with Us</h1>
+    <p>Connecting businesses, organizations, and community across Byron and the greater Rock River Valley.</p>
+    <div class="hero-btns">
+      <button class="btn-gold">Join Today</button>
+      <button class="btn-outline-white">Explore Events</button>
+    </div>
+  </div>
+</div>
+
+<div class="gold-strip">
+  <p>Strategic &nbsp;&middot;&nbsp; Responsive &nbsp;&middot;&nbsp; Community-Driven</p>
+</div>
+
+<section class="section-bg">
+  <p class="section-title">Why join the Chamber?</p>
+  <p class="section-sub">Everything you need to connect, grow, and thrive in the Byron area.</p>
+  <div class="grid-3">
+    <div class="benefit-card">
+      <h3>Exposure &amp; connections</h3>
+      <p>Get your business in front of thousands of Byron area residents and regional visitors through our directory, events, and weekly email blast.</p>
+      <a href="#">Learn more &rarr;</a>
+    </div>
+    <div class="benefit-card">
+      <h3>Advocacy &amp; resources</h3>
+      <p>We advocate for Byron's business community at the local and regional level &mdash; giving your voice real weight where decisions are made.</p>
+      <a href="#">Learn more &rarr;</a>
+    </div>
+    <div class="benefit-card">
+      <h3>Growth &amp; networking</h3>
+      <p>Access workshops, ribbon cuttings, member spotlights, and networking events designed to help your business grow and stay connected.</p>
+      <a href="#">Learn more &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <p class="section-title">What's happening in Byron?</p>
+  <p class="section-sub">From the region's biggest summer festival to beloved community traditions all year long.</p>
+
+  <div class="grid-3">
+    <div class="event-card">
+      <img src="images/byronfest.jpg" alt="ByronFest 39">
+      <div class="event-body">
+        <p class="event-date">July 10&ndash;12, 2026</p>
+        <p class="event-title">ByronFest 39</p>
+        <p class="event-desc">Live music, carnival, food vendors, bags tournament, and more in downtown Byron. Draws thousands from across the region.</p>
+      </div>
+    </div>
+    <div class="event-card">
+      <img src="images/5k.jpg" alt="Byron Rocks 5k">
+      <div class="event-body">
+        <p class="event-date">Spring 2026</p>
+        <p class="event-title">5k/10k Byron Rocks</p>
+        <p class="event-desc">Lace up and hit the streets of Byron in one of northern Illinois' most popular community road races.</p>
+      </div>
+    </div>
+    <div class="event-card">
+      <img src="images/awards.jpg" alt="Annual Awards">
+      <div class="event-body">
+        <p class="event-date">Annual</p>
+        <p class="event-title">Annual Awards Ceremony</p>
+        <p class="event-desc">Celebrating the businesses and individuals who make Byron a stronger community every year.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-4">
+    <div class="event-card event-card-sm">
+      <div class="event-placeholder-img"><span>Golf</span></div>
+      <div class="event-placeholder-body">
+        <p class="event-date">August 20, 2026</p>
+        <p class="event-title-sm">Annual Golf Play Day</p>
+        <p class="event-desc-sm">Member networking at PrairieView Golf Club.</p>
+      </div>
+    </div>
+    <div class="event-card event-card-sm">
+      <div class="event-placeholder-img"><span>Winter</span></div>
+      <div class="event-placeholder-body">
+        <p class="event-date">December 2026</p>
+        <p class="event-title-sm">Miracle on 2nd Street</p>
+        <p class="event-desc-sm">Byron's beloved holiday celebration in downtown.</p>
+      </div>
+    </div>
+    <div class="event-card event-card-sm">
+      <img src="images/wine-dinner.jpg" alt="Wine Dinner" style="width:100%;height:140px;object-fit:cover;display:block;">
+      <div class="event-body event-body-sm">
+        <p class="event-date">February 2026</p>
+        <p class="event-title-sm">Wine Dinner</p>
+        <p class="event-desc-sm">An elegant evening of wine, food, and Chamber fellowship.</p>
+      </div>
+    </div>
+    <div class="event-card event-card-sm">
+      <div class="event-placeholder-img"><span>Fall</span></div>
+      <div class="event-placeholder-body">
+        <p class="event-date">October 24, 2026</p>
+        <p class="event-title-sm">ChiliFest</p>
+        <p class="event-desc-sm">Compete for the trophy or just come hungry.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="view-all"><a href="#">View full events calendar &rarr;</a></div>
+</section>
+
+<div class="ribbon-section">
+  <div class="ribbon-photo">
+    <img src="images/ribbon1.jpg" alt="Byron Chamber Ribbon Cutting">
+    <div class="ribbon-photo-overlay">
+      <span class="ribbon-gold-tag">Member Spotlight</span>
+      <h3>Ribbon cuttings &amp; grand openings</h3>
+      <p>The Chamber celebrates new businesses and milestones across Byron. Members get featured in our weekly blast and social channels.</p>
+    </div>
+  </div>
+  <div class="ribbon-photo">
+    <img src="images/ribbon2.jpg" alt="Byron Community Event">
+    <div class="ribbon-photo-overlay">
+      <span class="ribbon-gold-tag">Community</span>
+      <h3>Byron is growing &mdash; be part of it</h3>
+      <p>With 11,000+ residents in the greater Byron area, there's never been a better time to connect with your community through the Chamber.</p>
+    </div>
+  </div>
+</div>
+
+<section style="padding-bottom: 0;">
+  <p class="section-title">Byron Area Business Directory</p>
+  <p class="section-sub">Find local businesses, services, and organizations serving the Byron community.</p>
+</section>
+<div class="dir-promo">
+  <div class="dir-promo-text">
+    <h3>Browse local Byron businesses</h3>
+    <p>From restaurants and retail to professional services &mdash; it's all here.</p>
+  </div>
+  <button class="btn-gold" style="font-size: 14px; padding: 11px 24px;">Browse the directory</button>
+</div>
+
+<div class="cta-banner">
+  <h2>Ready to grow with Byron?</h2>
+  <p>Join the Byron Area Chamber of Commerce and connect your business with the community that keeps Byron thriving.</p>
+  <button class="btn-gold" style="font-size: 15px; padding: 12px 28px;">Start your membership application</button>
+</div>
+
+<div class="sponsors">
+  <p class="sponsors-label">Chamber sponsors &amp; partners</p>
+  <div class="sponsors-row">
+    <div class="sponsor-pill">Byron Bank</div>
+    <div class="sponsor-pill">Commonwealth Edison</div>
+    <div class="sponsor-pill">NICOR Gas</div>
+    <div class="sponsor-pill">Become a Sponsor</div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-logo">
+      <img src="images/logo.jpg" alt="Byron Area Chamber of Commerce">
+      <p>Serving businesses and community in Byron, IL and the greater Rock River Valley.</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <a href="#">About Us</a>
+      <a href="#">Become a Member</a>
+      <a href="#">Business Directory</a>
+      <a href="#">Community Guide</a>
+      <a href="#">Contact Us</a>
+    </div>
+    <div>
+      <h4>Events</h4>
+      <a href="#">ByronFest</a>
+      <a href="#">5k/10k Byron Rocks</a>
+      <a href="#">Annual Awards</a>
+      <a href="#">ChiliFest</a>
+      <a href="#">Golf Play Day</a>
+      <a href="#">Miracle on 2nd Street</a>
+      <a href="#">Wine Dinner</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="#">232 W 2nd Street</a>
+      <a href="#">Byron, IL 61010</a>
+      <a href="#">(815) 234-5500</a>
+      <a href="#">office@byronchamber.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Byron Area Chamber of Commerce</span>
+    <div class="footer-social">
+      <a class="social-btn" href="#">f</a>
+      <a class="social-btn" href="#">in</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
