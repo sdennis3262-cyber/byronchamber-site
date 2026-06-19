@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Directory — Byron Area Chamber of Commerce</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; color: #1a1a2e; background: #fff; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: #0d1e4a;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem; height: 72px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  }
+  .nav-brand { display: flex; align-items: center; gap: 14px; }
+  .nav-brand img { height: 52px; width: auto; }
+  .nav-brand-text { color: #fff; font-size: 13px; font-weight: 500; line-height: 1.4; }
+  .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+  .nav-links a { color: rgba(255,255,255,0.82); font-size: 13px; text-decoration: none; }
+  .nav-links a:hover, .nav-links a.active { color: #c8a227; }
+  .nav-dropdown { position: relative; }
+  .nav-dropdown > a { display: flex; align-items: center; gap: 4px; }
+  .nav-dropdown > a::after { content: '▾'; font-size: 10px; opacity: 0.7; }
+  .dropdown-menu {
+    display: none; position: absolute; top: 100%; left: 0;
+    background: #0d1e4a; border: 1px solid rgba(255,255,255,0.12);
+    border-top: 2px solid #c8a227; border-radius: 0 0 8px 8px;
+    min-width: 220px; padding: 0.5rem 0;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  }
+  .nav-dropdown:hover .dropdown-menu { display: block; }
+  .dropdown-menu a { display: block; padding: 9px 18px; color: rgba(255,255,255,0.82); font-size: 13px; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .dropdown-menu a:last-child { border-bottom: none; }
+  .dropdown-menu a:hover { color: #c8a227; background: rgba(255,255,255,0.05); }
+  .btn-gold { background: #c8a227; color: #0d1e4a; border: none; padding: 9px 20px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; }
+
+  .page-hero {
+    background: #0d1e4a; padding: 3rem 2.5rem; text-align: center;
+  }
+  .page-hero h1 { color: #fff; font-size: 2rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .page-hero p { color: rgba(255,255,255,0.72); font-size: 15px; }
+
+  .dir-controls { padding: 2rem 2.5rem 0; }
+  .search-wrap { position: relative; margin-bottom: 1.25rem; }
+  .search-wrap input {
+    width: 100%; padding: 12px 16px 12px 44px;
+    border: 1.5px solid #e0e0e0; border-radius: 8px;
+    font-size: 15px; font-family: 'Inter', sans-serif;
+    outline: none; transition: border-color 0.2s;
+  }
+  .search-wrap input:focus { border-color: #c8a227; }
+  .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #999; font-size: 18px; }
+  .filter-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .filter-btn {
+    padding: 7px 16px; border: 1.5px solid #e0e0e0; border-radius: 20px;
+    font-size: 13px; font-family: 'Inter', sans-serif; background: #fff;
+    cursor: pointer; color: #555; transition: all 0.15s;
+  }
+  .filter-btn:hover { border-color: #c8a227; color: #0d1e4a; }
+  .filter-btn.active { background: #0d1e4a; border-color: #0d1e4a; color: #fff; }
+
+  .dir-results { padding: 0.75rem 2.5rem 0.5rem; }
+  .results-count { font-size: 13px; color: #888; }
+
+  .biz-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1rem; padding: 1rem 2.5rem 3rem;
+  }
+  .biz-card {
+    background: #fff; border: 1px solid #e8e8e8; border-radius: 10px;
+    padding: 1.25rem; border-left: 4px solid #c8a227;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .biz-name { font-size: 15px; font-weight: 600; color: #0d1e4a; }
+  .biz-cat { font-size: 11px; font-weight: 600; color: #c8a227; text-transform: uppercase; letter-spacing: 0.8px; }
+  .biz-detail { font-size: 12px; color: #666; line-height: 1.5; }
+  .biz-phone { font-size: 13px; color: #444; font-weight: 500; margin-top: 4px; }
+  .biz-website { font-size: 12px; color: #0d1e4a; text-decoration: none; font-weight: 500; margin-top: 2px; display: inline-block; }
+  .biz-website:hover { color: #c8a227; }
+  .no-results { padding: 3rem 2.5rem; text-align: center; color: #888; font-size: 15px; }
+
+  .area-section { background: #f7f7f5; padding: 2.5rem 2.5rem 3rem; }
+  .area-title { font-size: 20px; font-weight: 600; color: #0d1e4a; margin-bottom: 0.4rem; }
+  .area-sub { font-size: 14px; color: #666; margin-bottom: 1.5rem; }
+  .area-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+  .area-pill {
+    background: #fff; border: 1px solid #e0e0e0; border-radius: 20px;
+    padding: 6px 16px; font-size: 13px; color: #444;
+  }
+
+  footer { background: #0d1e4a; padding: 3rem 2.5rem 2rem; }
+  .footer-grid { display: grid; grid-template-columns: 1.75fr 1fr 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+  .footer-logo img { height: 70px; width: auto; margin-bottom: 1rem; }
+  .footer-logo p { color: rgba(255,255,255,0.6); font-size: 13px; line-height: 1.7; }
+  footer h4 { color: #c8a227; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; }
+  footer a { color: rgba(255,255,255,0.65); font-size: 13px; text-decoration: none; display: block; margin-bottom: 8px; }
+  footer a:hover { color: #c8a227; }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-bottom span { color: rgba(255,255,255,0.38); font-size: 12px; }
+  .footer-social { display: flex; gap: 10px; }
+  .social-btn { width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.25); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.65); font-size: 13px; font-weight: 700; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">
+    <img src="images/logo.jpg" alt="Byron Area Chamber of Commerce">
+    <span class="nav-brand-text">Byron Area<br>Chamber of Commerce</span>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">About Us</a>
+    <a href="index.html">Membership</a>
+    <a href="directory.html" class="active">Business Directory</a>
+    <a href="index.html">Events &amp; Calendar</a>
+    <div class="nav-dropdown">
+      <a href="#">Community Guide</a>
+      <div class="dropdown-menu">
+        <a href="community/welcome.html">Welcome</a>
+        <a href="community/ogle-county.html">Ogle County Welcome</a>
+        <a href="community/quality-of-life.html">Quality of Life</a>
+        <a href="community/economic-development.html">Economic Development</a>
+        <a href="community/tourism.html">Tourism</a>
+        <a href="community/organizations.html">Community Organizations</a>
+      </div>
+    </div>
+    <a href="index.html">Contact Us</a>
+  </div>
+  <button class="btn-gold">Become a Member</button>
+</nav>
+
+<div class="page-hero">
+  <h1>Byron Area Business Directory</h1>
+  <p>Find local businesses, services, and organizations serving Byron and the greater Rock River Valley.</p>
+</div>
+
+<div class="dir-controls">
+  <div class="search-wrap">
+    <span class="search-icon">&#9906;</span>
+    <input type="text" id="search" placeholder="Search businesses by name, category, or keyword..." oninput="filterBiz()">
+  </div>
+  <div class="filter-row" id="filters"></div>
+</div>
+
+<div class="dir-results"><span id="count"></span></div>
+<div class="biz-grid" id="biz-grid"></div>
+<div class="no-results" id="no-results" style="display:none;">No businesses match your search. Try a different keyword or category.</div>
+
+<div class="area-section">
+  <p class="area-title">Byron Area Chamber Members</p>
+  <p class="area-sub">Additional members of the Byron Area Chamber of Commerce community.</p>
+  <div class="area-grid">
+    <div class="area-pill">Big John Portable Toilets</div>
+    <div class="area-pill">Blackhawk Veterinary Services</div>
+    <div class="area-pill">Brown's Tax Service</div>
+    <div class="area-pill">Business Employment Skill Team (BEST)</div>
+    <div class="area-pill">Byron Autobody Inc.</div>
+    <div class="area-pill">Byron Civic Theatre</div>
+    <div class="area-pill">Byron Fire Protection</div>
+    <div class="area-pill">Byron Insurance Agency</div>
+    <div class="area-pill">Byron Wealth Management</div>
+    <div class="area-pill">Byron Women's Club</div>
+    <div class="area-pill">Career Education Associates</div>
+    <div class="area-pill">CASA-15th Judicial Circuit</div>
+    <div class="area-pill">Charles D. Bertolet Foundation</div>
+    <div class="area-pill">ComEd</div>
+    <div class="area-pill">Command Post at the Rock River</div>
+    <div class="area-pill">Custom Concrete Construction LP</div>
+    <div class="area-pill">DeRango &amp; Cain LLC</div>
+    <div class="area-pill">DJ Liquors Inc.</div>
+    <div class="area-pill">Edward Jones — Scott Jeffrey</div>
+    <div class="area-pill">Embrie Salon</div>
+    <div class="area-pill">Essential Infusions Plus</div>
+    <div class="area-pill">Fehr Graham — Jason Stoll</div>
+    <div class="area-pill">Felker Foods</div>
+    <div class="area-pill">Feste &amp; Company Inc.</div>
+    <div class="area-pill">Foundation for Focus House</div>
+    <div class="area-pill">Game Day Apparel</div>
+    <div class="area-pill">Holcomb Bank</div>
+    <div class="area-pill">Hurst Heating &amp; Cooling</div>
+    <div class="area-pill">JC's Junction</div>
+    <div class="area-pill">JT Designs</div>
+    <div class="area-pill">Kenzley Title Group</div>
+    <div class="area-pill">Keslee Gray Salon LLC</div>
+    <div class="area-pill">LA Hopkins INC</div>
+    <div class="area-pill">Marco</div>
+    <div class="area-pill">Mary Kay Cosmetics — Kathy Wickler</div>
+    <div class="area-pill">M &amp; J Auto and Truck Repair</div>
+    <div class="area-pill">Nancy Gall Senior Planning INC</div>
+    <div class="area-pill">Nicor Gas</div>
+    <div class="area-pill">Norup Trenching Inc.</div>
+    <div class="area-pill">Ogle County Economic Development Corp.</div>
+    <div class="area-pill">Ogle County Life</div>
+    <div class="area-pill">Party Time Portables</div>
+    <div class="area-pill">Path to Healing</div>
+    <div class="area-pill">Patrick O'Brien (Friend of Chamber)</div>
+    <div class="area-pill">Representative Tony McCombie</div>
+    <div class="area-pill">Rob's Barber Shop</div>
+    <div class="area-pill">Rock River Valley Rotary</div>
+    <div class="area-pill">Rock Valley Publishing LLC</div>
+    <div class="area-pill">Rouse Consulting Group</div>
+    <div class="area-pill">Saint Mary Catholic Church</div>
+    <div class="area-pill">Sean Adams Custom Carpentry Inc.</div>
+    <div class="area-pill">Serenity Hospice &amp; Home</div>
+    <div class="area-pill">Snyder's Pharmacy</div>
+    <div class="area-pill">Swedish Pancake House</div>
+    <div class="area-pill">United Church of Byron</div>
+    <div class="area-pill">Value Lab LLC</div>
+    <div class="area-pill">Wave Avenue LLC</div>
+    <div class="area-pill">WilliamsMcCarthy LLP</div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-logo">
+      <img src="images/logo.jpg" alt="Byron Area Chamber of Commerce">
+      <p>Serving businesses and community in Byron, IL and the greater Rock River Valley.</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <a href="index.html">About Us</a>
+      <a href="index.html">Become a Member</a>
+      <a href="directory.html">Business Directory</a>
+      <a href="index.html">Community Guide</a>
+      <a href="index.html">Contact Us</a>
+    </div>
+    <div>
+      <h4>Events</h4>
+      <a href="#">ByronFest</a>
+      <a href="#">5k/10k Byron Rocks</a>
+      <a href="#">Annual Awards</a>
+      <a href="#">ChiliFest</a>
+      <a href="#">Golf Play Day</a>
+      <a href="#">Miracle on 2nd Street</a>
+      <a href="#">Wine Dinner</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="#">232 W 2nd Street</a>
+      <a href="#">Byron, IL 61010</a>
+      <a href="#">(815) 234-5500</a>
+      <a href="#">office@byronchamber.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Byron Area Chamber of Commerce</span>
+    <div class="footer-social">
+      <a class="social-btn" href="#">f</a>
+      <a class="social-btn" href="#">in</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const businesses = [
+  { name: "2nd Chance Tavern", category: "Food & Dining", phone: "(815) 234-3000", address: "109 W. 2nd St, Byron, IL", website: "" },
+  { name: "Armor Coated Technology", category: "Manufacturing", phone: "(815) 316-3240", address: "602 E. Blackhawk Dr, Byron, IL", website: "armorcoated.com" },
+  { name: "Athletico Physical Therapy", category: "Healthcare", phone: "(779) 513-8230", address: "206 W. Blackhawk Dr, Byron, IL", website: "athletico.com" },
+  { name: "Autoland Outlets, Inc.", category: "Auto", phone: "(815) 234-4500", address: "733 W. Blackhawk Rd, Byron, IL", website: "autolandofbyron.com" },
+  { name: "BO-MAR Heating & Cooling", category: "Home & Construction", phone: "(815) 233-1622", address: "444 W. Meadows Dr, Freeport, IL", website: "bomarheating.com" },
+  { name: "Brown's Tax Service", category: "Financial", phone: "(815) 561-6861", address: "361 IL-38, Rochelle, IL", website: "brownstaxoffice.com" },
+  { name: "Byron Bank", category: "Financial", phone: "(815) 234-2561", address: "200 N. Walnut St, Byron, IL", website: "byronbank.com" },
+  { name: "Byron Community School District #226", category: "Education", phone: "(815) 234-5491", address: "696 N. Colfax St, Byron, IL", website: "byron226.org" },
+  { name: "Byron Dragway, Inc.", category: "Recreation", phone: "(815) 391-0000", address: "7287 N. River Rd, Byron, IL", website: "byrondragway.com" },
+  { name: "Byron Forest Preserve", category: "Recreation", phone: "(815) 234-8535", address: "7993 N. River Rd, Byron, IL", website: "byronforestpreserve.com" },
+  { name: "Byron Lions Club", category: "Community", phone: "(815) 871-4898", address: "Byron, IL", website: "" },
+  { name: "Byron Museum of History", category: "Recreation", phone: "(815) 234-5031", address: "110 N. Union St, Byron, IL", website: "byronmuseum.org" },
+  { name: "Byron Park District", category: "Recreation", phone: "(815) 234-8435", address: "500 N. Colfax St, Byron, IL", website: "byronparks.org" },
+  { name: "Byron Public Library", category: "Education", phone: "(815) 234-5107", address: "100 S. Washington St, Byron, IL", website: "byronlibrary.org" },
+  { name: "Byron Quick Lube & Tire", category: "Auto", phone: "(815) 234-5612", address: "715 W. Blackhawk Dr, Byron, IL", website: "" },
+  { name: "City of Byron", category: "Government", phone: "(815) 234-2762", address: "232 W. 2nd St, Byron, IL", website: "cityofbyron.com" },
+  { name: "Comcast / Xfinity", category: "Utilities", phone: "(800) 934-6489", address: "Byron area service", website: "xfinity.com" },
+  { name: "Constellation Energy", category: "Utilities", phone: "(815) 406-3554", address: "4450 N. German Church Rd, Byron, IL", website: "constellationenergy.com" },
+  { name: "CORA Physical Therapy", category: "Healthcare", phone: "(815) 234-5561", address: "404 W. Blackhawk Dr Suite 1, Byron, IL", website: "coraphysicaltherapy.com" },
+  { name: "Cornerstone Family Church", category: "Religious", phone: "(815) 234-8737", address: "205 N. Peru St, Byron, IL", website: "cornerstonefamilychurch.com" },
+  { name: "Costa's Ristorante & Pizzeria", category: "Food & Dining", phone: "(815) 234-4707", address: "133 E. Blackhawk Dr, Byron, IL", website: "costasbyron.com" },
+  { name: "Country Financial — Chris Criddle", category: "Financial", phone: "(815) 234-2735", address: "418 W. Blackhawk Dr, Byron, IL", website: "advisors.countryfinancial.com" },
+  { name: "Country Financial — Kerry Wickler", category: "Financial", phone: "(815) 234-2735", address: "418 W. Blackhawk Dr, Byron, IL", website: "advisors.countryfinancial.com" },
+  { name: "County Market of Byron", category: "Food & Dining", phone: "(815) 234-2311", address: "201 W. Blackhawk Dr, Byron, IL", website: "mycountymarket.com" },
+  { name: "CoyleKiley Insurance", category: "Financial", phone: "(815) 987-2170", address: "810 N. Alpine Rd, Rockford, IL", website: "coylekiley.com" },
+  { name: "Dos Amigos", category: "Food & Dining", phone: "(815) 234-8567", address: "523 W. Blackhawk Dr, Byron, IL", website: "dosamigosbyron.com" },
+  { name: "Edward Jones of Byron", category: "Financial", phone: "(815) 234-7040", address: "131 W. 2nd St, Byron, IL", website: "edwardjones.com" },
+  { name: "Envoy Mortgage of Byron", category: "Financial", phone: "(815) 668-8976", address: "418 W. Blackhawk Dr Suite 101, Byron, IL", website: "envoymortgage.com" },
+  { name: "Farrell Holland Gale Funeral Home", category: "Professional Services", phone: "", address: "506 W. Merchant St, Byron, IL", website: "farrellhollandgale.com" },
+  { name: "Fritz ElectRick", category: "Home & Construction", phone: "(815) 393-4695", address: "14080 IL Route 72, Davis Junction, IL", website: "electricrockfordillinois.com" },
+  { name: "Generations at Neighbors", category: "Healthcare", phone: "(815) 234-2511", address: "811 W. Second St, Byron, IL", website: "generationsneighbors.com" },
+  { name: "Golden Auto Sales", category: "Auto", phone: "(815) 234-5546", address: "805 W. Blackhawk Dr, Byron, IL", website: "goldenautosales.com" },
+  { name: "Hairy Cow Brewing Company", category: "Food & Dining", phone: "(815) 243-2866", address: "450 E. Blackhawk Dr, Byron, IL", website: "hairycowbrewing.com" },
+  { name: "Heesaker, Jeanette CPA", category: "Financial", phone: "(815) 234-8100", address: "132 W. 2nd St Suite 1, Byron, IL", website: "" },
+  { name: "Hub-Remsen Print Group", category: "Professional Services", phone: "(815) 562-7057", address: "101 Maple Ave, Rochelle, IL", website: "hub-remsen.com" },
+  { name: "Huskie Exteriors Inc.", category: "Home & Construction", phone: "(815) 579-3237", address: "404 W. Blackhawk Dr, Byron, IL", website: "huskieexteriors.com" },
+  { name: "Loomis International, LTD", category: "Manufacturing", phone: "(815) 316-3240", address: "602 E. Blackhawk Dr, Byron, IL", website: "loomisltd.com" },
+  { name: "Martin & Company Excavating", category: "Home & Construction", phone: "(815) 732-2422", address: "2456 E. Pleasant Grove Rd, Oregon, IL", website: "martincoinc.net" },
+  { name: "McDonald's — Bucciferro Family", category: "Food & Dining", phone: "(815) 234-2004", address: "105 N. Union St, Byron, IL", website: "" },
+  { name: "Mercyhealth", category: "Healthcare", phone: "(815) 971-5448", address: "2400 N. Rockton Ave, Rockford, IL", website: "mercyhealthsystem.org" },
+  { name: "Middle Creek Presbyterian Church", category: "Religious", phone: "(815) 335-2609", address: "12473 Montague Rd, Winnebago, IL", website: "" },
+  { name: "Miller Companies of Byron", category: "Professional Services", phone: "(815) 234-4411", address: "221 N. Walnut St, Byron, IL", website: "" },
+  { name: "Miracle-Ear", category: "Healthcare", phone: "(815) 406-0002", address: "232 W. Second St, Byron, IL", website: "" },
+  { name: "Morrissey Family Businesses", category: "Professional Services", phone: "(815) 282-3900", address: "5919 Spring Creek Rd, Rockford, IL", website: "morrisseyfamily.com" },
+  { name: "Mr. Goodwater", category: "Home & Construction", phone: "(815) 544-0800", address: "596 N. Appleton Rd, Belvidere, IL", website: "mrgoodwater.com" },
+  { name: "National Header Die", category: "Manufacturing", phone: "(815) 316-3240", address: "602 E. Blackhawk Dr, Byron, IL", website: "nationalheaderdie.com" },
+  { name: "Northern Illinois Disposal", category: "Utilities", phone: "(800) 930-7321", address: "200 Standard Oil Rd, Rochelle, IL", website: "northernillinoisdisposal.com" },
+  { name: "Northwest Illinois Alliance of REALTORS", category: "Real Estate", phone: "", address: "1161 Tebala Blvd, Rockford, IL", website: "northwestillinoisalliance.realtor" },
+  { name: "OSF Medical Group", category: "Healthcare", phone: "(815) 234-3900", address: "109 N. Franklin St, Byron, IL", website: "osfhealthcare.org/byron" },
+  { name: "Ogle County Chiropractic Center", category: "Healthcare", phone: "(815) 234-2222", address: "137 N. Walnut St Suite 5, Byron, IL", website: "occcbyron.com" },
+  { name: "Power Combat Fitness", category: "Fitness", phone: "(815) 762-7928", address: "1350 Kysor Dr, Byron, IL", website: "powercombatfitness.com" },
+  { name: "PrairieView Golf Club", category: "Recreation", phone: "(815) 234-4653", address: "6734 N. German Church Rd, Byron, IL", website: "prairieviewgolf.com" },
+  { name: "Prographics", category: "Professional Services", phone: "(815) 226-9422", address: "4404 Boeing Dr, Rockford, IL", website: "pgiworldwide.com" },
+  { name: "Re/Max of Rock Valley", category: "Real Estate", phone: "(815) 732-9100", address: "606 E. Washington St, Oregon, IL", website: "rockvalleyproperties.com" },
+  { name: "Re/Max Professional Advantage", category: "Real Estate", phone: "(815) 677-7378", address: "404 W. Blackhawk Dr, Byron, IL", website: "elizabethemma.remax.com" },
+  { name: "Republic Services", category: "Utilities", phone: "(779) 804-3004", address: "2110 McNeal Rd, Rock Falls, IL", website: "republicservices.com" },
+  { name: "Rochelle Broadcasting", category: "Media", phone: "(815) 562-7001", address: "400 May Mart Dr, Rochelle, IL", website: "1023thecoyote.net" },
+  { name: "Rock River Valley Blood Center", category: "Healthcare", phone: "(815) 965-8751", address: "419 N. 6th St, Rockford, IL", website: "rrvbc.org" },
+  { name: "Shaw Local Radio", category: "Media", phone: "", address: "1460 College Ave, Dixon, IL", website: "shawlocalradio.com" },
+  { name: "Sinnissippi Centers, Inc.", category: "Healthcare", phone: "(815) 209-0998", address: "212 W. Blackhawk Dr, Byron, IL", website: "sinnissippi.org" },
+  { name: "Smith's Electric, LLC", category: "Home & Construction", phone: "(815) 298-0505", address: "4954 E. Nordic Woods Dr, Byron, IL", website: "smithselectricllc.com" },
+  { name: "Sterling Federal Bank", category: "Financial", phone: "(815) 234-7601", address: "221 N. Union St, Byron, IL", website: "sterlingfederal.com" },
+  { name: "Stillman Bank", category: "Financial", phone: "(815) 234-5626", address: "608 W. Blackhawk Dr, Byron, IL", website: "stillmanbank.com" },
+  { name: "Swedish Pancake House", category: "Food & Dining", phone: "(815) 234-7660", address: "127 W. Second St, Byron, IL", website: "swedishpancakehouseandcafe.com" },
+  { name: "Sweetbean Cafe & Bakery", category: "Food & Dining", phone: "(815) 234-4989", address: "114 S. Franklin St, Byron, IL", website: "sweetbeancafe.net" },
+  { name: "TEST, Inc.", category: "Professional Services", phone: "(815) 224-1650", address: "2323 Fourth St, Peru, IL", website: "testinc.com" },
+  { name: "Tess, Arnquist & Wilt, LLC", category: "Professional Services", phone: "(815) 562-8754", address: "1090 N. 7th St, Rochelle, IL", website: "tesscrulllaw.com" },
+  { name: "United Way of Ogle County", category: "Community", phone: "(815) 284-3339", address: "PO Box 382, Dixon, IL", website: "unitedwayofoglecounty.org" },
+  { name: "Uptown Lanes / Back Alley Bar & Grill", category: "Food & Dining", phone: "(815) 234-2695", address: "106 W. Second St, Byron, IL", website: "uptownlanesbyron.com" },
+  { name: "UW Health", category: "Healthcare", phone: "(815) 234-2611", address: "220 W. Blackhawk Dr, Byron, IL", website: "swedishamerican.org" },
+  { name: "Webb Chiropractic", category: "Healthcare", phone: "(815) 234-3021", address: "105 S. Lafayette St, Byron, IL", website: "webbchiroclinic.com" },
+  { name: "Weezy's Sports Bar & Grill", category: "Food & Dining", phone: "(815) 234-2696", address: "110 W. Second St, Byron, IL", website: "byronweezys.com" }
+];
+
+const categories = ["All", ...new Set(businesses.map(b => b.category).sort())];
+let activeCategory = "All";
+
+function buildFilters() {
+  const row = document.getElementById('filters');
+  categories.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-btn' + (cat === 'All' ? ' active' : '');
+    btn.textContent = cat;
+    btn.onclick = () => {
+      activeCategory = cat;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filterBiz();
+    };
+    row.appendChild(btn);
+  });
+}
+
+function filterBiz() {
+  const q = document.getElementById('search').value.toLowerCase();
+  const filtered = businesses.filter(b => {
+    const matchCat = activeCategory === 'All' || b.category === activeCategory;
+    const matchQ = !q || b.name.toLowerCase().includes(q) || b.category.toLowerCase().includes(q) || b.address.toLowerCase().includes(q);
+    return matchCat && matchQ;
+  });
+
+  const grid = document.getElementById('biz-grid');
+  const noRes = document.getElementById('no-results');
+  const count = document.getElementById('count');
+
+  grid.innerHTML = '';
+  count.textContent = filtered.length + ' businesses found';
+
+  if (filtered.length === 0) {
+    grid.style.display = 'none';
+    noRes.style.display = 'block';
+  } else {
+    grid.style.display = 'grid';
+    noRes.style.display = 'none';
+    filtered.forEach(b => {
+      const card = document.createElement('div');
+      card.className = 'biz-card';
+      card.innerHTML = `
+        <div class="biz-cat">${b.category}</div>
+        <div class="biz-name">${b.name}</div>
+        <div class="biz-detail">${b.address}</div>
+        ${b.phone ? `<div class="biz-phone">${b.phone}</div>` : ''}
+        ${b.website ? `<a class="biz-website" href="https://${b.website}" target="_blank">${b.website}</a>` : ''}
+      `;
+      grid.appendChild(card);
+    });
+  }
+}
+
+buildFilters();
+filterBiz();
+</script>
+</body>
+</html>
