@@ -137,8 +137,9 @@
 
     /* ── EVENTS ── */
     .event-grid { grid-template-columns: 1fr !important; }
-    .featured-event { flex-direction: column !important; }
-    .featured-event img { width: 100% !important; height: 220px !important; }
+    .featured-event { grid-template-columns: 1fr !important; }
+    .featured-event img { width: 100% !important; height: 240px !important; object-fit: cover; }
+    .featured-event-body { padding: 1.5rem !important; }
 
     /* ── COMMUNITY SUBNAV ── */
     .subnav { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap !important; padding: 0 1.25rem; }
