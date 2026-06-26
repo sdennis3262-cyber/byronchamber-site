@@ -503,6 +503,17 @@ function filterBiz() {
 
 buildFilters();
 filterBiz();
+
+  // Pre-fill search from homepage category pills
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var q = params.get('q');
+    if (q) {
+      var el = document.getElementById('search');
+      if (el) { el.value = q; filterBiz(); }
+    }
+  })();
+
 </script>
 <script>
 function toggleMobileNav() {

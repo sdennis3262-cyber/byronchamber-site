@@ -231,6 +231,49 @@
     .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
     .sponsors { padding: 2rem 1.25rem !important; }
   }
+
+  /* Stats strip */
+  .stats-strip { background: #1a1b5b; border-top: 3px solid #c8a227; }
+  .stats-row { display: flex; justify-content: center; max-width: 860px; margin: 0 auto; padding: 1.5rem 2.5rem; }
+  .stat-item { flex: 1; text-align: center; padding: 0.5rem 1.5rem; border-right: 1px solid rgba(255,255,255,0.15); }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-size: 30px; font-weight: 600; color: #c8a227; line-height: 1.1; }
+  .stat-label { font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 5px; text-transform: uppercase; letter-spacing: 1px; }
+
+  /* Directory search */
+  .dir-search-wrap { max-width: 680px; margin: 0 auto; }
+  .dir-search-form { display: flex; gap: 10px; margin-bottom: 1.25rem; }
+  .dir-search-input { flex: 1; border: 1.5px solid #ddd; border-radius: 8px; padding: 12px 16px; font-size: 15px; font-family: 'Inter', sans-serif; color: #1a1a2e; outline: none; }
+  .dir-search-input:focus { border-color: #c8a227; }
+  .dir-cats { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .dir-cat-pill { background: #fff; border: 1.5px solid #e0e0e0; border-radius: 20px; padding: 7px 16px; font-size: 13px; color: #444; text-decoration: none; transition: border-color 0.15s, color 0.15s; }
+  .dir-cat-pill:hover { border-color: #c8a227; color: #1a1b5b; }
+
+  /* Featured business */
+  .featured-biz-card { display: grid; grid-template-columns: 1fr 1.5fr; gap: 0; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.09); border: 1px solid #e8e8e8; max-width: 860px; margin: 0 auto; }
+  .featured-biz-img img { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 280px; }
+  .featured-biz-body { padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; gap: 0.75rem; }
+  .featured-biz-tag { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #c8a227; }
+  .featured-biz-body h3 { font-size: 22px; font-weight: 600; color: #1a1b5b; margin: 0; }
+  .featured-biz-body .biz-desc { font-size: 14px; color: #555; line-height: 1.7; margin: 0; }
+  .featured-biz-body .biz-meta { font-size: 12px; color: #999; margin: 0; }
+
+  /* Hover polish */
+  .benefit-card { transition: transform 0.15s, box-shadow 0.15s; }
+  .benefit-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.09); }
+  .event-card { transition: transform 0.15s, box-shadow 0.15s; }
+  .event-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+
+  @media (max-width: 768px) {
+    .stats-row { flex-direction: column !important; padding: 1rem 1.25rem !important; }
+    .stat-item { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.1) !important; padding: 0.75rem 0 !important; }
+    .stat-item:last-child { border-bottom: none !important; }
+    .dir-search-form { flex-direction: column !important; }
+    .dir-search-form .btn-gold { width: 100%; padding: 12px !important; }
+    .featured-biz-card { grid-template-columns: 1fr !important; }
+    .featured-biz-img img { min-height: 200px !important; height: 220px !important; }
+    .featured-biz-body { padding: 1.5rem !important; }
+  }
 </style>
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Byron Area Chamber of Commerce">
@@ -260,7 +303,7 @@
     <a href="directory.html">Business Directory</a>
     <a href="events.html">Events &amp; Calendar</a>
     <div class="nav-dropdown">
-      <a href="#">Community Guide</a>
+      <a href="community/welcome.html">Community Guide</a>
       <div class="dropdown-menu">
         <a href="community/welcome.html">Welcome</a>
         <a href="community/ogle-county.html">Ogle County Welcome</a>
@@ -286,17 +329,34 @@
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">Gateway to the Rock River</p>
-    <h1>Enjoy the Byron Life with Us</h1>
-    <p>Connecting businesses, organizations, and community across Byron and the greater Rock River Valley.</p>
+    <h1>Helping Byron Businesses Grow Through Connection, Promotion &amp; Community.</h1>
+    <p>The Byron Chamber brings local businesses, residents, and community leaders together to support growth, visibility, and local pride.</p>
     <div class="hero-btns">
-      <a href="membership.html" class="btn-gold" style="text-decoration:none;">Join Today</a>
-      <a href="events.html" class="btn-outline-white" style="text-decoration:none;">Explore Events</a>
+      <a href="membership.html" class="btn-gold" style="text-decoration:none;">Become a Member</a>
+      <a href="directory.html" class="btn-outline-white" style="text-decoration:none;">Find a Local Business</a>
     </div>
   </div>
 </div>
 
-<div class="gold-strip">
-  <p>Strategic &nbsp;&middot;&nbsp; Responsive &nbsp;&middot;&nbsp; Community-Driven</p>
+<div class="stats-strip">
+  <div class="stats-row">
+    <div class="stat-item">
+      <div class="stat-num">65+</div>
+      <div class="stat-label">Member Businesses</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">7</div>
+      <div class="stat-label">Annual Events</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">11k+</div>
+      <div class="stat-label">Residents Served</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">1958</div>
+      <div class="stat-label">Serving Byron Since</div>
+    </div>
+  </div>
 </div>
 
 <section class="section-bg">
@@ -306,17 +366,17 @@
     <div class="benefit-card">
       <h3>Exposure &amp; connections</h3>
       <p>Get your business in front of thousands of Byron area residents and regional visitors through our directory, events, and weekly email blast.</p>
-      <a href="#">Learn more &rarr;</a>
+      <a href="membership.html">Learn more &rarr;</a>
     </div>
     <div class="benefit-card">
       <h3>Advocacy &amp; resources</h3>
       <p>We advocate for Byron's business community at the local and regional level &mdash; giving your voice real weight where decisions are made.</p>
-      <a href="#">Learn more &rarr;</a>
+      <a href="membership.html">Learn more &rarr;</a>
     </div>
     <div class="benefit-card">
       <h3>Growth &amp; networking</h3>
       <p>Access workshops, ribbon cuttings, member spotlights, and networking events designed to help your business grow and stay connected.</p>
-      <a href="#">Learn more &rarr;</a>
+      <a href="membership.html">Learn more &rarr;</a>
     </div>
   </div>
 </section>
@@ -387,7 +447,7 @@
     </div>
   </div>
 
-  <div class="view-all"><a href="#">View full events calendar &rarr;</a></div>
+  <div class="view-all"><a href="events.html">View full events calendar &rarr;</a></div>
 </section>
 
 <div class="ribbon-section">
@@ -409,17 +469,47 @@
   </div>
 </div>
 
-<section style="padding-bottom: 0;">
-  <p class="section-title">Byron Area Business Directory</p>
-  <p class="section-sub">Find local businesses, services, and organizations serving the Byron community.</p>
-</section>
-<div class="dir-promo">
-  <div class="dir-promo-text">
-    <h3>Browse local Byron businesses</h3>
-    <p>From restaurants and retail to professional services &mdash; it's all here.</p>
+<section>
+  <p class="section-title">Featured Member Business</p>
+  <p class="section-sub">Each month the Chamber highlights a member making a difference in Byron.</p>
+  <div class="featured-biz-card">
+    <div class="featured-biz-img">
+      <img src="images/ribbon1.jpg" alt="Rock River Outfitters">
+    </div>
+    <div class="featured-biz-body">
+      <span class="featured-biz-tag">Member Spotlight &nbsp;&middot;&nbsp; June 2026</span>
+      <h3>Rock River Outfitters</h3>
+      <p class="biz-desc">Your local source for outdoor gear, fishing tackle, hunting supplies, and expert local knowledge. From the Rock River to the Kishwaukee, they know where to take you next.</p>
+      <p class="biz-meta">Member since 2014 &nbsp;&middot;&nbsp; Sporting Goods &amp; Outdoor Recreation</p>
+      <a href="directory.html" class="btn-gold" style="text-decoration:none;font-size:13px;padding:10px 24px;display:inline-block;margin-top:0.25rem;">View in Directory &rarr;</a>
+    </div>
   </div>
-  <a href="directory.html" class="btn-gold" style="font-size: 14px; padding: 11px 24px; text-decoration:none;">Browse the directory</a>
-</div>
+</section>
+
+<section class="section-bg">
+  <p class="section-title">Find a Byron Business</p>
+  <p class="section-sub">Search our member directory for local services, restaurants, retail, and more.</p>
+  <div class="dir-search-wrap">
+    <form class="dir-search-form" onsubmit="window.location='directory.html?q='+encodeURIComponent(this.querySelector('input').value);return false;">
+      <input type="text" class="dir-search-input" placeholder="Search by name, category, or keyword...">
+      <button type="submit" class="btn-gold" style="padding:12px 24px;font-size:14px;white-space:nowrap;">Search</button>
+    </form>
+    <div class="dir-cats">
+      <a href="directory.html?q=restaurant" class="dir-cat-pill">Restaurants</a>
+      <a href="directory.html?q=retail" class="dir-cat-pill">Retail</a>
+      <a href="directory.html?q=health" class="dir-cat-pill">Health &amp; Medical</a>
+      <a href="directory.html?q=financial" class="dir-cat-pill">Financial</a>
+      <a href="directory.html?q=automotive" class="dir-cat-pill">Automotive</a>
+      <a href="directory.html?q=professional" class="dir-cat-pill">Professional Services</a>
+      <a href="directory.html?q=construction" class="dir-cat-pill">Construction</a>
+      <a href="directory.html?q=manufacturing" class="dir-cat-pill">Manufacturing</a>
+    </div>
+    <div style="text-align:center;margin-top:1.5rem;">
+      <a href="directory.html" style="font-size:14px;font-weight:600;color:#1a1b5b;text-decoration:none;border-bottom:2px solid #c8a227;padding-bottom:2px;">Browse all member businesses &rarr;</a>
+    </div>
+  </div>
+</section>
+
 
 <div class="cta-banner">
   <h2>Ready to grow with Byron?</h2>
@@ -445,28 +535,28 @@
     </div>
     <div>
       <h4>Quick Links</h4>
-      <a href="#">About Us</a>
-      <a href="#">Become a Member</a>
+      <a href="about.html">About Us</a>
+      <a href="membership.html">Become a Member</a>
       <a href="directory.html">Business Directory</a>
-      <a href="#">Community Guide</a>
-      <a href="#">Contact Us</a>
+      <a href="community/welcome.html">Community Guide</a>
+      <a href="contact.html">Contact Us</a>
     </div>
     <div>
       <h4>Events</h4>
-      <a href="#">ByronFest</a>
-      <a href="#">5k/10k Byron Rocks</a>
-      <a href="#">Annual Awards</a>
-      <a href="#">ChiliFest</a>
-      <a href="#">Golf Play Day</a>
-      <a href="#">Miracle on 2nd Street</a>
-      <a href="#">Wine Dinner</a>
+      <a href="events.html">ByronFest</a>
+      <a href="events.html">5k/10k Byron Rocks</a>
+      <a href="events.html">Annual Awards</a>
+      <a href="events.html">ChiliFest</a>
+      <a href="events.html">Golf Play Day</a>
+      <a href="events.html">Miracle on 2nd Street</a>
+      <a href="events.html">Wine Dinner</a>
     </div>
     <div>
       <h4>Contact</h4>
-      <a href="#">232 W 2nd Street</a>
-      <a href="#">Byron, IL 61010</a>
-      <a href="#">(815) 234-5500</a>
-      <a href="#">office@byronchamber.com</a>
+      <a href="contact.html">232 W 2nd Street</a>
+      <a href="contact.html">Byron, IL 61010</a>
+      <a href="tel:8152345500">(815) 234-5500</a>
+      <a href="mailto:office@byronchamber.com">office@byronchamber.com</a>
     </div>
   </div>
   <div class="footer-bottom">
