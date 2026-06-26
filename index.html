@@ -43,19 +43,39 @@
 
   .hero {
     position: relative; height: 520px;
-    background: url('images/hero.jpg') center center / cover no-repeat;
     display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .hero-slides { position: absolute; inset: 0; z-index: 0; }
+  .hero-slide {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    opacity: 0;
+    transition: opacity 1.8s ease-in-out;
+    will-change: opacity, transform;
+  }
+  .hero-slide.active {
+    opacity: 1;
+    animation: kenBurns 11s ease-out forwards;
+  }
+  @keyframes kenBurns {
+    from { transform: scale(1); }
+    to   { transform: scale(1.08); }
   }
   .hero-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to bottom, rgba(13,30,74,0.72) 0%, rgba(13,30,74,0.55) 100%);
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.38) 0%, rgba(0,0,0,0.56) 100%);
+    pointer-events: none;
   }
-  .hero-content { position: relative; z-index: 1; text-align: center; padding: 0 2rem; max-width: 680px; }
+  .hero-content { position: relative; z-index: 2; text-align: center; padding: 0 2rem; max-width: 680px; }
   .hero-eyebrow { color: #c8a227; font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1rem; }
   .hero-content h1 { color: #fff; font-size: 2.6rem; font-weight: 600; line-height: 1.2; margin-bottom: 1rem; }
-  .hero-content p { color: rgba(255,255,255,0.78); font-size: 16px; line-height: 1.7; margin-bottom: 1.75rem; }
+  .hero-content p { color: rgba(255,255,255,0.82); font-size: 16px; line-height: 1.7; margin-bottom: 1.75rem; }
   .hero-btns { display: flex; gap: 12px; justify-content: center; }
   .btn-outline-white { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.55); padding: 9px 20px; border-radius: 6px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-slide { animation: none !important; transition: none !important; }
+  }
 
   .gold-strip { background: #c8a227; padding: 14px 2.5rem; text-align: center; }
   .gold-strip p { color: #1a1b5b; font-size: 15px; font-weight: 600; letter-spacing: 0.5px; }
@@ -344,6 +364,7 @@
 </nav>
 
 <div class="hero">
+  <div class="hero-slides" id="heroSlides"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">Gateway to the Rock River</p>
@@ -616,6 +637,91 @@ document.addEventListener('click', function(e) {
     nav.classList.remove('mobile-open');
   }
 });
+</script>
+<script>
+(function() {
+  var heroImages = [
+    'images/hero/rock-river-morning.jpg',
+    'images/hero/hero.jpg',
+    'images/hero/ribbon-cutting.jpg',
+    'images/hero/byronfest.jpg'
+  ];
+  var FADE = 1800;
+  var DISPLAY = 9000;
+  var container = document.getElementById('heroSlides');
+  if (!container) return;
+
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function makeSlide(src) {
+    var el = document.createElement('div');
+    el.className = 'hero-slide';
+    el.style.backgroundImage = "url('" + src + "')";
+    return el;
+  }
+
+  if (prefersReduced) {
+    var s = makeSlide(heroImages[0]);
+    s.classList.add('active');
+    s.style.zIndex = 1;
+    container.appendChild(s);
+    return;
+  }
+
+  var loaded = [];
+  var pending = heroImages.length;
+
+  heroImages.forEach(function(src, i) {
+    var img = new Image();
+    img.onload = function() {
+      loaded[i] = src;
+      pending--;
+      if (pending === 0) init(loaded.filter(Boolean));
+    };
+    img.onerror = function() {
+      pending--;
+      if (pending === 0) init(loaded.filter(Boolean));
+    };
+    img.src = src;
+  });
+
+  function init(srcs) {
+    if (!srcs.length) return;
+    var slides = srcs.map(function(src) {
+      var el = makeSlide(src);
+      el.style.zIndex = 1;
+      container.appendChild(el);
+      return el;
+    });
+
+    var current = 0;
+    activateSlide(slides, current);
+
+    setInterval(function() {
+      var next = (current + 1) % slides.length;
+      var outgoing = current;
+
+      slides[next].style.zIndex = 2;
+      slides[next].style.animation = 'none';
+      void slides[next].offsetWidth;
+      slides[next].style.animation = '';
+      slides[next].classList.add('active');
+
+      setTimeout(function() {
+        slides[outgoing].classList.remove('active');
+        slides[outgoing].style.zIndex = 1;
+        slides[next].style.zIndex = 1;
+      }, FADE);
+
+      current = next;
+    }, DISPLAY);
+  }
+
+  function activateSlide(slides, idx) {
+    slides[idx].style.zIndex = 2;
+    slides[idx].classList.add('active');
+  }
+})();
 </script>
 </body>
 </html>
