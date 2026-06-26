@@ -8,9 +8,9 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Inter', sans-serif; color: #1a1a2e; background: #fff; }
-  nav { position: sticky; top: 0; z-index: 100; background: #1a1b5b; display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; height: 72px; box-shadow: 0 2px 12px rgba(0,0,0,0.3); }
+  nav { position: sticky; top: 0; z-index: 100; background: #1a1b5b; display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; height: 88px; box-shadow: 0 2px 12px rgba(0,0,0,0.3); }
   .nav-brand { display: flex; align-items: center; gap: 14px; }
-  .nav-brand img { height: 52px; width: auto; }
+  .nav-brand img { height: 66px; width: auto; }
   .nav-brand-text { color: #fff; font-size: 13px; font-weight: 500; line-height: 1.4; }
   .nav-links { display: flex; gap: 1rem; align-items: center; }
   .nav-links a { color: rgba(255,255,255,0.82); font-size: 12px; text-decoration: none; }
@@ -134,6 +134,24 @@
     .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
     .sponsors { padding: 2rem 1.25rem !important; }
   }
+
+  /* ── NAV UPGRADE ── */
+  .nav-brand-text { display: flex !important; flex-direction: column !important; gap: 1px !important; font-size: unset !important; font-weight: unset !important; line-height: unset !important; color: unset !important; }
+  .nav-brand-title { color: #fff; font-size: 14px; font-weight: 600; letter-spacing: 0.3px; line-height: 1.25; }
+  .nav-brand-sub { color: rgba(255,255,255,0.58); font-size: 11px; font-weight: 400; letter-spacing: 0.4px; line-height: 1.25; }
+  .nav-links > a { border-bottom: 2px solid transparent; padding-bottom: 2px; transition: color 0.15s, border-color 0.2s; }
+  .nav-links > a:hover { color: #c8a227 !important; border-bottom-color: #c8a227; }
+  .nav-links > a.active { color: #c8a227 !important; border-bottom-color: #c8a227; }
+  .nav-dropdown > a { transition: color 0.15s; }
+  .btn-gold { padding: 10px 22px !important; border-radius: 7px !important; transition: background 0.15s, transform 0.1s !important; }
+  .btn-gold:hover { background: #dab82a !important; transform: translateY(-1px); }
+  .btn-outline-nav { padding: 9px 18px !important; border-radius: 7px !important; transition: background 0.15s, border-color 0.15s, color 0.15s !important; }
+  .btn-outline-nav:hover { background: rgba(255,255,255,0.09) !important; border-color: #c8a227 !important; color: #c8a227 !important; }
+  @media (max-width: 768px) {
+    .nav-links > a { border-bottom: 1px solid rgba(255,255,255,0.06) !important; padding-bottom: 0 !important; }
+    .nav-links > a.active { border-bottom: 1px solid rgba(255,255,255,0.06) !important; }
+    .btn-gold:hover { transform: none !important; }
+  }
 </style>
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Byron Area Chamber of Commerce">
@@ -151,18 +169,18 @@
 <nav>
   <a href="../index.html" class="nav-brand" style="text-decoration:none;">
     <img src="../images/logo2026.jpg" alt="Byron Area Chamber of Commerce">
-    <span class="nav-brand-text">Byron Area<br>Chamber of Commerce</span>
+    <span class="nav-brand-text"><span class="nav-brand-title">Byron Area</span><span class="nav-brand-sub">Chamber of Commerce</span></span>
   </a>
   <button class="nav-hamburger" onclick="toggleMobileNav()" aria-label="Toggle navigation">
     <span></span><span></span><span></span>
   </button>
   <div class="nav-links">
-    <a href="../about.html">About Us</a>
+    <a href="../about.html">About</a>
+    <a href="../directory.html">Directory</a>
+    <a href="../events.html">Events</a>
     <a href="../membership.html">Membership</a>
-    <a href="../directory.html">Business Directory</a>
-    <a href="../events.html">Events &amp; Calendar</a>
     <div class="nav-dropdown">
-      <a href="#">Community Guide</a>
+      <a href="#">Community</a>
       <div class="dropdown-menu">
         <a href="welcome.html">Welcome</a>
         <a href="ogle-county.html">Ogle County Welcome</a>
@@ -172,7 +190,7 @@
         <a href="organizations.html">Community Organizations</a>
       </div>
     </div>
-    <a href="../contact.html">Contact Us</a>
+    <a href="../contact.html">Contact</a>
     <div class="nav-mobile-buttons">
       <a href="../membership.html" class="btn-gold" style="text-decoration:none;">Become a Member</a>
       <a href="../member-portal.html" class="btn-outline-nav">Member Login</a>
@@ -185,7 +203,7 @@
 </nav>
 
 <div class="page-hero">
-  <p class="eyebrow">Community Guide</p>
+  <p class="eyebrow">Community</p>
   <h1>Visit Byron, Illinois</h1>
 </div>
 
@@ -238,7 +256,7 @@
   <p>Byron's event calendar gives visitors a reason to come back every season. <strong>ByronFest</strong> (July) is the crown jewel — a three-day festival drawing thousands from across the region with live music, carnival rides, food vendors, and the famous bags tournament. <strong>ChiliFest</strong> (October) brings the heat in the fall, and <strong>Miracle on 2nd Street</strong> transforms downtown into a winter wonderland each December.</p>
 
   <h2>Dining in Byron</h2>
-  <p>From Costa's Ristorante and Dos Amigos to the Swedish Pancake House, Sweetbean Cafe, and Hairy Cow Brewing — Byron's dining scene punches well above its weight for a city its size. Check the <a href="../directory.html" style="color:#1a1b5b;font-weight:600;">Business Directory</a> for a full list of local restaurants and cafes.</p>
+  <p>From Costa's Ristorante and Dos Amigos to the Swedish Pancake House, Sweetbean Cafe, and Hairy Cow Brewing — Byron's dining scene punches well above its weight for a city its size. Check the <a href="../directory.html" style="color:#1a1b5b;font-weight:600;">Directory</a> for a full list of local restaurants and cafes.</p>
 
   <h2>Directions &amp; lodging</h2>
   <p>Byron is located along Illinois Route 2 and Route 72, approximately 20 miles west of Rockford. Lodging is available in nearby Rockford, Dixon, and Oregon. For visitors staying in the area, Byron is an easy day trip destination or a convenient base for exploring the Rock River Valley.</p>
