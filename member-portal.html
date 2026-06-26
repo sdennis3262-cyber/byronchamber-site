@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Member Portal — Byron Area Chamber of Commerce</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; color: #1a1a2e; background: #f3f4f8; }
+
+  nav { position: sticky; top: 0; z-index: 100; background: #1a1b5b; display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; height: 72px; box-shadow: 0 2px 12px rgba(0,0,0,0.3); }
+  .nav-brand { display: flex; align-items: center; gap: 14px; }
+  .nav-brand img { height: 52px; width: auto; }
+  .nav-brand-text { color: #fff; font-size: 13px; font-weight: 500; line-height: 1.4; }
+  .nav-links { display: flex; gap: 1rem; align-items: center; }
+  .nav-links a { color: rgba(255,255,255,0.82); font-size: 12px; text-decoration: none; }
+  .nav-links a:hover { color: #c8a227; }
+  .nav-dropdown { position: relative; }
+  .nav-dropdown > a { display: flex; align-items: center; gap: 4px; }
+  .nav-dropdown > a::after { content: '▾'; font-size: 10px; opacity: 0.7; }
+  .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #1a1b5b; border: 1px solid rgba(255,255,255,0.12); border-top: 2px solid #c8a227; border-radius: 0 0 8px 8px; min-width: 220px; padding: 0.5rem 0; box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+  .nav-dropdown:hover .dropdown-menu { display: block; }
+  .dropdown-menu a { display: block; padding: 8px 16px; color: rgba(255,255,255,0.82); font-size: 12px; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .dropdown-menu a:last-child { border-bottom: none; }
+  .dropdown-menu a:hover { color: #c8a227; background: rgba(255,255,255,0.05); }
+  .btn-outline-nav { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.5); padding: 9px 20px; border-radius: 6px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; text-decoration: none; display: inline-block; }
+  .btn-outline-nav:hover { border-color: #c8a227; color: #c8a227; }
+  .btn-gold { background: #c8a227; color: #1a1b5b; border: none; padding: 9px 20px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; text-decoration: none; display: inline-block; }
+  .btn-gold:hover { background: #e0b82e; }
+
+  /* ── LOGIN STATE ── */
+  .login-wrap { min-height: calc(100vh - 72px); display: flex; align-items: center; justify-content: center; padding: 3rem 1.5rem; }
+  .login-card { background: #fff; border-radius: 16px; padding: 2.75rem 2.5rem; width: 100%; max-width: 420px; box-shadow: 0 8px 40px rgba(0,0,0,0.1); text-align: center; }
+  .login-card img { height: 64px; width: auto; margin-bottom: 1.25rem; }
+  .login-card h2 { font-size: 20px; font-weight: 600; color: #1a1b5b; margin-bottom: 4px; }
+  .login-card .login-org { font-size: 13px; color: #888; margin-bottom: 2rem; }
+  .login-field { text-align: left; margin-bottom: 1rem; }
+  .login-field label { display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #555; margin-bottom: 5px; }
+  .login-field input { width: 100%; border: 1.5px solid #ddd; border-radius: 8px; padding: 11px 14px; font-size: 14px; font-family: 'Inter', sans-serif; color: #1a1a2e; outline: none; }
+  .login-field input:focus { border-color: #c8a227; }
+  .login-btn { width: 100%; padding: 13px; font-size: 15px; border-radius: 8px; margin-top: 0.5rem; margin-bottom: 1.25rem; }
+  .login-note { font-size: 12px; color: #aaa; line-height: 1.6; }
+  .login-divider { border: none; border-top: 1px solid #f0f0f0; margin: 1.5rem 0; }
+
+  /* ── DASHBOARD STATE ── */
+  .dash-header { background: #1a1b5b; border-bottom: 3px solid #c8a227; padding: 1rem 2.5rem; display: flex; align-items: center; justify-content: space-between; }
+  .dash-header-left { display: flex; flex-direction: column; gap: 2px; }
+  .dash-welcome { font-size: 11px; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 1px; }
+  .dash-name { font-size: 15px; font-weight: 600; color: #fff; }
+  .dash-signout { font-size: 13px; color: rgba(255,255,255,0.6); text-decoration: none; border: 1px solid rgba(255,255,255,0.25); padding: 6px 14px; border-radius: 6px; }
+  .dash-signout:hover { color: #c8a227; border-color: #c8a227; }
+
+  .dash-content { max-width: 1000px; margin: 0 auto; padding: 2.5rem 2rem; }
+
+  .dash-section-title { font-size: 18px; font-weight: 600; color: #1a1b5b; margin-bottom: 4px; }
+  .dash-section-sub { font-size: 13px; color: #888; margin-bottom: 1.5rem; }
+
+  /* Member portal cards */
+  .portal-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 3rem; }
+  .portal-card { background: #fff; border: 1.5px solid #e8e8e8; border-radius: 12px; padding: 1.4rem 1.25rem; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s; display: flex; flex-direction: column; gap: 6px; }
+  .portal-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.09); border-color: #c8a227; }
+  .portal-card-tag { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #c8a227; }
+  .portal-card h3 { font-size: 14px; font-weight: 600; color: #1a1b5b; line-height: 1.3; }
+  .portal-card p { font-size: 12px; color: #777; line-height: 1.55; flex: 1; }
+  .portal-card-action { font-size: 12px; font-weight: 600; color: #c8a227; margin-top: 4px; }
+
+  /* Admin preview */
+  .admin-preview { background: #fff; border-radius: 16px; padding: 2rem 2rem 2.25rem; border: 1.5px solid #e8e8e8; margin-top: 1rem; }
+  .admin-preview-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #c8a227; margin-bottom: 6px; }
+  .admin-preview h2 { font-size: 18px; font-weight: 600; color: #1a1b5b; margin-bottom: 4px; }
+  .admin-preview .admin-sub { font-size: 13px; color: #888; margin-bottom: 1.5rem; line-height: 1.6; }
+  .admin-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .admin-card { background: #f7f7f5; border-radius: 10px; padding: 1.25rem 1.25rem; border-left: 4px solid #1a1b5b; position: relative; }
+  .admin-card h4 { font-size: 14px; font-weight: 600; color: #1a1b5b; margin-bottom: 5px; }
+  .admin-card p { font-size: 12px; color: #666; line-height: 1.55; }
+  .admin-badge { position: absolute; top: 1rem; right: 1rem; background: #c8a227; color: #1a1b5b; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; }
+
+  footer { background: #1a1b5b; padding: 1.5rem 2.5rem; margin-top: 0; }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+  .footer-bottom span { color: rgba(255,255,255,0.38); font-size: 12px; }
+  footer a { color: rgba(255,255,255,0.6); font-size: 13px; text-decoration: none; }
+  footer a:hover { color: #c8a227; }
+
+  /* ── MOBILE NAV ── */
+  .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; flex-shrink: 0; }
+  .nav-hamburger span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; }
+  .nav-mobile-buttons { display: none; }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 1.25rem; flex-wrap: wrap; height: auto; min-height: 64px; position: relative; }
+    .nav-brand img { height: 42px; }
+    .nav-brand-text { font-size: 12px; }
+    .nav-hamburger { display: flex; margin-left: auto; }
+    .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: #1a1b5b; border-top: 3px solid #c8a227; padding: 0.5rem 0 1.25rem; z-index: 999; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+    .nav-links.mobile-open { display: flex; }
+    .nav-links > a { padding: 12px 1.5rem; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-dropdown { flex-direction: column; }
+    .nav-dropdown > a { padding: 12px 1.5rem; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex !important; }
+    .nav-dropdown > a::after { content: '' !important; }
+    .dropdown-menu { display: block !important; position: static; border: none; box-shadow: none; border-radius: 0; min-width: unset; padding: 0; background: rgba(0,0,0,0.18); border-top: none; }
+    .dropdown-menu a { padding: 10px 1.5rem 10px 2.75rem; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .nav-desktop-buttons { display: none !important; }
+    .nav-mobile-buttons { display: flex; flex-direction: column; gap: 10px; padding: 1rem 1.5rem 0; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 0.5rem; }
+    .nav-mobile-buttons .btn-gold,
+    .nav-mobile-buttons .btn-outline-nav { text-align: center; padding: 12px 20px; font-size: 14px; width: 100%; }
+
+    .login-card { padding: 2rem 1.5rem; }
+    .dash-header { padding: 1rem 1.25rem; flex-wrap: wrap; gap: 0.75rem; }
+    .dash-content { padding: 1.5rem 1.25rem; }
+    .portal-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    .admin-grid { grid-template-columns: 1fr !important; }
+    .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand" style="text-decoration:none;">
+    <img src="images/logo2026.jpg" alt="Byron Area Chamber of Commerce">
+    <span class="nav-brand-text">Byron Area<br>Chamber of Commerce</span>
+  </a>
+  <button class="nav-hamburger" onclick="toggleMobileNav()" aria-label="Toggle navigation">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links">
+    <a href="about.html">About Us</a>
+    <a href="membership.html">Membership</a>
+    <a href="directory.html">Business Directory</a>
+    <a href="events.html">Events &amp; Calendar</a>
+    <div class="nav-dropdown">
+      <a href="#">Community Guide</a>
+      <div class="dropdown-menu">
+        <a href="community/welcome.html">Welcome to Byron</a>
+        <a href="community/ogle-county.html">Ogle County Welcome</a>
+        <a href="community/quality-of-life.html">Quality of Life</a>
+        <a href="community/economic-development.html">Economic Development</a>
+        <a href="community/tourism.html">Tourism</a>
+        <a href="community/organizations.html">Community Organizations</a>
+      </div>
+    </div>
+    <a href="contact.html">Contact Us</a>
+    <div class="nav-mobile-buttons">
+      <a href="membership.html" class="btn-gold" style="text-decoration:none;">Become a Member</a>
+      <a href="member-portal.html" class="btn-outline-nav">Member Login</a>
+    </div>
+  </div>
+  <div class="nav-desktop-buttons" style="display:flex;gap:8px;align-items:center;">
+    <a href="membership.html" class="btn-gold" style="text-decoration:none;">Become a Member</a>
+    <a href="member-portal.html" class="btn-outline-nav">Member Login</a>
+  </div>
+</nav>
+
+<!-- ── STATE 1: LOGIN ─────────────────────────────────────────────────── -->
+<div id="portal-login">
+  <div class="login-wrap">
+    <div class="login-card">
+      <img src="images/logo2026.jpg" alt="Byron Area Chamber of Commerce">
+      <h2>Member Portal</h2>
+      <p class="login-org">Byron Area Chamber of Commerce</p>
+      <div class="login-field">
+        <label>Email Address</label>
+        <input type="email" placeholder="you@yourbusiness.com">
+      </div>
+      <div class="login-field">
+        <label>Password</label>
+        <input type="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;">
+      </div>
+      <button class="btn-gold login-btn" onclick="showDashboard()">Sign In</button>
+      <hr class="login-divider">
+      <p class="login-note">Member portal preview &mdash; full login access available in Phase 2.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── STATE 2: DASHBOARD ─────────────────────────────────────────────── -->
+<div id="portal-dashboard" style="display:none;">
+
+  <div class="dash-header">
+    <div class="dash-header-left">
+      <span class="dash-welcome">Welcome back</span>
+      <span class="dash-name">Rock River Outfitters</span>
+    </div>
+    <a href="#" class="dash-signout" onclick="showLogin();return false;">Sign Out</a>
+  </div>
+
+  <div class="dash-content">
+
+    <p class="dash-section-title">Member Dashboard</p>
+    <p class="dash-section-sub">Manage your Chamber membership, submit content, and access member resources.</p>
+
+    <div class="portal-grid">
+
+      <div class="portal-card" onclick="demoAlert('Manage Directory Listing')">
+        <span class="portal-card-tag">Directory</span>
+        <h3>Manage Directory Listing</h3>
+        <p>Update your business name, hours, contact info, and description in the public member directory.</p>
+        <span class="portal-card-action">Open &rarr;</span>
+      </div>
+
+      <div class="portal-card" onclick="demoAlert('Submit Community Event')">
+        <span class="portal-card-tag">Events</span>
+        <h3>Submit Community Event</h3>
+        <p>Submit an event for Chamber review. Approved events are added to the public calendar.</p>
+        <span class="portal-card-action">Open &rarr;</span>
+      </div>
+
+      <div class="portal-card" onclick="demoAlert('Submit Member News')">
+        <span class="portal-card-tag">News</span>
+        <h3>Submit Member News</h3>
+        <p>Share a business update, announcement, or press release with the Byron community.</p>
+        <span class="portal-card-action">Open &rarr;</span>
+      </div>
+
+      <div class="portal-card" onclick="demoAlert('Request E-Blast Feature')">
+        <span class="portal-card-tag">Promotion</span>
+        <h3>Request E-Blast Feature</h3>
+        <p>Request a feature spot in the Chamber's weekly email blast to members and subscribers.</p>
+        <span class="portal-card-action">Open &rarr;</span>
+      </div>
+
+      <div class="portal-card" onclick="demoAlert('Request Ribbon Cutting')">
+        <span class="portal-card-tag">Events</span>
+        <h3>Request Ribbon Cutting</h3>
+        <p>Schedule a ribbon cutting or grand opening celebration with the Chamber.</p>
+        <span class="portal-card-action">Open &rarr;</span>
+      </div>
+
+      <div class="portal-card" onclick="demoAlert('Member Resources')">
+        <span class="portal-card-tag">Resources</span>
+        <h3>Access Member Resources</h3>
+        <p>Download Chamber logos, templates, member guides, and marketing materials.</p>
+        <span class="portal-card-action">Open &rarr;</span>
+      </div>
+
+      <div class="portal-card" onclick="demoAlert('Renew Membership')">
+        <span class="portal-card-tag">Membership</span>
+        <h3>Renew Membership</h3>
+        <p>View your current membership tier and renew or upgrade your annual membership.</p>
+        <span class="portal-card-action">Open &rarr;</span>
+      </div>
+
+      <div class="portal-card" onclick="demoAlert('Contact Chamber Office')">
+        <span class="portal-card-tag">Support</span>
+        <h3>Contact Chamber Office</h3>
+        <p>Send a message directly to the Chamber office team for help with your membership.</p>
+        <span class="portal-card-action">Open &rarr;</span>
+      </div>
+
+    </div>
+
+    <!-- ── ADMIN PREVIEW ────────────────────────────────────────────── -->
+    <div class="admin-preview">
+      <p class="admin-preview-eyebrow">Chamber Staff View</p>
+      <h2>Admin Dashboard Preview</h2>
+      <p class="admin-sub">This is what Michelle and Chamber staff would see — one place to manage members, approve submissions, and keep content current. No more email chains or spreadsheets.</p>
+
+      <div class="admin-grid">
+
+        <div class="admin-card">
+          <span class="admin-badge">4 pending</span>
+          <h4>Approve Submissions</h4>
+          <p>Review and approve member-submitted events, news, and promotion requests before anything goes public.</p>
+        </div>
+
+        <div class="admin-card">
+          <h4>Manage Member Listings</h4>
+          <p>Add, edit, or archive member business listings in the public directory. Keep the directory accurate year-round.</p>
+        </div>
+
+        <div class="admin-card">
+          <span class="admin-badge">2 pending</span>
+          <h4>Review Event Requests</h4>
+          <p>Approve or decline event submissions and add confirmed events to the public Chamber calendar.</p>
+        </div>
+
+        <div class="admin-card">
+          <span class="admin-badge">1 pending</span>
+          <h4>Review News &amp; E-Blast Requests</h4>
+          <p>Review member news submissions and e-blast feature requests before scheduling or publishing.</p>
+        </div>
+
+        <div class="admin-card">
+          <h4>Track Renewals</h4>
+          <p>Monitor upcoming membership renewals, flag lapsed members, and send renewal reminders in one view.</p>
+        </div>
+
+        <div class="admin-card">
+          <h4>Upload Member Resources</h4>
+          <p>Add documents, templates, logos, and guides that members can download from their dashboard.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Byron Area Chamber of Commerce &nbsp;|&nbsp; 232 W 2nd Street, Byron, IL 61010</span>
+    <a href="index.html">Back to Home</a>
+  </div>
+  <div style="text-align:center;margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,0.08);">
+    <span style="color:rgba(255,255,255,0.28);font-size:11px;">Built by <a href="https://prairievalley.tech" target="_blank" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:11px;">Prairie Valley Tech</a></span>
+  </div>
+</footer>
+
+<script>
+function showDashboard() {
+  document.getElementById('portal-login').style.display = 'none';
+  document.getElementById('portal-dashboard').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+function showLogin() {
+  document.getElementById('portal-dashboard').style.display = 'none';
+  document.getElementById('portal-login').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+function demoAlert(feature) {
+  alert(feature + ' — available in Phase 2.');
+}
+function toggleMobileNav() {
+  document.querySelector('.nav-links').classList.toggle('mobile-open');
+}
+function toggleMobileDropdown(e) {
+  if (window.innerWidth <= 768) {
+    e.preventDefault();
+    e.currentTarget.closest('.nav-dropdown').classList.toggle('mobile-expanded');
+  }
+}
+document.addEventListener('DOMContentLoaded', function() {
+  var dt = document.querySelector('.nav-dropdown > a');
+  if (dt) dt.addEventListener('click', toggleMobileDropdown);
+});
+document.addEventListener('click', function(e) {
+  var nav = document.querySelector('.nav-links');
+  if (nav && nav.classList.contains('mobile-open') && !nav.contains(e.target) && !e.target.closest('.nav-hamburger')) {
+    nav.classList.remove('mobile-open');
+  }
+});
+</script>
+</body>
+</html>
