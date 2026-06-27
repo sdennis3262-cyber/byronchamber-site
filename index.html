@@ -324,6 +324,25 @@
   .sponsor-cta-link:hover { color: #1a1b5b; border-color: #1a1b5b; }
   .benefit-card a { transition: color 0.15s; }
   .benefit-card a:hover { color: #1a1b5b !important; }
+
+  /* ── AUTOCOMPLETE ── */
+  .dir-search-form { position: relative; }
+  .ac-dropdown {
+    display: none; position: absolute; top: calc(100% + 5px); left: 0; right: 0;
+    background: #fff; border: 1px solid #e8e8e8; border-radius: 10px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12); z-index: 50; overflow: hidden;
+  }
+  .ac-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 11px 16px; text-decoration: none; border-bottom: 1px solid #f5f5f5;
+    transition: background 0.1s;
+  }
+  .ac-item:last-child { border-bottom: none; }
+  .ac-item:hover { background: #faf9f6; }
+  .ac-name { font-size: 14px; font-weight: 600; color: #1a1b5b; }
+  .ac-cat { font-size: 11px; font-weight: 600; color: #c8a227; text-transform: uppercase; letter-spacing: 0.8px; white-space: nowrap; margin-left: 12px; }
+  .ac-addr { font-size: 12px; color: #999; display: block; margin-top: 1px; }
+  .ac-empty { padding: 14px 16px; font-size: 14px; color: #999; text-align: center; }
 </style>
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Byron Area Chamber of Commerce">
@@ -696,5 +715,57 @@ document.addEventListener('click', function(e) {
   }
 })();
 </script>
+
+<script src="data/businesses.js"></script>
+<script>
+(function() {
+  var input = document.querySelector('.dir-search-input');
+  if (!input || typeof CHAMBER_BUSINESSES === 'undefined') return;
+
+  var form = input.closest('form');
+  var dropdown = document.createElement('div');
+  dropdown.className = 'ac-dropdown';
+  form.appendChild(dropdown);
+
+  function slug(str) {
+    return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  }
+
+  function show(q) {
+    if (!q) { dropdown.style.display = 'none'; return; }
+    var ql = q.toLowerCase();
+    var results = CHAMBER_BUSINESSES.filter(function(b) {
+      return b.name.toLowerCase().indexOf(ql) !== -1 ||
+             b.category.toLowerCase().indexOf(ql) !== -1 ||
+             (b.tags && b.tags.some(function(t) { return t.toLowerCase().indexOf(ql) !== -1; }));
+    }).slice(0, 8);
+
+    if (!results.length) {
+      dropdown.innerHTML = '<div class="ac-empty">No matching businesses found.</div>';
+    } else {
+      dropdown.innerHTML = results.map(function(b) {
+        var url = 'directory.html?q=' + encodeURIComponent(b.name);
+        var addr = b.address ? '<span class="ac-addr">' + b.address + '</span>' : '';
+        return '<a class="ac-item" href="' + url + '">' +
+               '<span><span class="ac-name">' + b.name + '</span>' + addr + '</span>' +
+               '<span class="ac-cat">' + b.category + '</span>' +
+               '</a>';
+      }).join('');
+    }
+    dropdown.style.display = 'block';
+  }
+
+  input.addEventListener('input', function() { show(this.value.trim()); });
+
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { dropdown.style.display = 'none'; input.blur(); }
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!form.contains(e.target)) dropdown.style.display = 'none';
+  });
+})();
+</script>
+
 </body>
 </html>

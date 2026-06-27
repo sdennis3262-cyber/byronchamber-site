@@ -223,6 +223,7 @@
   <meta name="twitter:title" content="Business Directory — Byron Area Chamber of Commerce">
   <meta name="twitter:description" content="Browse local Byron businesses, services, and organizations.">
   <meta name="twitter:image" content="https://byronchamber-site.pages.dev/images/og-image.png">
+<script src="data/businesses.js"></script>
 </head>
 <body>
 
@@ -389,80 +390,7 @@
 </footer>
 
 <script>
-const businesses = [
-  { name: "2nd Chance Tavern", category: "Food & Dining", phone: "(815) 234-3000", address: "109 W. 2nd St, Byron, IL", website: "" },
-  { name: "Armor Coated Technology", category: "Manufacturing", phone: "(815) 316-3240", address: "602 E. Blackhawk Dr, Byron, IL", website: "armorcoated.com" },
-  { name: "Athletico Physical Therapy", category: "Healthcare", phone: "(779) 513-8230", address: "206 W. Blackhawk Dr, Byron, IL", website: "athletico.com" },
-  { name: "Autoland Outlets, Inc.", category: "Auto", phone: "(815) 234-4500", address: "733 W. Blackhawk Rd, Byron, IL", website: "autolandofbyron.com" },
-  { name: "BO-MAR Heating & Cooling", category: "Home & Construction", phone: "(815) 233-1622", address: "444 W. Meadows Dr, Freeport, IL", website: "bomarheating.com" },
-  { name: "Brown's Tax Service", category: "Financial", phone: "(815) 561-6861", address: "361 IL-38, Rochelle, IL", website: "brownstaxoffice.com" },
-  { name: "Byron Bank", category: "Financial", phone: "(815) 234-2561", address: "200 N. Walnut St, Byron, IL", website: "byronbank.com" },
-  { name: "Byron Community School District #226", category: "Education", phone: "(815) 234-5491", address: "696 N. Colfax St, Byron, IL", website: "byron226.org" },
-  { name: "Byron Dragway, Inc.", category: "Recreation", phone: "(815) 391-0000", address: "7287 N. River Rd, Byron, IL", website: "byrondragway.com" },
-  { name: "Byron Forest Preserve", category: "Recreation", phone: "(815) 234-8535", address: "7993 N. River Rd, Byron, IL", website: "byronforestpreserve.com" },
-  { name: "Byron Lions Club", category: "Community", phone: "(815) 871-4898", address: "Byron, IL", website: "" },
-  { name: "Byron Museum of History", category: "Recreation", phone: "(815) 234-5031", address: "110 N. Union St, Byron, IL", website: "byronmuseum.org" },
-  { name: "Byron Park District", category: "Recreation", phone: "(815) 234-8435", address: "500 N. Colfax St, Byron, IL", website: "byronparks.org" },
-  { name: "Byron Public Library", category: "Education", phone: "(815) 234-5107", address: "100 S. Washington St, Byron, IL", website: "byronlibrary.org" },
-  { name: "Byron Quick Lube & Tire", category: "Auto", phone: "(815) 234-5612", address: "715 W. Blackhawk Dr, Byron, IL", website: "" },
-  { name: "City of Byron", category: "Government", phone: "(815) 234-2762", address: "232 W. 2nd St, Byron, IL", website: "cityofbyron.com" },
-  { name: "Comcast / Xfinity", category: "Utilities", phone: "(800) 934-6489", address: "Byron area service", website: "xfinity.com" },
-  { name: "Constellation Energy", category: "Utilities", phone: "(815) 406-3554", address: "4450 N. German Church Rd, Byron, IL", website: "constellationenergy.com" },
-  { name: "CORA Physical Therapy", category: "Healthcare", phone: "(815) 234-5561", address: "404 W. Blackhawk Dr Suite 1, Byron, IL", website: "coraphysicaltherapy.com" },
-  { name: "Cornerstone Family Church", category: "Religious", phone: "(815) 234-8737", address: "205 N. Peru St, Byron, IL", website: "cornerstonefamilychurch.com" },
-  { name: "Costa's Ristorante & Pizzeria", category: "Food & Dining", phone: "(815) 234-4707", address: "133 E. Blackhawk Dr, Byron, IL", website: "costasbyron.com" },
-  { name: "Country Financial — Chris Criddle", category: "Financial", phone: "(815) 234-2735", address: "418 W. Blackhawk Dr, Byron, IL", website: "advisors.countryfinancial.com" },
-  { name: "Country Financial — Kerry Wickler", category: "Financial", phone: "(815) 234-2735", address: "418 W. Blackhawk Dr, Byron, IL", website: "advisors.countryfinancial.com" },
-  { name: "County Market of Byron", category: "Food & Dining", phone: "(815) 234-2311", address: "201 W. Blackhawk Dr, Byron, IL", website: "mycountymarket.com" },
-  { name: "CoyleKiley Insurance", category: "Financial", phone: "(815) 987-2170", address: "810 N. Alpine Rd, Rockford, IL", website: "coylekiley.com" },
-  { name: "Dos Amigos", category: "Food & Dining", phone: "(815) 234-8567", address: "523 W. Blackhawk Dr, Byron, IL", website: "dosamigosbyron.com" },
-  { name: "Edward Jones of Byron", category: "Financial", phone: "(815) 234-7040", address: "131 W. 2nd St, Byron, IL", website: "edwardjones.com" },
-  { name: "Envoy Mortgage of Byron", category: "Financial", phone: "(815) 668-8976", address: "418 W. Blackhawk Dr Suite 101, Byron, IL", website: "envoymortgage.com" },
-  { name: "Farrell Holland Gale Funeral Home", category: "Professional Services", phone: "", address: "506 W. Merchant St, Byron, IL", website: "farrellhollandgale.com" },
-  { name: "Fritz ElectRick", category: "Home & Construction", phone: "(815) 393-4695", address: "14080 IL Route 72, Davis Junction, IL", website: "electricrockfordillinois.com" },
-  { name: "Generations at Neighbors", category: "Healthcare", phone: "(815) 234-2511", address: "811 W. Second St, Byron, IL", website: "generationsneighbors.com" },
-  { name: "Golden Auto Sales", category: "Auto", phone: "(815) 234-5546", address: "805 W. Blackhawk Dr, Byron, IL", website: "goldenautosales.com" },
-  { name: "Hairy Cow Brewing Company", category: "Food & Dining", phone: "(815) 243-2866", address: "450 E. Blackhawk Dr, Byron, IL", website: "hairycowbrewing.com" },
-  { name: "Heesaker, Jeanette CPA", category: "Financial", phone: "(815) 234-8100", address: "132 W. 2nd St Suite 1, Byron, IL", website: "" },
-  { name: "Hub-Remsen Print Group", category: "Professional Services", phone: "(815) 562-7057", address: "101 Maple Ave, Rochelle, IL", website: "hub-remsen.com" },
-  { name: "Huskie Exteriors Inc.", category: "Home & Construction", phone: "(815) 579-3237", address: "404 W. Blackhawk Dr, Byron, IL", website: "huskieexteriors.com" },
-  { name: "Loomis International, LTD", category: "Manufacturing", phone: "(815) 316-3240", address: "602 E. Blackhawk Dr, Byron, IL", website: "loomisltd.com" },
-  { name: "Martin & Company Excavating", category: "Home & Construction", phone: "(815) 732-2422", address: "2456 E. Pleasant Grove Rd, Oregon, IL", website: "martincoinc.net" },
-  { name: "McDonald's — Bucciferro Family", category: "Food & Dining", phone: "(815) 234-2004", address: "105 N. Union St, Byron, IL", website: "" },
-  { name: "Mercyhealth", category: "Healthcare", phone: "(815) 971-5448", address: "2400 N. Rockton Ave, Rockford, IL", website: "mercyhealthsystem.org" },
-  { name: "Middle Creek Presbyterian Church", category: "Religious", phone: "(815) 335-2609", address: "12473 Montague Rd, Winnebago, IL", website: "" },
-  { name: "Miller Companies of Byron", category: "Professional Services", phone: "(815) 234-4411", address: "221 N. Walnut St, Byron, IL", website: "" },
-  { name: "Miracle-Ear", category: "Healthcare", phone: "(815) 406-0002", address: "232 W. Second St, Byron, IL", website: "" },
-  { name: "Morrissey Family Businesses", category: "Professional Services", phone: "(815) 282-3900", address: "5919 Spring Creek Rd, Rockford, IL", website: "morrisseyfamily.com" },
-  { name: "Mr. Goodwater", category: "Home & Construction", phone: "(815) 544-0800", address: "596 N. Appleton Rd, Belvidere, IL", website: "mrgoodwater.com" },
-  { name: "National Header Die", category: "Manufacturing", phone: "(815) 316-3240", address: "602 E. Blackhawk Dr, Byron, IL", website: "nationalheaderdie.com" },
-  { name: "Northern Illinois Disposal", category: "Utilities", phone: "(800) 930-7321", address: "200 Standard Oil Rd, Rochelle, IL", website: "northernillinoisdisposal.com" },
-  { name: "Northwest Illinois Alliance of REALTORS", category: "Real Estate", phone: "", address: "1161 Tebala Blvd, Rockford, IL", website: "northwestillinoisalliance.realtor" },
-  { name: "OSF Medical Group", category: "Healthcare", phone: "(815) 234-3900", address: "109 N. Franklin St, Byron, IL", website: "osfhealthcare.org/byron" },
-  { name: "Ogle County Chiropractic Center", category: "Healthcare", phone: "(815) 234-2222", address: "137 N. Walnut St Suite 5, Byron, IL", website: "occcbyron.com" },
-  { name: "Power Combat Fitness", category: "Fitness", phone: "(815) 762-7928", address: "1350 Kysor Dr, Byron, IL", website: "powercombatfitness.com" },
-  { name: "PrairieView Golf Club", category: "Recreation", phone: "(815) 234-4653", address: "6734 N. German Church Rd, Byron, IL", website: "prairieviewgolf.com" },
-  { name: "Prographics", category: "Professional Services", phone: "(815) 226-9422", address: "4404 Boeing Dr, Rockford, IL", website: "pgiworldwide.com" },
-  { name: "Re/Max of Rock Valley", category: "Real Estate", phone: "(815) 732-9100", address: "606 E. Washington St, Oregon, IL", website: "rockvalleyproperties.com" },
-  { name: "Re/Max Professional Advantage", category: "Real Estate", phone: "(815) 677-7378", address: "404 W. Blackhawk Dr, Byron, IL", website: "elizabethemma.remax.com" },
-  { name: "Republic Services", category: "Utilities", phone: "(779) 804-3004", address: "2110 McNeal Rd, Rock Falls, IL", website: "republicservices.com" },
-  { name: "Rochelle Broadcasting", category: "Media", phone: "(815) 562-7001", address: "400 May Mart Dr, Rochelle, IL", website: "1023thecoyote.net" },
-  { name: "Rock River Valley Blood Center", category: "Healthcare", phone: "(815) 965-8751", address: "419 N. 6th St, Rockford, IL", website: "rrvbc.org" },
-  { name: "Shaw Local Radio", category: "Media", phone: "", address: "1460 College Ave, Dixon, IL", website: "shawlocalradio.com" },
-  { name: "Sinnissippi Centers, Inc.", category: "Healthcare", phone: "(815) 209-0998", address: "212 W. Blackhawk Dr, Byron, IL", website: "sinnissippi.org" },
-  { name: "Smith's Electric, LLC", category: "Home & Construction", phone: "(815) 298-0505", address: "4954 E. Nordic Woods Dr, Byron, IL", website: "smithselectricllc.com" },
-  { name: "Sterling Federal Bank", category: "Financial", phone: "(815) 234-7601", address: "221 N. Union St, Byron, IL", website: "sterlingfederal.com" },
-  { name: "Stillman Bank", category: "Financial", phone: "(815) 234-5626", address: "608 W. Blackhawk Dr, Byron, IL", website: "stillmanbank.com" },
-  { name: "Swedish Pancake House", category: "Food & Dining", phone: "(815) 234-7660", address: "127 W. Second St, Byron, IL", website: "swedishpancakehouseandcafe.com" },
-  { name: "Sweetbean Cafe & Bakery", category: "Food & Dining", phone: "(815) 234-4989", address: "114 S. Franklin St, Byron, IL", website: "sweetbeancafe.net" },
-  { name: "TEST, Inc.", category: "Professional Services", phone: "(815) 224-1650", address: "2323 Fourth St, Peru, IL", website: "testinc.com" },
-  { name: "Tess, Arnquist & Wilt, LLC", category: "Professional Services", phone: "(815) 562-8754", address: "1090 N. 7th St, Rochelle, IL", website: "tesscrulllaw.com" },
-  { name: "United Way of Ogle County", category: "Community", phone: "(815) 284-3339", address: "PO Box 382, Dixon, IL", website: "unitedwayofoglecounty.org" },
-  { name: "Uptown Lanes / Back Alley Bar & Grill", category: "Food & Dining", phone: "(815) 234-2695", address: "106 W. Second St, Byron, IL", website: "uptownlanesbyron.com" },
-  { name: "UW Health", category: "Healthcare", phone: "(815) 234-2611", address: "220 W. Blackhawk Dr, Byron, IL", website: "swedishamerican.org" },
-  { name: "Webb Chiropractic", category: "Healthcare", phone: "(815) 234-3021", address: "105 S. Lafayette St, Byron, IL", website: "webbchiroclinic.com" },
-  { name: "Weezy's Sports Bar & Grill", category: "Food & Dining", phone: "(815) 234-2696", address: "110 W. Second St, Byron, IL", website: "byronweezys.com" }
-];
+var businesses = CHAMBER_BUSINESSES;
 
 const categories = ["All", ...new Set(businesses.map(b => b.category).sort())];
 let activeCategory = "All";
