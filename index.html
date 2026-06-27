@@ -120,11 +120,11 @@
   .event-placeholder-body { padding: 1rem; background: #fff; flex: 1; }
 
   .ribbon-section { display: grid; grid-template-columns: 1fr 1fr; }
-  .ribbon-photo { position: relative; height: 380px; overflow: hidden; }
+  .ribbon-photo { position: relative; height: 430px; overflow: hidden; }
   .ribbon-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .ribbon-photo-overlay {
     position: absolute; inset: 0;
-    background: rgba(13,30,74,0.65);
+    background: rgba(0,0,0,0.42);
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     text-align: center; padding: 2rem;
   }
@@ -312,6 +312,16 @@
     .nav-links > a.active { border-bottom: 1px solid rgba(255,255,255,0.06) !important; }
     .btn-gold:hover { transform: none !important; }
   }
+
+  /* ── STORY POLISH ── */
+  .credibility-strip { background: #f7f7f5; padding: 1.5rem 2.5rem; text-align: center; border-top: 1px solid #ebebeb; border-bottom: 1px solid #ebebeb; }
+  .credibility-strip p { font-size: 13px; color: #aaa; font-weight: 500; letter-spacing: 0.5px; }
+  .btn-outline-white { transition: border-color 0.2s, background 0.2s !important; }
+  .btn-outline-white:hover { border-color: rgba(255,255,255,0.9) !important; background: rgba(255,255,255,0.12) !important; color: #fff !important; }
+  .sponsor-cta-link { font-size: 13px; font-weight: 600; color: #c8a227; text-decoration: none; border-bottom: 1px dashed rgba(200,162,39,0.6); padding-bottom: 1px; transition: color 0.15s, border-color 0.15s; }
+  .sponsor-cta-link:hover { color: #1a1b5b; border-color: #1a1b5b; }
+  .benefit-card a { transition: color 0.15s; }
+  .benefit-card a:hover { color: #1a1b5b !important; }
 </style>
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Byron Area Chamber of Commerce">
@@ -368,8 +378,8 @@
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">Gateway to the Rock River</p>
-    <h1>Helping Byron Businesses Grow Through Connection, Promotion &amp; Community.</h1>
-    <p>The Byron Chamber brings local businesses, residents, and community leaders together to support growth, visibility, and local pride.</p>
+    <h1>The businesses that make Byron feel like home.</h1>
+    <p>Connecting Byron’s people with the businesses that make our community thrive.</p>
     <div class="hero-btns">
       <a href="membership.html" class="btn-gold" style="text-decoration:none;">Become a Member</a>
       <a href="directory.html" class="btn-outline-white" style="text-decoration:none;">Find a Local Business</a>
@@ -377,133 +387,21 @@
   </div>
 </div>
 
-<div class="stats-strip">
-  <div class="stats-row">
-    <div class="stat-item">
-      <div class="stat-num">65+</div>
-      <div class="stat-label">Member Businesses</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">7</div>
-      <div class="stat-label">Annual Events</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">11k+</div>
-      <div class="stat-label">Residents Served</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">1958</div>
-      <div class="stat-label">Serving Byron Since</div>
-    </div>
-  </div>
-</div>
-
-<section class="section-bg">
-  <p class="section-title">Why join the Chamber?</p>
-  <p class="section-sub">Everything you need to connect, grow, and thrive in the Byron area.</p>
-  <div class="grid-3">
-    <div class="benefit-card">
-      <h3>Exposure &amp; connections</h3>
-      <p>Get your business in front of thousands of Byron area residents and regional visitors through our directory, events, and weekly email blast.</p>
-      <a href="membership.html">Learn more &rarr;</a>
-    </div>
-    <div class="benefit-card">
-      <h3>Advocacy &amp; resources</h3>
-      <p>We advocate for Byron's business community at the local and regional level &mdash; giving your voice real weight where decisions are made.</p>
-      <a href="membership.html">Learn more &rarr;</a>
-    </div>
-    <div class="benefit-card">
-      <h3>Growth &amp; networking</h3>
-      <p>Access workshops, ribbon cuttings, member spotlights, and networking events designed to help your business grow and stay connected.</p>
-      <a href="membership.html">Learn more &rarr;</a>
-    </div>
-  </div>
-</section>
-
-<section>
-  <p class="section-title">What's happening in Byron?</p>
-  <p class="section-sub">From the region's biggest summer festival to beloved community traditions all year long.</p>
-
-  <div class="grid-3">
-    <div class="event-card">
-      <img src="images/byronfest.jpg" alt="ByronFest 39">
-      <div class="event-body">
-        <p class="event-date">July 10&ndash;12, 2026</p>
-        <p class="event-title">ByronFest 39</p>
-        <p class="event-desc">Live music, carnival, food vendors, bags tournament, and more in downtown Byron. Draws thousands from across the region.</p>
-      </div>
-    </div>
-    <div class="event-card">
-      <img src="images/5k.jpg" alt="Byron Rocks 5k">
-      <div class="event-body">
-        <p class="event-date">Spring 2026</p>
-        <p class="event-title">5k/10k Byron Rocks</p>
-        <p class="event-desc">Lace up and hit the streets of Byron in one of northern Illinois' most popular community road races.</p>
-      </div>
-    </div>
-    <div class="event-card">
-      <img src="images/awards.jpg" alt="Annual Awards">
-      <div class="event-body">
-        <p class="event-date">Annual</p>
-        <p class="event-title">Annual Awards Ceremony</p>
-        <p class="event-desc">Celebrating the businesses and individuals who make Byron a stronger community every year.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="grid-4">
-    <div class="event-card event-card-sm">
-      <div class="event-placeholder-img"><span>Golf</span></div>
-      <div class="event-placeholder-body">
-        <p class="event-date">August 20, 2026</p>
-        <p class="event-title-sm">Annual Golf Play Day</p>
-        <p class="event-desc-sm">Member networking at PrairieView Golf Club.</p>
-      </div>
-    </div>
-    <div class="event-card event-card-sm">
-      <div class="event-placeholder-img"><span>Winter</span></div>
-      <div class="event-placeholder-body">
-        <p class="event-date">December 2026</p>
-        <p class="event-title-sm">Miracle on 2nd Street</p>
-        <p class="event-desc-sm">Byron's beloved holiday celebration in downtown.</p>
-      </div>
-    </div>
-    <div class="event-card event-card-sm">
-      <img src="images/wine-dinner.jpg" alt="Wine Dinner" style="width:100%;height:140px;object-fit:cover;display:block;">
-      <div class="event-body event-body-sm">
-        <p class="event-date">February 2026</p>
-        <p class="event-title-sm">Wine Dinner</p>
-        <p class="event-desc-sm">An elegant evening of wine, food, and Chamber fellowship.</p>
-      </div>
-    </div>
-    <div class="event-card event-card-sm">
-      <div class="event-placeholder-img"><span>Fall</span></div>
-      <div class="event-placeholder-body">
-        <p class="event-date">October 24, 2026</p>
-        <p class="event-title-sm">ChiliFest</p>
-        <p class="event-desc-sm">Compete for the trophy or just come hungry.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="view-all"><a href="events.html">View full events calendar &rarr;</a></div>
-</section>
-
 <div class="ribbon-section">
   <div class="ribbon-photo">
     <img src="images/ribbon1.jpg" alt="Byron Chamber Ribbon Cutting">
     <div class="ribbon-photo-overlay">
-      <span class="ribbon-gold-tag">Member Spotlight</span>
-      <h3>Ribbon cuttings &amp; grand openings</h3>
-      <p>The Chamber celebrates new businesses and milestones across Byron. Members get featured in our weekly blast and social channels.</p>
+      <span class="ribbon-gold-tag">New Beginnings</span>
+      <h3>New beginnings in Byron</h3>
+      <p>Every ribbon cut is a neighbor betting on this community. We show up for every one.</p>
     </div>
   </div>
   <div class="ribbon-photo">
     <img src="images/ribbon2.jpg" alt="Byron Community Event">
     <div class="ribbon-photo-overlay">
       <span class="ribbon-gold-tag">Community</span>
-      <h3>Byron is growing &mdash; be part of it</h3>
-      <p>With 11,000+ residents in the greater Byron area, there's never been a better time to connect with your community through the Chamber.</p>
+      <h3>Byron is worth investing in</h3>
+      <p>Eleven thousand people call this place home. Your next customer already lives here.</p>
     </div>
   </div>
 </div>
@@ -521,6 +419,48 @@
       <p class="biz-desc">Your local source for outdoor gear, fishing tackle, hunting supplies, and expert local knowledge. From the Rock River to the Kishwaukee, they know where to take you next.</p>
       <p class="biz-meta">Member since 2014 &nbsp;&middot;&nbsp; Sporting Goods &amp; Outdoor Recreation</p>
       <a href="directory.html" class="btn-gold" style="text-decoration:none;font-size:13px;padding:10px 24px;display:inline-block;margin-top:0.25rem;">View in Directory &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<section class="section-bg">
+  <p class="section-title">Why join the Chamber?</p>
+  <p class="section-sub">Built for the people who run businesses in Byron.</p>
+  <div class="grid-3">
+    <div class="benefit-card">
+      <h3>Be found by the people already here</h3>
+      <p>Get your business in front of Byron residents through our directory, community events, and Chamber promotions.</p>
+      <a href="membership.html">Learn more &rarr;</a>
+    </div>
+    <div class="benefit-card">
+      <h3>We've got your back.</h3>
+      <p>We advocate for Byron businesses and help make sure your voice is heard when decisions affect our community.</p>
+      <a href="membership.html">Learn more &rarr;</a>
+    </div>
+    <div class="benefit-card">
+      <h3>Real connections. Real Byron.</h3>
+      <p>From ribbon cuttings to workshops and community events, we create opportunities to build relationships that matter.</p>
+      <a href="membership.html">Learn more &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<div class="credibility-strip">
+  <p>65+ member businesses &nbsp;&middot;&nbsp; 7 community events each year &nbsp;&middot;&nbsp; Serving Byron since 1958</p>
+</div>
+
+<section>
+  <p class="section-title">What's happening in Byron?</p>
+  <p class="section-sub">Byron's calendar is full of events worth showing up for.</p>
+  <div class="featured-biz-card">
+    <div class="featured-biz-img">
+      <img src="images/byronfest.jpg" alt="ByronFest 39">
+    </div>
+    <div class="featured-biz-body" style="background:#1a1b5b;">
+      <span class="featured-biz-tag" style="color:rgba(255,255,255,0.55);">July 10&ndash;12, 2026</span>
+      <h3 style="color:#fff;">ByronFest 39</h3>
+      <p class="biz-desc" style="color:rgba(255,255,255,0.78);">Live music, carnival, food vendors, bags tournament, and more in downtown Byron. The Rock River Valley's biggest summer celebration &mdash; draws thousands from across the region.</p>
+      <a href="events.html" class="btn-gold" style="text-decoration:none;font-size:13px;padding:10px 24px;display:inline-block;margin-top:0.25rem;">View full calendar &rarr;</a>
     </div>
   </div>
 </section>
@@ -549,17 +489,9 @@
   </div>
 </section>
 
-
-<section style="background:#f7f7f5;padding:3.5rem 2.5rem;text-align:center;">
-  <p style="font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#c8a227;margin-bottom:0.75rem;">For Chamber Members</p>
-  <h2 style="font-size:1.75rem;font-weight:600;color:#1a1b5b;margin-bottom:1rem;">Member Portal</h2>
-  <p style="font-size:15px;color:#555;max-width:560px;margin:0 auto 1.75rem;line-height:1.7;">Members can manage their directory listing, submit events, share news, request promotion, and access Chamber resources from one private dashboard.</p>
-  <a href="member-portal.html" class="btn-gold" style="text-decoration:none;font-size:14px;padding:12px 28px;">Preview Member Portal</a>
-</section>
-
 <div class="cta-banner">
-  <h2>Ready to grow with Byron?</h2>
-  <p>Join the Byron Area Chamber of Commerce and connect your business with the community that keeps Byron thriving.</p>
+  <h2>Your business belongs in this community.</h2>
+  <p>Join the businesses that are already part of Byron's story.</p>
   <a href="membership.html" class="btn-gold" style="font-size: 15px; padding: 12px 28px; text-decoration:none;">Start your membership application</a>
 </div>
 
@@ -569,7 +501,7 @@
     <div class="sponsor-pill">Byron Bank</div>
     <div class="sponsor-pill">Commonwealth Edison</div>
     <div class="sponsor-pill">NICOR Gas</div>
-    <div class="sponsor-pill">Become a Sponsor</div>
+    <a href="contact.html" class="sponsor-cta-link">Become a Sponsor &rarr;</a>
   </div>
 </div>
 
