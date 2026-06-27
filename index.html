@@ -68,7 +68,8 @@
     pointer-events: none;
   }
   .hero-content { position: relative; z-index: 2; text-align: center; padding: 0 2rem; max-width: 680px; }
-  .hero-eyebrow { color: #c8a227; font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1rem; }
+  .hero-eyebrow { color: #c8a227; font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: center; gap: 14px; }
+  .hero-eyebrow::before, .hero-eyebrow::after { content: ''; flex: 0 0 28px; height: 1px; background: rgba(200,162,39,0.55); display: block; }
   .hero-content h1 { color: #fff; font-size: 2.6rem; font-weight: 600; line-height: 1.2; margin-bottom: 1rem; }
   .hero-content p { color: rgba(255,255,255,0.82); font-size: 16px; line-height: 1.7; margin-bottom: 1.75rem; }
   .hero-btns { display: flex; gap: 12px; justify-content: center; }
@@ -379,7 +380,7 @@
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">Gateway to the Rock River</p>
-    <h1>The businesses that make Byron feel like home.</h1>
+    <h1>Supporting the businesses that make Byron feel like home.</h1>
     <p>The Byron Area Chamber of Commerce helps local businesses grow, connect, and strengthen the community we all call home.</p>
     <div class="hero-btns">
       <a href="membership.html" class="btn-gold" style="text-decoration:none;">Become a Member</a>
