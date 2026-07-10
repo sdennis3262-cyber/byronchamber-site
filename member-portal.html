@@ -70,6 +70,18 @@
   .summary-value { font-size: 14px; font-weight: 600; color: #1a1b5b; display: flex; align-items: center; gap: 6px; }
   .summary-dot { width: 8px; height: 8px; border-radius: 50%; background: #3ba55d; display: inline-block; }
 
+  /* Your business listing card */
+  .listing-card { background: #fff; border: 1.5px solid #e8e8e8; border-radius: 12px; padding: 1.5rem 1.5rem 1.4rem; margin-bottom: 2rem; }
+  .listing-card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 1.1rem; flex-wrap: wrap; }
+  .listing-card-head h3 { font-size: 15px; font-weight: 600; color: #1a1b5b; }
+  .listing-card-head .listing-hint { font-size: 12px; color: #999; }
+  .listing-update { font-size: 12px; font-weight: 600; color: #c8a227; text-decoration: none; white-space: nowrap; }
+  .listing-update:hover { text-decoration: underline; }
+  .listing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem 2rem; }
+  .listing-grid .summary-label { margin-bottom: 3px; display: block; }
+  .listing-grid .listing-value { font-size: 13.5px; color: #1a1a2e; line-height: 1.45; }
+  @media (max-width: 768px) { .listing-grid { grid-template-columns: 1fr 1fr; } }
+
   /* Demo toast */
   #demo-toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(20px); background: #1a1b5b; color: #fff; font-size: 13px; padding: 12px 24px; border-radius: 8px; border-left: 4px solid #c8a227; box-shadow: 0 8px 30px rgba(0,0,0,0.25); opacity: 0; pointer-events: none; transition: opacity 0.25s, transform 0.25s; z-index: 500; max-width: 90vw; text-align: center; }
   #demo-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
@@ -218,7 +230,7 @@
   <div class="dash-header">
     <div class="dash-header-left">
       <span class="dash-welcome">Welcome back</span>
-      <span class="dash-name">Byron Business Member</span>
+      <span class="dash-name">Prairie Valley Tech</span>
     </div>
     <a href="#" class="dash-signout" onclick="showLogin();return false;">Sign Out</a>
   </div>
@@ -231,7 +243,7 @@
     <div class="member-summary">
       <div class="summary-item">
         <span class="summary-label">Membership Status</span>
-        <span class="summary-value"><span class="summary-dot"></span>Active</span>
+        <span class="summary-value"><span class="summary-dot"></span>Active &middot; Premier Member</span>
       </div>
       <div class="summary-item">
         <span class="summary-label">Member Since</span>
@@ -244,6 +256,42 @@
       <div class="summary-item">
         <span class="summary-label">Business Listing</span>
         <span class="summary-value"><span class="summary-dot"></span>Published</span>
+      </div>
+    </div>
+
+    <div class="listing-card">
+      <div class="listing-card-head">
+        <div>
+          <h3>Your Business Listing</h3>
+          <span class="listing-hint">This is what the public sees in the Chamber directory. Spot something outdated? Update it anytime.</span>
+        </div>
+        <a href="#" class="listing-update" onclick="demoAlert('Manage Directory Listing');return false;">Update Listing &rarr;</a>
+      </div>
+      <div class="listing-grid">
+        <div>
+          <span class="summary-label">Business Name</span>
+          <span class="listing-value">Prairie Valley Tech</span>
+        </div>
+        <div>
+          <span class="summary-label">Category</span>
+          <span class="listing-value">Professional Services</span>
+        </div>
+        <div>
+          <span class="summary-label">Phone</span>
+          <span class="listing-value">(815) 348-9738</span>
+        </div>
+        <div>
+          <span class="summary-label">Address</span>
+          <span class="listing-value">Byron, IL 61010</span>
+        </div>
+        <div>
+          <span class="summary-label">Website</span>
+          <span class="listing-value">prairievalley.tech</span>
+        </div>
+        <div>
+          <span class="summary-label">Email</span>
+          <span class="listing-value">owner@prairievalley.tech</span>
+        </div>
       </div>
     </div>
 
