@@ -701,7 +701,7 @@ document.addEventListener('click', function(e) {
 
       setTimeout(function() {
         slides[outgoing].classList.remove('active');
-        slides[outgoing].style.zIndex = 1;
+        slides[outgoing].style.zIndex = 0;
         slides[next].style.zIndex = 1;
       }, FADE);
 
