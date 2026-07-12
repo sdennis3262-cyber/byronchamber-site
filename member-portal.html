@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Member Portal — Byron Area Chamber of Commerce</title>
+<title>Member Center — Byron Area Chamber of Commerce</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -82,12 +82,38 @@
   .listing-grid .listing-value { font-size: 13.5px; color: #1a1a2e; line-height: 1.45; }
   @media (max-width: 768px) { .listing-grid { grid-template-columns: 1fr 1fr; } }
 
+  /* Listing + profile completeness row */
+  .dash-row { display: grid; grid-template-columns: 3fr 2fr; gap: 1rem; margin-bottom: 2rem; align-items: stretch; }
+  .dash-row .listing-card { margin-bottom: 0; }
+
+  /* Profile completeness */
+  .profile-card { background: #fff; border: 1.5px solid #e8e8e8; border-radius: 12px; padding: 1.5rem 1.5rem 1.4rem; }
+  .profile-card h3 { font-size: 15px; font-weight: 600; color: #1a1b5b; margin-bottom: 2px; }
+  .profile-pct { font-size: 13px; font-weight: 600; color: #c8a227; margin-bottom: 0.75rem; }
+  .profile-bar { height: 8px; background: #eee; border-radius: 4px; overflow: hidden; margin-bottom: 1.1rem; }
+  .profile-bar-fill { height: 100%; width: 78%; background: linear-gradient(to right, #c8a227, #e0b82e); border-radius: 4px; }
+  .profile-checks { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 1rem; margin-bottom: 1rem; }
+  .profile-check { font-size: 12.5px; color: #1a1a2e; display: flex; align-items: center; gap: 7px; }
+  .profile-check .pc-done { color: #3ba55d; font-weight: 700; }
+  .profile-check.pc-missing { color: #999; }
+  .profile-check .pc-box { color: #bbb; font-weight: 600; }
+  .profile-cta { font-size: 12px; font-weight: 600; color: #c8a227; text-decoration: none; }
+  .profile-cta:hover { text-decoration: underline; }
+
+  /* Member benefits strip */
+  .benefits-strip { background: #1a1b5b; border-radius: 16px; padding: 1.75rem 2rem; margin-bottom: 2.5rem; }
+  .benefits-strip h3 { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 2px; }
+  .benefits-strip .benefits-sub { font-size: 12.5px; color: rgba(255,255,255,0.6); margin-bottom: 1.1rem; }
+  .benefits-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px 1.25rem; }
+  .benefit-item { font-size: 12.5px; color: rgba(255,255,255,0.85); display: flex; align-items: center; gap: 7px; }
+  .benefit-item span { color: #c8a227; font-weight: 700; }
+
   /* Demo toast */
   #demo-toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(20px); background: #1a1b5b; color: #fff; font-size: 13px; padding: 12px 24px; border-radius: 8px; border-left: 4px solid #c8a227; box-shadow: 0 8px 30px rgba(0,0,0,0.25); opacity: 0; pointer-events: none; transition: opacity 0.25s, transform 0.25s; z-index: 500; max-width: 90vw; text-align: center; }
   #demo-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
   /* Member portal cards */
-  .portal-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 3rem; }
+  .portal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2.5rem; }
   .portal-card { background: #fff; border: 1.5px solid #e8e8e8; border-radius: 12px; padding: 1.4rem 1.25rem; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s; display: flex; flex-direction: column; gap: 6px; }
   .portal-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.09); border-color: #c8a227; }
   .portal-card-tag { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #c8a227; }
@@ -140,6 +166,8 @@
     .dash-content { padding: 1.5rem 1.25rem; }
     .portal-grid { grid-template-columns: repeat(2, 1fr) !important; }
     .admin-grid { grid-template-columns: 1fr !important; }
+    .dash-row { grid-template-columns: 1fr !important; }
+    .benefits-grid { grid-template-columns: 1fr 1fr !important; }
     .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
   }
 
@@ -205,7 +233,7 @@
   <div class="login-wrap">
     <div class="login-card">
       <img src="images/logo2026.jpg" alt="Byron Area Chamber of Commerce">
-      <h2>Member Portal</h2>
+      <h2>Member Center</h2>
       <p class="login-org">Byron Area Chamber of Commerce</p>
       <div class="login-field">
         <label>Email Address</label>
@@ -218,7 +246,7 @@
       <button class="btn-gold login-btn" onclick="showDashboard()">Sign In</button>
       <a href="#" class="login-forgot" onclick="return false;">Forgot password?</a>
       <hr class="login-divider">
-      <span class="concept-tag">Member Portal Concept Preview</span>
+      <span class="concept-tag">Member Center Preview</span>
       <p class="login-note">This preview is designed to help define the final member and admin experience before development begins.</p>
     </div>
   </div>
@@ -259,6 +287,7 @@
       </div>
     </div>
 
+    <div class="dash-row">
     <div class="listing-card">
       <div class="listing-card-head">
         <div>
@@ -295,6 +324,24 @@
       </div>
     </div>
 
+    <div class="profile-card">
+      <h3>Business Profile</h3>
+      <p class="profile-pct">78% Complete</p>
+      <div class="profile-bar"><div class="profile-bar-fill"></div></div>
+      <div class="profile-checks">
+        <span class="profile-check"><span class="pc-done">&#10003;</span> Logo</span>
+        <span class="profile-check"><span class="pc-done">&#10003;</span> Website</span>
+        <span class="profile-check"><span class="pc-done">&#10003;</span> Address</span>
+        <span class="profile-check"><span class="pc-done">&#10003;</span> Phone</span>
+        <span class="profile-check pc-missing"><span class="pc-box">&#9633;</span> Hours</span>
+        <span class="profile-check pc-missing"><span class="pc-box">&#9633;</span> Photos</span>
+        <span class="profile-check pc-missing"><span class="pc-box">&#9633;</span> Facebook</span>
+        <span class="profile-check pc-missing"><span class="pc-box">&#9633;</span> Description</span>
+      </div>
+      <a href="#" class="profile-cta" onclick="demoAlert('Complete Your Profile');return false;">Complete your profile &rarr;</a>
+    </div>
+    </div>
+
     <div class="portal-grid">
 
       <div class="portal-card" onclick="demoAlert('Manage Directory Listing')">
@@ -322,6 +369,13 @@
         <span class="portal-card-tag">Promotion</span>
         <h3>Request E-Blast Feature</h3>
         <p>Request a feature spot in the Chamber's weekly email blast to members and subscribers.</p>
+        <span class="portal-card-action">Open &rarr;</span>
+      </div>
+
+      <div class="portal-card" onclick="demoAlert('Hot Deals &amp; Member Promotions')">
+        <span class="portal-card-tag">Promotion</span>
+        <h3>Hot Deals &amp; Promotions</h3>
+        <p>Offer discounts, coupons, and special promotions to the Byron community through the Chamber.</p>
         <span class="portal-card-action">Open &rarr;</span>
       </div>
 
@@ -355,6 +409,21 @@
 
     </div>
 
+    <div class="benefits-strip">
+      <h3>Your Membership Includes</h3>
+      <p class="benefits-sub">A reminder of everything that comes with your Chamber membership.</p>
+      <div class="benefits-grid">
+        <span class="benefit-item"><span>&#10003;</span> Business Directory Listing</span>
+        <span class="benefit-item"><span>&#10003;</span> Chamber Newsletter</span>
+        <span class="benefit-item"><span>&#10003;</span> Networking Events</span>
+        <span class="benefit-item"><span>&#10003;</span> Ribbon Cuttings</span>
+        <span class="benefit-item"><span>&#10003;</span> Community Exposure</span>
+        <span class="benefit-item"><span>&#10003;</span> Member Promotions</span>
+        <span class="benefit-item"><span>&#10003;</span> Member Resources</span>
+        <span class="benefit-item"><span>&#10003;</span> Advocacy &amp; Support</span>
+      </div>
+    </div>
+
     <!-- ── ADMIN PREVIEW ────────────────────────────────────────────── -->
     <div class="admin-preview">
       <p class="admin-preview-eyebrow">Chamber Staff View</p>
@@ -370,32 +439,42 @@
         </div>
 
         <div class="admin-card">
-          <span class="admin-badge">2 Awaiting Review</span>
+          <span class="admin-badge">2 Awaiting Approval</span>
           <h4>Event Submissions</h4>
           <p>Approve or decline event submissions and add confirmed events to the public Chamber calendar.</p>
         </div>
 
         <div class="admin-card">
-          <span class="admin-badge">1 Pending</span>
-          <h4>News &amp; E-Blast Requests</h4>
+          <span class="admin-badge">4 Pending</span>
+          <h4>Member News &amp; E-Blasts</h4>
           <p>Review member news submissions and e-blast feature requests before scheduling or publishing.</p>
         </div>
 
         <div class="admin-card">
-          <span class="admin-badge">2 Requests</span>
+          <span class="admin-badge">1 New Request</span>
           <h4>Ribbon Cutting Requests</h4>
           <p>Review requested dates and event details, then coordinate ribbon cuttings with the member.</p>
         </div>
 
         <div class="admin-card">
-          <span class="admin-badge">5 Renewals Due</span>
+          <span class="admin-badge">5 Due Soon</span>
           <h4>Membership Renewals</h4>
           <p>Monitor upcoming renewals, flag lapsed members, and send renewal reminders in one view.</p>
         </div>
 
         <div class="admin-card">
-          <h4>Member Accounts &amp; Resources</h4>
-          <p>Manage member accounts and upload documents, templates, logos, and guides for members to download.</p>
+          <h4>Manage Members</h4>
+          <p>View and search all members, update contact info, and manage membership levels in one place.</p>
+        </div>
+
+        <div class="admin-card">
+          <h4>Member Resources</h4>
+          <p>Upload documents, templates, logos, and guides for members to download from their dashboard.</p>
+        </div>
+
+        <div class="admin-card">
+          <h4>Reports</h4>
+          <p>Member growth, renewal status, and recent activity at a glance — simple views, no spreadsheets.</p>
         </div>
 
       </div>
@@ -440,7 +519,7 @@ function showLogin() {
 var toastTimer;
 function demoAlert(feature) {
   var t = document.getElementById('demo-toast');
-  t.textContent = feature + ' — this workflow gets built out in the full portal.';
+  t.textContent = feature + ' — this workflow gets built out in the full Member Center.';
   t.classList.add('show');
   clearTimeout(toastTimer);
   toastTimer = setTimeout(function() { t.classList.remove('show'); }, 2600);
