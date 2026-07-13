@@ -78,6 +78,7 @@
   .bm-row .bm-value { font-size: 14px; color: #1a1a2e; }
   .bm-row a.bm-action { font-size: 12.5px; font-weight: 600; color: #1a1b5b; text-decoration: none; border: 1.5px solid #ddd; padding: 7px 14px; border-radius: 7px; white-space: nowrap; }
   .bm-row a.bm-action:hover { border-color: #c8a227; color: #c8a227; }
+  .bm-actions { display: flex; gap: 6px; flex-shrink: 0; }
   .bm-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.4rem; }
   .bm-tag { font-size: 11px; color: #666; background: #f4f4f2; border-radius: 14px; padding: 4px 12px; }
   .bm-claim { background: #f7f7f5; border-left: 4px solid #c8a227; border-radius: 8px; padding: 0.9rem 1.1rem; font-size: 13px; color: #555; line-height: 1.6; }
@@ -89,6 +90,8 @@
     @keyframes bizSlide { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
     .bm-row { flex-direction: column; align-items: flex-start; gap: 8px; }
     .bm-row a.bm-action { align-self: stretch; text-align: center; padding: 10px; }
+    .bm-actions { align-self: stretch; }
+    .bm-actions a.bm-action { flex: 1; }
   }
 
   .search-wrap { position: relative; margin-bottom: 1.25rem; }
@@ -484,8 +487,12 @@ function openBizModal(b) {
             '<a class="bm-action" href="https://' + escHtml(b.website) + '" target="_blank" rel="noopener">Visit Site</a></div>';
   }
   if (b.address) {
+    var q = encodeURIComponent(b.name + ' ' + b.address);
     rows += '<div class="bm-row"><span><span class="bm-label">Address</span><span class="bm-value">' + escHtml(b.address) + '</span></span>' +
-            '<a class="bm-action" href="https://maps.google.com/?q=' + encodeURIComponent(b.name + ' ' + b.address) + '" target="_blank" rel="noopener">Directions</a></div>';
+            '<span class="bm-actions">' +
+            '<a class="bm-action" href="https://maps.apple.com/?q=' + q + '" target="_blank" rel="noopener">&#63743; Apple Maps</a>' +
+            '<a class="bm-action" href="https://maps.google.com/?q=' + q + '" target="_blank" rel="noopener">Google Maps</a>' +
+            '</span></div>';
   }
   var desc = b.description
     ? '<p class="bm-desc">' + escHtml(b.description) + '</p>'
