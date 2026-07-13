@@ -57,6 +57,22 @@
   .event-date-box .day { font-size: 22px; font-weight: 600; color: #fff; line-height: 1.1; }
   .event-list-body h4 { font-size: 15px; font-weight: 600; color: #1a1b5b; margin-bottom: 4px; }
   .event-list-body p { font-size: 13px; color: #555; line-height: 1.6; }
+  /* Event filters + list extras */
+  .evt-filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin: 1.25rem 0 0.5rem; }
+  .evt-filter { border: 1.5px solid #ddd; background: #fff; color: #555; font-size: 12.5px; font-weight: 500; font-family: 'Inter', sans-serif; padding: 7px 16px; border-radius: 20px; cursor: pointer; transition: all 0.15s; }
+  .evt-filter:hover { border-color: #c8a227; color: #1a1b5b; }
+  .evt-filter.active { background: #1a1b5b; border-color: #1a1b5b; color: #fff; }
+  .evt-chip { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #c8a227; margin-left: 8px; }
+  .evt-meta { font-size: 12.5px; color: #888; margin-bottom: 5px; }
+  .evt-reg { display: inline-block; font-size: 12.5px; font-weight: 600; color: #1a1b5b; text-decoration: none; margin-top: 6px; border-bottom: 1.5px solid #c8a227; padding-bottom: 1px; }
+  .evt-reg:hover { color: #c8a227; }
+  .submit-event-bar { background: #1a1b5b; border-radius: 12px; padding: 1.5rem 2rem; margin: 2rem 0 0.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+  .submit-event-bar h3 { font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 3px; }
+  .submit-event-bar p { font-size: 13px; color: rgba(255,255,255,0.65); margin: 0; line-height: 1.5; }
+  @media (max-width: 768px) {
+    .submit-event-bar { flex-direction: column; align-items: flex-start; }
+  }
+
   .subscribe-box { background: #f7f7f5; border-radius: 12px; padding: 2rem; text-align: center; margin-top: 3rem; border-left: 4px solid #c8a227; }
   .subscribe-box h3 { font-size: 17px; font-weight: 600; color: #1a1b5b; margin-bottom: 0.5rem; }
   .subscribe-box p { font-size: 14px; color: #555; margin-bottom: 1.25rem; }
@@ -222,7 +238,7 @@
 <div class="page-hero">
   <p class="eyebrow">Byron Area Chamber of Commerce</p>
   <h1>Events</h1>
-  <p>Seven annual events, every season. From summer festivals to winter celebrations — there's always something happening in Byron.</p>
+  <p>From ByronFest to Miracle on 2nd Street — Chamber events, community happenings, and business networking, every season of the year.</p>
 </div>
 
 <div class="content-wrap">
@@ -239,76 +255,30 @@
     </div>
   </div>
 
-  <h2>2026 event calendar</h2>
-  <div class="event-grid">
-    <div class="event-card">
-      <img src="images/5k.jpg" alt="Byron Rocks 5K">
-      <div class="event-card-body">
-        <div class="month">Spring 2026</div>
-        <h3>Byron Rocks 5K</h3>
-        <div class="date">Date TBA &nbsp;·&nbsp; Byron, IL</div>
-        <p>Byron's community fun run brings out runners and walkers of all ages. A great way to kick off the outdoor season and see the community in action. Open to all skill levels.</p>
-      </div>
-    </div>
-    <div class="event-card">
-      <img src="images/awards.jpg" alt="Annual Awards">
-      <div class="event-card-body">
-        <div class="month">Annual</div>
-        <h3>Annual Awards Banquet</h3>
-        <div class="date">Date TBA &nbsp;·&nbsp; Byron, IL</div>
-        <p>The Chamber's annual recognition event celebrating outstanding businesses, community leaders, and volunteers who make Byron a stronger place to live and do business. A Chamber membership highlight.</p>
-      </div>
-    </div>
-    <div class="event-card">
-      <img src="images/wine-dinner.jpg" alt="Wine Dinner">
-      <div class="event-card-body">
-        <div class="month">February 2026</div>
-        <h3>Wine Dinner</h3>
-        <div class="date">Date TBA &nbsp;·&nbsp; Byron, IL</div>
-        <p>An elegant evening for Chamber members and community supporters. Multi-course dinner paired with curated wines in an intimate setting. A favorite on the Chamber social calendar — tickets go fast.</p>
-      </div>
-    </div>
-    <div class="event-card">
-      <div style="background:#1a1b5b;height:180px;display:flex;align-items:center;justify-content:center;">
-        <span style="color:#c8a227;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;">Golf Play Day</span>
-      </div>
-      <div class="event-card-body">
-        <div class="month">August 20, 2026</div>
-        <h3>Annual Golf Play Day</h3>
-        <div class="date">August 20 &nbsp;·&nbsp; PrairieView Golf Club</div>
-        <p>A day on the links at PrairieView Golf Club, one of northern Illinois' best public courses. The Chamber's Golf Play Day combines friendly competition with business networking — one of the most popular member events of the year.</p>
-      </div>
-    </div>
+  <h2>Upcoming in Byron</h2>
+  <p style="margin-bottom:0;">Chamber events, community happenings, and business networking — all in one place.</p>
+
+  <div class="evt-filter-bar" id="evtFilters">
+    <button class="evt-filter active" data-cat="all">All Events</button>
+    <button class="evt-filter" data-cat="chamber">Chamber Events</button>
+    <button class="evt-filter" data-cat="community">Community</button>
+    <button class="evt-filter" data-cat="business">Business &amp; Networking</button>
   </div>
 
-  <h2>Fall &amp; holiday events</h2>
-  <div class="event-list">
-    <div class="event-list-item">
-      <div class="event-date-box">
-        <div class="month-abbr">Oct</div>
-        <div class="day">24</div>
-      </div>
-      <div class="event-list-body">
-        <h4>ChiliFest 2026</h4>
-        <p>October 24 &nbsp;·&nbsp; Downtown Byron, IL<br>Byron's favorite fall tradition. Local chili competitors, live entertainment, vendors, and the buzz of a downtown celebration as the leaves change. A great event for businesses to participate in and families to enjoy.</p>
-      </div>
+  <div class="event-list" id="eventList"></div>
+
+  <div class="submit-event-bar">
+    <div>
+      <h3>Have an event Byron should know about?</h3>
+      <p>Chamber members can submit events for the community calendar through the Member Center.</p>
     </div>
-    <div class="event-list-item">
-      <div class="event-date-box">
-        <div class="month-abbr">Dec</div>
-        <div class="day">&#8212;</div>
-      </div>
-      <div class="event-list-body">
-        <h4>Miracle on 2nd Street</h4>
-        <p>December 2026 &nbsp;·&nbsp; 2nd Street, Downtown Byron, IL<br>Byron's beloved holiday celebration transforms downtown into a winter destination. Lights, local shopping, community spirit, and the kind of small-town magic that reminds everyone why they love Byron. Date TBA.</p>
-      </div>
-    </div>
+    <a href="member-portal.html" class="btn-gold" style="font-size:13px;text-decoration:none;white-space:nowrap;">Submit an Event &rarr;</a>
   </div>
 
   <div class="subscribe-box">
     <h3>Stay up to date</h3>
     <p>The Chamber sends a weekly Thursday email update and a monthly newsletter with event announcements, member news, and community happenings. Sign up to never miss what's going on in Byron.</p>
-    <a href="contact.html" class="btn-gold" style="font-size:14px;padding:10px 24px;">Contact the Chamber to Subscribe</a>
+    <a href="contact.html#newsletter" class="btn-gold" style="font-size:14px;padding:10px 24px;text-decoration:none;">Sign Up for the Newsletter</a>
   </div>
 
 </div>
@@ -323,6 +293,76 @@
   </div>
 </footer>
 <script>
+/* Upcoming events — real Byron events, chronological. cat: chamber | community | business */
+var CHAMBER_EVENTS = [
+  { mon: 'Jul', day: '29', name: 'Ogle County Fair', cat: 'community', catLabel: 'Community',
+    meta: 'July 29 – August 2 · Ogle County Fairgrounds, Oregon, IL',
+    desc: 'Over 170 years of county fair tradition just minutes from Byron — livestock shows, carnival rides, grandstand motorsports, live music, and fair food.',
+    link: 'https://oglecountyfair.com/', linkText: 'Fair info & tickets' },
+  { mon: 'Aug', day: '4', name: 'Chamber Lunch & Business After Hours', cat: 'business', catLabel: 'Networking',
+    meta: 'First Tuesday of every month · Rotating member locations',
+    desc: 'The Chamber’s monthly networking staple. Meet fellow members over lunch or after hours, hosted by a different Byron business each month.',
+    link: 'contact.html', linkText: 'Contact the Chamber to attend' },
+  { mon: 'Aug', day: '20', name: 'Annual Golf Play Day', cat: 'business', catLabel: 'Chamber · Networking',
+    meta: 'August 20 · PrairieView Golf Club, Byron',
+    desc: 'A scramble-style day on the links with hole sponsorships, prizes, lunch, and dinner. The Chamber’s most popular member networking event of the year.',
+    link: 'https://www.byronchamber.com', linkText: 'Registration & sponsorships' },
+  { mon: 'Oct', day: '10', name: 'Byron Farmers Markets', cat: 'community', catLabel: 'Community',
+    meta: 'Saturday mornings through mid-October · Downtown Byron & Sunshine Park',
+    desc: 'Two Saturday markets running all season — fresh produce, baked goods, and local makers. Support the growers who feed Byron.' },
+  { mon: 'Oct', day: '18', name: 'Halloween on the Prairie', cat: 'community', catLabel: 'Community',
+    meta: 'Mid-October (date TBA) · Byron Forest Preserve, Jarrett Prairie Center',
+    desc: 'A family Halloween afternoon on the prairie — trick-or-treat trail, activities, and nature programming with the Park District and Forest Preserve.',
+    link: 'https://www.byronforestpreserve.com', linkText: 'Event details' },
+  { mon: 'Oct', day: '24', name: 'ChiliFest 2026', cat: 'chamber', catLabel: 'Chamber',
+    meta: 'Late October · Downtown Byron · Gates 11 AM, tasting at noon',
+    desc: 'Byron’s favorite fall tradition. Local chili competitors, tasting tickets, live music, pumpkin decorating, and a downtown full of neighbors as the leaves change.' },
+  { mon: 'Nov', day: '26', name: 'Turkey Trot 5K', cat: 'community', catLabel: 'Community',
+    meta: 'Thanksgiving morning · Presented by Byron Bank',
+    desc: 'Earn your Thanksgiving dinner. A festive morning 5K with pie giveaways, age-group medals, and the coveted Golden Turkey for best dressed.',
+    link: 'https://runsignup.com/Race/IL/Byron/FallFrenzyRaceSeries', linkText: 'Register' },
+  { mon: 'Dec', day: '4', name: 'Miracle on 2nd Street', cat: 'chamber', catLabel: 'Chamber',
+    meta: 'First Friday of December, 6–8:30 PM · 2nd Street, Downtown Byron',
+    desc: 'The Chamber’s holiday kickoff and Byron’s most magical night — tree lighting, Santa, hay wagon rides, the Festival of Trees, veteran luminaries, and downtown shopping.' },
+  { mon: 'Dec', day: '5', name: 'Holiday Gift Sale & Craft Show', cat: 'community', catLabel: 'Community',
+    meta: 'Early December · Jarrett Prairie Center, Byron Forest Preserve',
+    desc: 'Two floors of local vendors and makers for holiday shopping, with food and drinks. Free admission — a Byron tradition for over 30 years.' },
+  { mon: 'Feb', day: '—', name: 'Wine Dinner', cat: 'chamber', catLabel: 'Chamber',
+    meta: 'Annual, date TBA · Byron, IL',
+    desc: 'An elegant evening for members and community supporters — a multi-course dinner paired with curated wines. Tickets go fast.' },
+  { mon: 'Spr', day: '—', name: 'Annual Awards Ceremony', cat: 'chamber', catLabel: 'Chamber',
+    meta: 'Annual, date TBA · Byron, IL',
+    desc: 'The Chamber’s recognition night celebrating the businesses, leaders, and volunteers who make Byron a stronger place to live and work.' },
+  { mon: 'May', day: '1', name: 'Byron Rocks 5K & 10K', cat: 'chamber', catLabel: 'Chamber · Community',
+    meta: 'May 1, 2027 · Starts at Byron City Hall, 232 W 2nd Street',
+    desc: 'Run it, walk it, ruck it. Byron’s spring race with 5K, 10K, and rucking divisions, starting right outside the Chamber’s front door.',
+    link: 'https://runsignup.com', linkText: 'Register' }
+];
+
+function renderEvents(cat) {
+  var list = document.getElementById('eventList');
+  var items = CHAMBER_EVENTS.filter(function(e) { return cat === 'all' || e.cat === cat; });
+  list.innerHTML = items.map(function(e) {
+    return '<div class="event-list-item">' +
+      '<div class="event-date-box"><div class="month-abbr">' + e.mon + '</div><div class="day">' + e.day + '</div></div>' +
+      '<div class="event-list-body">' +
+      '<h4>' + e.name + '<span class="evt-chip">' + e.catLabel + '</span></h4>' +
+      '<p class="evt-meta">' + e.meta + '</p>' +
+      '<p>' + e.desc + '</p>' +
+      (e.link ? '<a class="evt-reg" href="' + e.link + '"' + (e.link.indexOf('http') === 0 ? ' target="_blank"' : '') + '>' + e.linkText + ' &rarr;</a>' : '') +
+      '</div></div>';
+  }).join('');
+}
+
+document.getElementById('evtFilters').addEventListener('click', function(e) {
+  var btn = e.target.closest('.evt-filter');
+  if (!btn) return;
+  document.querySelectorAll('.evt-filter').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  renderEvents(btn.getAttribute('data-cat'));
+});
+renderEvents('all');
+
 function toggleMobileNav() {
   document.querySelector('.nav-links').classList.toggle('mobile-open');
 }
