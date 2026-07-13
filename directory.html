@@ -59,6 +59,38 @@
   .ac-name { font-size: 14px; font-weight: 600; color: #1a1b5b; }
   .ac-cat { font-size: 11px; font-weight: 600; color: #c8a227; text-transform: uppercase; letter-spacing: 0.8px; white-space: nowrap; margin-left: 12px; }
   .ac-empty { padding: 14px 16px; font-size: 14px; color: #999; text-align: center; }
+  /* ── BUSINESS PROFILE MODAL ── */
+  body.modal-open { overflow: hidden; }
+  .biz-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(15,16,50,0.55); z-index: 300; align-items: center; justify-content: center; padding: 1.5rem; }
+  .biz-modal-overlay.open { display: flex; }
+  .biz-modal { background: #fff; border-radius: 16px; max-width: 560px; width: 100%; max-height: 88vh; overflow-y: auto; padding: 2.25rem 2.25rem 2rem; position: relative; animation: bizPop 0.22s ease; }
+  @keyframes bizPop { from { transform: scale(0.94); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .biz-modal-close { position: absolute; top: 1.1rem; right: 1.1rem; width: 34px; height: 34px; border-radius: 50%; border: none; background: #f0f0f0; color: #555; font-size: 15px; cursor: pointer; font-family: 'Inter', sans-serif; line-height: 1; }
+  .biz-modal-close:hover { background: #c8a227; color: #fff; }
+  .biz-modal .bm-cat { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #c8a227; background: rgba(200,162,39,0.1); border: 1px solid rgba(200,162,39,0.3); padding: 4px 12px; border-radius: 20px; margin-bottom: 0.9rem; }
+  .biz-modal h2 { font-size: 24px; font-weight: 600; color: #1a1b5b; line-height: 1.25; margin-bottom: 0.4rem; padding-right: 2rem; }
+  .biz-modal .bm-desc { font-size: 14.5px; color: #444; line-height: 1.75; margin: 0.9rem 0 1.4rem; }
+  .biz-modal .bm-desc.bm-empty { color: #999; font-style: italic; }
+  .bm-contact { border: 1.5px solid #eee; border-radius: 12px; padding: 0.4rem 1.25rem; margin-bottom: 1.25rem; }
+  .bm-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.85rem 0; border-bottom: 1px solid #f5f5f5; }
+  .bm-row:last-child { border-bottom: none; }
+  .bm-row .bm-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #999; display: block; margin-bottom: 2px; }
+  .bm-row .bm-value { font-size: 14px; color: #1a1a2e; }
+  .bm-row a.bm-action { font-size: 12.5px; font-weight: 600; color: #1a1b5b; text-decoration: none; border: 1.5px solid #ddd; padding: 7px 14px; border-radius: 7px; white-space: nowrap; }
+  .bm-row a.bm-action:hover { border-color: #c8a227; color: #c8a227; }
+  .bm-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.4rem; }
+  .bm-tag { font-size: 11px; color: #666; background: #f4f4f2; border-radius: 14px; padding: 4px 12px; }
+  .bm-claim { background: #f7f7f5; border-left: 4px solid #c8a227; border-radius: 8px; padding: 0.9rem 1.1rem; font-size: 13px; color: #555; line-height: 1.6; }
+  .bm-claim a { color: #1a1b5b; font-weight: 600; text-decoration: none; }
+  .bm-claim a:hover { color: #c8a227; }
+  @media (max-width: 768px) {
+    .biz-modal-overlay { padding: 0; align-items: stretch; }
+    .biz-modal { max-width: none; max-height: none; height: 100%; border-radius: 0; padding: 1.5rem 1.25rem 2rem; animation: bizSlide 0.25s ease; }
+    @keyframes bizSlide { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .bm-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .bm-row a.bm-action { align-self: stretch; text-align: center; padding: 10px; }
+  }
+
   .search-wrap { position: relative; margin-bottom: 1.25rem; }
   .search-wrap input {
     width: 100%; padding: 12px 16px 12px 44px;
@@ -88,7 +120,10 @@
     background: #fff; border: 1px solid #e8e8e8; border-radius: 10px;
     padding: 1.25rem; border-left: 4px solid #c8a227;
     display: flex; flex-direction: column; gap: 6px;
+    cursor: pointer; transition: transform 0.15s, box-shadow 0.15s;
   }
+  .biz-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.09); }
+  .biz-view { font-size: 12px; font-weight: 600; color: #c8a227; margin-top: 6px; }
   .biz-name { font-size: 15px; font-weight: 600; color: #1a1b5b; }
   .biz-cat { font-size: 11px; font-weight: 600; color: #c8a227; text-transform: uppercase; letter-spacing: 0.8px; }
   .biz-detail { font-size: 12px; color: #666; line-height: 1.5; }
@@ -236,7 +271,7 @@
   <meta name="twitter:title" content="Business Directory — Byron Area Chamber of Commerce">
   <meta name="twitter:description" content="Browse local Byron businesses, services, and organizations.">
   <meta name="twitter:image" content="https://byronchamber-site.pages.dev/images/og-image.png">
-<script src="data/businesses.js"></script>
+<script src="data/businesses.js?v=2"></script>
 </head>
 <body>
 
@@ -359,6 +394,11 @@
   </div>
 </div>
 
+<!-- ── BUSINESS PROFILE MODAL ── -->
+<div class="biz-modal-overlay" id="bizModalOverlay">
+  <div class="biz-modal" id="bizModal" role="dialog" aria-modal="true"></div>
+</div>
+
 <footer>
   <div class="footer-grid">
     <div class="footer-logo">
@@ -425,6 +465,71 @@ function buildFilters() {
   });
 }
 
+/* ── Business profile modal ── */
+var bizModalOpen = false;
+
+function escHtml(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function openBizModal(b) {
+  var m = document.getElementById('bizModal');
+  var rows = '';
+  if (b.phone) {
+    rows += '<div class="bm-row"><span><span class="bm-label">Phone</span><span class="bm-value">' + escHtml(b.phone) + '</span></span>' +
+            '<a class="bm-action" href="tel:' + b.phone.replace(/[^0-9]/g, '') + '">Call</a></div>';
+  }
+  if (b.website) {
+    rows += '<div class="bm-row"><span><span class="bm-label">Website</span><span class="bm-value">' + escHtml(b.website) + '</span></span>' +
+            '<a class="bm-action" href="https://' + escHtml(b.website) + '" target="_blank" rel="noopener">Visit Site</a></div>';
+  }
+  if (b.address) {
+    rows += '<div class="bm-row"><span><span class="bm-label">Address</span><span class="bm-value">' + escHtml(b.address) + '</span></span>' +
+            '<a class="bm-action" href="https://maps.google.com/?q=' + encodeURIComponent(b.name + ' ' + b.address) + '" target="_blank" rel="noopener">Directions</a></div>';
+  }
+  var desc = b.description
+    ? '<p class="bm-desc">' + escHtml(b.description) + '</p>'
+    : '<p class="bm-desc bm-empty">This member hasn\'t added a business description yet.</p>';
+  var tags = (b.tags && b.tags.length)
+    ? '<div class="bm-tags">' + b.tags.slice(0, 6).map(function(t) { return '<span class="bm-tag">' + escHtml(t) + '</span>'; }).join('') + '</div>'
+    : '';
+
+  m.innerHTML = '<button class="biz-modal-close" aria-label="Close" onclick="requestCloseBizModal()">&#10005;</button>' +
+    '<span class="bm-cat">' + escHtml(b.category) + '</span>' +
+    '<h2>' + escHtml(b.name) + '</h2>' +
+    desc +
+    (rows ? '<div class="bm-contact">' + rows + '</div>' : '') +
+    tags +
+    '<div class="bm-claim">Is this your business? <a href="member-portal.html">Log in to the Member Center</a> to update your listing, add photos, hours, and more.</div>';
+
+  document.getElementById('bizModalOverlay').classList.add('open');
+  document.body.classList.add('modal-open');
+  bizModalOpen = true;
+  history.pushState({ bizModal: true }, '');
+}
+
+function hideBizModal() {
+  document.getElementById('bizModalOverlay').classList.remove('open');
+  document.body.classList.remove('modal-open');
+  bizModalOpen = false;
+}
+
+function requestCloseBizModal() {
+  if (bizModalOpen) history.back();  // pops our state; popstate handler hides
+}
+
+window.addEventListener('popstate', function() {
+  if (bizModalOpen) hideBizModal();
+});
+
+document.getElementById('bizModalOverlay').addEventListener('click', function(e) {
+  if (e.target === this) requestCloseBizModal();
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && bizModalOpen) requestCloseBizModal();
+});
+
 function clearSearch() {
   var input = document.getElementById('search');
   input.value = '';
@@ -467,7 +572,12 @@ function filterBiz() {
         <div class="biz-detail">${b.address}</div>
         ${b.phone ? `<div class="biz-phone">${b.phone}</div>` : ''}
         ${b.website ? `<a class="biz-website" href="https://${b.website}" target="_blank">${b.website}</a>` : ''}
+        <div class="biz-view">View profile &rarr;</div>
       `;
+      card.addEventListener('click', function(e) {
+        if (e.target.closest('a')) return;
+        openBizModal(b);
+      });
       grid.appendChild(card);
     });
   }
