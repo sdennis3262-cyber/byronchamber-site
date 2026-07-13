@@ -48,6 +48,10 @@
 
   .dir-controls { padding: 2rem 2.5rem 0; }
   .search-wrap { position: relative; }
+  .search-clear { display: none; position: absolute; right: 10px; top: 50%; transform: translateY(-50%); width: 26px; height: 26px; border-radius: 50%; border: none; background: #e8e8e8; color: #666; font-size: 14px; line-height: 1; cursor: pointer; font-family: 'Inter', sans-serif; padding: 0; }
+  .search-clear:hover { background: #c8a227; color: #fff; }
+  .search-wrap.has-text .search-clear { display: block; }
+  .search-wrap.has-text #search { padding-right: 44px; }
   .ac-dropdown { display: none; position: absolute; top: calc(100% + 5px); left: 0; right: 0; background: #fff; border: 1px solid #e8e8e8; border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); z-index: 50; overflow: hidden; }
   .ac-item { display: flex; align-items: center; justify-content: space-between; padding: 11px 16px; text-decoration: none; border-bottom: 1px solid #f5f5f5; cursor: pointer; }
   .ac-item:last-child { border-bottom: none; }
@@ -281,6 +285,7 @@
   <div class="search-wrap">
     <span class="search-icon">&#9906;</span>
     <input type="text" id="search" placeholder="Search businesses by name, category, or keyword..." oninput="filterBiz()">
+    <button type="button" class="search-clear" aria-label="Clear search" onclick="clearSearch()">&#10005;</button>
   </div>
   <div class="filter-row" id="filters"></div>
 </div>
@@ -420,8 +425,19 @@ function buildFilters() {
   });
 }
 
+function clearSearch() {
+  var input = document.getElementById('search');
+  input.value = '';
+  var dd = document.querySelector('.ac-dropdown');
+  if (dd) dd.style.display = 'none';
+  filterBiz();
+  input.focus();
+}
+
 function filterBiz() {
-  const q = document.getElementById('search').value.toLowerCase();
+  const input = document.getElementById('search');
+  input.closest('.search-wrap').classList.toggle('has-text', input.value.length > 0);
+  const q = input.value.toLowerCase();
   const filtered = businesses.filter(b => {
     const matchCat = activeCategory === 'All' || b.category === activeCategory;
     const matchQ = !q || b.name.toLowerCase().includes(q) || b.category.toLowerCase().includes(q) || b.address.toLowerCase().includes(q) ||
