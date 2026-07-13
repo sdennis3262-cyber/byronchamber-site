@@ -47,6 +47,14 @@
   .page-hero p { color: rgba(255,255,255,0.72); font-size: 15px; }
 
   .dir-controls { padding: 2rem 2.5rem 0; }
+  .search-wrap { position: relative; }
+  .ac-dropdown { display: none; position: absolute; top: calc(100% + 5px); left: 0; right: 0; background: #fff; border: 1px solid #e8e8e8; border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); z-index: 50; overflow: hidden; }
+  .ac-item { display: flex; align-items: center; justify-content: space-between; padding: 11px 16px; text-decoration: none; border-bottom: 1px solid #f5f5f5; cursor: pointer; }
+  .ac-item:last-child { border-bottom: none; }
+  .ac-item:hover { background: #faf9f6; }
+  .ac-name { font-size: 14px; font-weight: 600; color: #1a1b5b; }
+  .ac-cat { font-size: 11px; font-weight: 600; color: #c8a227; text-transform: uppercase; letter-spacing: 0.8px; white-space: nowrap; margin-left: 12px; }
+  .ac-empty { padding: 14px 16px; font-size: 14px; color: #999; text-align: center; }
   .search-wrap { position: relative; margin-bottom: 1.25rem; }
   .search-wrap input {
     width: 100%; padding: 12px 16px 12px 44px;
@@ -416,7 +424,8 @@ function filterBiz() {
   const q = document.getElementById('search').value.toLowerCase();
   const filtered = businesses.filter(b => {
     const matchCat = activeCategory === 'All' || b.category === activeCategory;
-    const matchQ = !q || b.name.toLowerCase().includes(q) || b.category.toLowerCase().includes(q) || b.address.toLowerCase().includes(q);
+    const matchQ = !q || b.name.toLowerCase().includes(q) || b.category.toLowerCase().includes(q) || b.address.toLowerCase().includes(q) ||
+      (b.tags && b.tags.some(t => t.toLowerCase().includes(q)));
     return matchCat && matchQ;
   });
 
@@ -459,6 +468,50 @@ filterBiz();
       var el = document.getElementById('search');
       if (el) { el.value = q; filterBiz(); }
     }
+  })();
+
+  // Autocomplete dropdown (same behavior as homepage search)
+  (function() {
+    var input = document.getElementById('search');
+    var wrap = input.closest('.search-wrap');
+    var dropdown = document.createElement('div');
+    dropdown.className = 'ac-dropdown';
+    wrap.appendChild(dropdown);
+
+    function show(q) {
+      if (!q) { dropdown.style.display = 'none'; return; }
+      var ql = q.toLowerCase();
+      var results = businesses.filter(function(b) {
+        return b.name.toLowerCase().indexOf(ql) !== -1 ||
+               b.category.toLowerCase().indexOf(ql) !== -1 ||
+               (b.tags && b.tags.some(function(t) { return t.toLowerCase().indexOf(ql) !== -1; }));
+      }).slice(0, 8);
+
+      if (!results.length) { dropdown.style.display = 'none'; return; }
+      dropdown.innerHTML = results.map(function(b, i) {
+        return '<div class="ac-item" data-name="' + b.name.replace(/"/g, '&quot;') + '">' +
+               '<span class="ac-name">' + b.name + '</span>' +
+               '<span class="ac-cat">' + b.category + '</span>' +
+               '</div>';
+      }).join('');
+      dropdown.style.display = 'block';
+    }
+
+    input.addEventListener('input', function() { show(this.value.trim()); });
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') { dropdown.style.display = 'none'; }
+    });
+    dropdown.addEventListener('click', function(e) {
+      var item = e.target.closest('.ac-item');
+      if (!item) return;
+      input.value = item.getAttribute('data-name');
+      dropdown.style.display = 'none';
+      filterBiz();
+      document.getElementById('biz-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    document.addEventListener('click', function(e) {
+      if (!wrap.contains(e.target)) dropdown.style.display = 'none';
+    });
   })();
 
 </script>
