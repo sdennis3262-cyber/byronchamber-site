@@ -108,6 +108,39 @@
   .benefit-item { font-size: 12.5px; color: rgba(255,255,255,0.85); display: flex; align-items: center; gap: 7px; }
   .benefit-item span { color: #c8a227; font-weight: 700; }
 
+  /* ── SUBMISSION FORMS ── */
+  #portal-form { display: none; }
+  .form-wrap { max-width: 660px; margin: 0 auto; padding: 2.5rem 2rem 3rem; }
+  .form-back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #888; text-decoration: none; margin-bottom: 1.25rem; }
+  .form-back:hover { color: #c8a227; }
+  .form-card { background: #fff; border: 1.5px solid #e8e8e8; border-radius: 16px; padding: 2.25rem 2.25rem 2rem; }
+  .form-card .fc-tag { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #c8a227; margin-bottom: 6px; }
+  .form-card h2 { font-size: 20px; font-weight: 600; color: #1a1b5b; margin-bottom: 4px; }
+  .form-card .fc-sub { font-size: 13px; color: #888; line-height: 1.6; margin-bottom: 1.5rem; }
+  .fgroup { display: flex; flex-direction: column; gap: 5px; margin-bottom: 1rem; }
+  .fgroup label { font-size: 11px; font-weight: 600; color: #555; text-transform: uppercase; letter-spacing: 0.5px; }
+  .fgroup input, .fgroup select, .fgroup textarea { border: 1.5px solid #ddd; border-radius: 7px; padding: 10px 13px; font-size: 14px; font-family: 'Inter', sans-serif; color: #1a1a2e; background: #fff; outline: none; width: 100%; }
+  .fgroup input:focus, .fgroup select:focus, .fgroup textarea:focus { border-color: #c8a227; }
+  .fgroup textarea { resize: vertical; min-height: 90px; }
+  .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-actions { margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem; }
+  .form-actions .btn-gold { padding: 12px 28px !important; font-size: 14px; }
+  .form-actions .form-cancel { font-size: 13px; color: #999; text-decoration: none; }
+  .form-actions .form-cancel:hover { color: #c8a227; }
+  .form-preview-note { font-size: 11.5px; color: #aaa; margin-top: 1.25rem; line-height: 1.6; }
+
+  /* Success state */
+  .success-panel { text-align: center; padding: 2.5rem 1.5rem 1.5rem; }
+  .success-icon { width: 64px; height: 64px; border-radius: 50%; background: rgba(59,165,93,0.12); color: #3ba55d; font-size: 30px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; }
+  .success-panel h2 { font-size: 20px; font-weight: 600; color: #1a1b5b; margin-bottom: 8px; }
+  .success-panel p { font-size: 14px; color: #666; line-height: 1.7; max-width: 420px; margin: 0 auto 1.75rem; }
+
+  @media (max-width: 768px) {
+    .frow { grid-template-columns: 1fr; gap: 0; }
+    .form-card { padding: 1.5rem 1.25rem; }
+    .form-wrap { padding: 1.5rem 1.25rem 2rem; }
+  }
+
   /* Demo toast */
   #demo-toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(20px); background: #1a1b5b; color: #fff; font-size: 13px; padding: 12px 24px; border-radius: 8px; border-left: 4px solid #c8a227; box-shadow: 0 8px 30px rgba(0,0,0,0.25); opacity: 0; pointer-events: none; transition: opacity 0.25s, transform 0.25s; z-index: 500; max-width: 90vw; text-align: center; }
   #demo-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
@@ -351,21 +384,21 @@
         <span class="portal-card-action">Open &rarr;</span>
       </div>
 
-      <div class="portal-card" onclick="demoAlert('Submit Community Event')">
+      <div class="portal-card" onclick="openForm('event')">
         <span class="portal-card-tag">Events</span>
         <h3>Submit Community Event</h3>
         <p>Submit an event for Chamber review. Approved events are added to the public calendar.</p>
         <span class="portal-card-action">Open &rarr;</span>
       </div>
 
-      <div class="portal-card" onclick="demoAlert('Submit Member News')">
+      <div class="portal-card" onclick="openForm('news')">
         <span class="portal-card-tag">News</span>
         <h3>Submit Member News</h3>
         <p>Share a business update, announcement, or press release with the Byron community.</p>
         <span class="portal-card-action">Open &rarr;</span>
       </div>
 
-      <div class="portal-card" onclick="demoAlert('Request E-Blast Feature')">
+      <div class="portal-card" onclick="openForm('eblast')">
         <span class="portal-card-tag">Promotion</span>
         <h3>Request E-Blast Feature</h3>
         <p>Request a feature spot in the Chamber's weekly email blast to members and subscribers.</p>
@@ -379,7 +412,7 @@
         <span class="portal-card-action">Open &rarr;</span>
       </div>
 
-      <div class="portal-card" onclick="demoAlert('Request Ribbon Cutting')">
+      <div class="portal-card" onclick="openForm('ribbon')">
         <span class="portal-card-tag">Events</span>
         <h3>Request Ribbon Cutting</h3>
         <p>Schedule a ribbon cutting or grand opening celebration with the Chamber.</p>
@@ -483,6 +516,14 @@
   </div>
 </div>
 
+<!-- ── STATE 3: SUBMISSION FORM ───────────────────────────────────────── -->
+<div id="portal-form">
+  <div class="form-wrap">
+    <a href="#" class="form-back" onclick="closeForm();return false;">&larr; Back to Dashboard</a>
+    <div class="form-card" id="form-card-inner"></div>
+  </div>
+</div>
+
 <footer>
   <div class="footer-bottom">
     <span>&copy; 2026 Byron Area Chamber of Commerce &nbsp;|&nbsp; 232 W 2nd Street, Byron, IL 61010</span>
@@ -516,6 +557,109 @@ function showDashboard() {
 function showLogin() {
   swapState('portal-dashboard', 'portal-login');
 }
+/* ── Submission forms (Member Center Preview — demo only, no data leaves the page) ── */
+var FORMS = {
+  event: {
+    tag: 'Events', title: 'Submit a Community Event',
+    sub: 'Tell us about your event. Approved events are added to the public Chamber calendar.',
+    adminCard: 'Event Submissions',
+    fields: [
+      { row: [ { label: 'Event name', type: 'text', ph: 'e.g., Customer Appreciation Day' }, { label: 'Event category', type: 'select', options: ['Business Event', 'Community Event', 'Fundraiser', 'Networking', 'Other'] } ] },
+      { row: [ { label: 'Date', type: 'date' }, { label: 'Time', type: 'text', ph: 'e.g., 5:00–7:00 PM' } ] },
+      { label: 'Location', type: 'text', ph: 'Street address or venue name' },
+      { label: 'Event description', type: 'textarea', ph: 'What should Byron know about your event?' },
+      { label: 'Registration or info link (optional)', type: 'url', ph: 'https://…' }
+    ]
+  },
+  news: {
+    tag: 'News', title: 'Submit Member News',
+    sub: 'Share your business news with the community. Approved items appear in Chamber communications.',
+    adminCard: 'Member News',
+    fields: [
+      { row: [ { label: 'Headline', type: 'text', ph: 'e.g., Now hiring two full-time technicians' }, { label: 'News type', type: 'select', options: ['Grand Opening', 'Hiring', 'Award or Recognition', 'Milestone or Anniversary', 'New Product or Service', 'Other'] } ] },
+      { label: 'Details', type: 'textarea', ph: 'Tell the story — a few sentences is perfect.' },
+      { row: [ { label: 'Link (optional)', type: 'url', ph: 'https://…' }, { label: 'Photo (optional)', type: 'file' } ] }
+    ]
+  },
+  ribbon: {
+    tag: 'Events', title: 'Request a Ribbon Cutting',
+    sub: "New location, remodel, or milestone — the Chamber brings the big scissors and the crowd.",
+    adminCard: 'Ribbon Cutting',
+    fields: [
+      { row: [ { label: 'Business name', type: 'text', value: 'Prairie Valley Tech' }, { label: 'Occasion', type: 'select', options: ['Grand Opening', 'New Location', 'Remodel or Expansion', 'Anniversary', 'Other'] } ] },
+      { row: [ { label: 'First choice date', type: 'date' }, { label: 'Second choice date', type: 'date' } ] },
+      { label: 'Preferred time', type: 'text', ph: 'e.g., Weekday late afternoon' },
+      { label: 'Notes for the Chamber', type: 'textarea', ph: 'Anything we should know — parking, space, special guests…' }
+    ]
+  },
+  eblast: {
+    tag: 'Promotion', title: 'Request an E-Blast Feature',
+    sub: "Get your promotion into the Chamber's email to members and subscribers.",
+    adminCard: 'Member News',
+    fields: [
+      { row: [ { label: 'Business name', type: 'text', value: 'Prairie Valley Tech' }, { label: 'Preferred send week', type: 'date' } ] },
+      { label: 'What are we promoting?', type: 'text', ph: 'e.g., 20% off fall service packages' },
+      { label: 'Details', type: 'textarea', ph: 'The details you want included in the e-blast.' },
+      { row: [ { label: 'Link (optional)', type: 'url', ph: 'https://…' }, { label: 'Image (optional)', type: 'file' } ] }
+    ]
+  }
+};
+
+function fieldHtml(f) {
+  var inner;
+  if (f.type === 'select') {
+    inner = '<select><option value="">Select…</option>' + f.options.map(function(o) { return '<option>' + o + '</option>'; }).join('') + '</select>';
+  } else if (f.type === 'textarea') {
+    inner = '<textarea placeholder="' + (f.ph || '') + '"></textarea>';
+  } else {
+    inner = '<input type="' + f.type + '"' + (f.ph ? ' placeholder="' + f.ph + '"' : '') + (f.value ? ' value="' + f.value + '"' : '') + '>';
+  }
+  return '<div class="fgroup"><label>' + f.label + '</label>' + inner + '</div>';
+}
+
+function openForm(key) {
+  var def = FORMS[key];
+  if (!def) return;
+  var html = '<p class="fc-tag">' + def.tag + '</p><h2>' + def.title + '</h2><p class="fc-sub">' + def.sub + '</p>';
+  html += def.fields.map(function(f) {
+    if (f.row) return '<div class="frow">' + f.row.map(fieldHtml).join('') + '</div>';
+    return fieldHtml(f);
+  }).join('');
+  html += '<div class="form-actions"><button class="btn-gold" onclick="submitForm(\'' + key + '\')">Submit for Review</button><a href="#" class="form-cancel" onclick="closeForm();return false;">Cancel</a></div>';
+  html += '<p class="form-preview-note">Member Center Preview — submissions go to the Chamber office for review before anything is published.</p>';
+  document.getElementById('form-card-inner').innerHTML = html;
+  swapState('portal-dashboard', 'portal-form');
+}
+
+function closeForm() {
+  swapState('portal-form', 'portal-dashboard');
+}
+
+function submitForm(key) {
+  var def = FORMS[key];
+  document.getElementById('form-card-inner').innerHTML =
+    '<div class="success-panel"><div class="success-icon">&#10003;</div>' +
+    '<h2>Submitted for review</h2>' +
+    '<p>Your submission is in the Chamber\'s approval queue. Once the office approves it, it goes live — no phone tag, no email chains.</p>' +
+    '<button class="btn-gold" onclick="closeForm()">Back to Dashboard</button></div>';
+  bumpAdminBadge(def.adminCard);
+}
+
+function bumpAdminBadge(cardTitle) {
+  var cards = document.querySelectorAll('.admin-card');
+  for (var i = 0; i < cards.length; i++) {
+    var h4 = cards[i].querySelector('h4');
+    if (h4 && h4.textContent.indexOf(cardTitle) !== -1) {
+      var badge = cards[i].querySelector('.admin-badge');
+      if (badge) {
+        var m = badge.textContent.match(/\d+/);
+        if (m) badge.textContent = badge.textContent.replace(/\d+/, parseInt(m[0], 10) + 1);
+      }
+      break;
+    }
+  }
+}
+
 var toastTimer;
 function demoAlert(feature) {
   var t = document.getElementById('demo-toast');
