@@ -55,6 +55,35 @@
   .tier-card .join-btn { display: block; text-align: center; background: #1a1b5b; color: #fff; border: none; padding: 11px; border-radius: 7px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; text-decoration: none; margin-top: auto; }
   .tier-card .join-btn:hover { background: #c8a227; color: #1a1b5b; }
 
+  /* Membership value sections */
+  .value-intro { text-align: center; max-width: 640px; margin: 0 auto 2rem; }
+  .value-intro h2 { font-size: 22px; font-weight: 600; color: #1a1b5b; margin-bottom: 8px; }
+  .value-intro p { font-size: 14.5px; color: #666; line-height: 1.7; }
+  .value-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 3rem; }
+  .value-card { border: 1.5px solid #e8e8e8; border-radius: 12px; padding: 1.75rem 1.6rem; }
+  .value-card .value-tag { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #c8a227; margin-bottom: 8px; }
+  .value-card h3 { font-size: 17px; font-weight: 600; color: #1a1b5b; margin-bottom: 6px; }
+  .value-card .value-lede { font-size: 13.5px; color: #666; line-height: 1.65; margin-bottom: 1rem; }
+  .value-card ul { list-style: none; }
+  .value-card ul li { font-size: 13px; color: #444; padding: 5px 0; display: flex; align-items: flex-start; gap: 8px; line-height: 1.5; }
+  .value-card ul li::before { content: '✓'; color: #c8a227; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+  /* Member opportunities */
+  .opps-section { background: #1a1b5b; border-radius: 16px; padding: 2.5rem 2.5rem 2.25rem; margin: 3rem 0 2.5rem; }
+  .opps-section .value-tag { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #c8a227; margin-bottom: 8px; }
+  .opps-section h2 { font-size: 21px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+  .opps-section > p { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 1.5rem; max-width: 620px; }
+  .opps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; }
+  .opps-item { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 1rem 1.1rem; }
+  .opps-item h4 { font-size: 13.5px; font-weight: 600; color: #fff; margin-bottom: 3px; }
+  .opps-item p { font-size: 12px; color: rgba(255,255,255,0.6); line-height: 1.55; }
+
+  @media (max-width: 768px) {
+    .value-grid { grid-template-columns: 1fr; }
+    .opps-grid { grid-template-columns: 1fr; }
+    .opps-section { padding: 1.75rem 1.5rem; }
+  }
+
   /* Application form */
   .application-box { background: #f7f7f5; border-radius: 12px; padding: 2.5rem; margin-top: 1rem; }
   .application-box h3 { font-size: 18px; font-weight: 600; color: #1a1b5b; margin-bottom: 0.5rem; }
@@ -236,6 +265,68 @@
 
 <div class="content-wrap">
 
+  <div class="value-intro" style="margin-top:1rem;">
+    <h2>What membership actually gets you</h2>
+    <p>Not a plaque for the wall — practical ways to be seen, heard, and connected in the community your customers call home.</p>
+  </div>
+
+  <div class="value-grid">
+
+    <div class="value-card">
+      <p class="value-tag">Get Found</p>
+      <h3>Be there when Byron goes looking</h3>
+      <p class="value-lede">When someone in town searches for a plumber, a pizza, or a place to get their oil changed, your business should be the answer.</p>
+      <ul>
+        <li>Listing in the Chamber business directory</li>
+        <li>Your website and social links, one click away</li>
+        <li>Logo, photos, and business description</li>
+        <li>Category listings so the right customers find you</li>
+        <li>Visibility in local searches and Chamber promotions</li>
+      </ul>
+    </div>
+
+    <div class="value-card">
+      <p class="value-tag">Promote Your Business</p>
+      <h3>Put your news in front of the whole town</h3>
+      <p class="value-lede">Grand opening? New hire? Big milestone? The Chamber helps Byron hear about it — from ribbon cuttings to e-blasts.</p>
+      <ul>
+        <li>Submit member news and announcements</li>
+        <li>Add your events to the community calendar</li>
+        <li>Request a feature in Chamber e-blasts</li>
+        <li>Member spotlight opportunities</li>
+        <li>Ribbon cuttings with photos and promotion</li>
+        <li>Sponsorship opportunities at Chamber events</li>
+      </ul>
+    </div>
+
+    <div class="value-card">
+      <p class="value-tag">Build Connections</p>
+      <h3>Know the people who make Byron run</h3>
+      <p class="value-lede">Business in a small town runs on relationships. The Chamber is where those relationships get made.</p>
+      <ul>
+        <li>Business After Hours networking events</li>
+        <li>Chamber events year-round, ByronFest included</li>
+        <li>Workshops and learning opportunities</li>
+        <li>Community involvement and volunteering</li>
+        <li>Member-to-member referrals</li>
+      </ul>
+    </div>
+
+    <div class="value-card">
+      <p class="value-tag">Access Resources</p>
+      <h3>Help when you need it</h3>
+      <p class="value-lede">From forms to introductions, the Chamber office is a real place with real people who pick up the phone.</p>
+      <ul>
+        <li>Member forms and documents</li>
+        <li>Chamber logos for your website and marketing</li>
+        <li>Sponsorship information and packets</li>
+        <li>Business resources and local contacts</li>
+        <li>Member communications that keep you in the loop</li>
+      </ul>
+    </div>
+
+  </div>
+
   <h2>Choose your membership level</h2>
 
   <div class="tier-row-top">
@@ -350,6 +441,38 @@
       <a href="#apply" class="join-btn" onclick="document.getElementById('membership-level').value='Executive Community Partner — $1,500/yr'">Join at $1,500/yr</a>
     </div>
 
+  </div>
+
+  <div class="opps-section">
+    <p class="value-tag">Get Involved</p>
+    <h2>Membership works best when you use it</h2>
+    <p>The members who get the most out of the Chamber are the ones who show up. Here's how to plug in — pick one, pick them all.</p>
+    <div class="opps-grid">
+      <div class="opps-item">
+        <h4>Host a Chamber event</h4>
+        <p>Open your doors for a Business After Hours and let members see what you do.</p>
+      </div>
+      <div class="opps-item">
+        <h4>Sponsor an event</h4>
+        <p>Put your name on the events Byron already loves — ByronFest to holiday happenings.</p>
+      </div>
+      <div class="opps-item">
+        <h4>Request a ribbon cutting</h4>
+        <p>New location, new look, or big anniversary — we'll bring the scissors and the crowd.</p>
+      </div>
+      <div class="opps-item">
+        <h4>Submit member news</h4>
+        <p>Hiring, expanding, celebrating? Share it and let the community cheer you on.</p>
+      </div>
+      <div class="opps-item">
+        <h4>Be featured</h4>
+        <p>Member spotlights and e-blast features put your story in front of Byron.</p>
+      </div>
+      <div class="opps-item">
+        <h4>Volunteer or join a committee</h4>
+        <p>Help shape what the Chamber does next — events, initiatives, and community projects.</p>
+      </div>
+    </div>
   </div>
 
   <div style="text-align:center;margin-bottom:2rem;padding:1rem 1.5rem;background:#f7f7f5;border-radius:10px;border-left:4px solid #c8a227;border-right:4px solid #c8a227;display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;">
