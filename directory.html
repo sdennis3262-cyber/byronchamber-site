@@ -523,7 +523,10 @@ filterBiz();
       input.value = item.getAttribute('data-name');
       dropdown.style.display = 'none';
       filterBiz();
-      document.getElementById('biz-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      var nav = document.querySelector('nav');
+      var navH = nav ? nav.offsetHeight : 0;
+      var gridTop = document.getElementById('biz-grid').getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: gridTop - navH - 60, behavior: 'smooth' });
     });
     document.addEventListener('click', function(e) {
       if (!wrap.contains(e.target)) dropdown.style.display = 'none';
