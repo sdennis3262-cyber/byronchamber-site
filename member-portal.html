@@ -11,7 +11,7 @@
 
   nav { position: sticky; top: 0; z-index: 100; background: #1a1b5b; display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; height: 88px; box-shadow: 0 2px 12px rgba(0,0,0,0.3); }
   .nav-brand { display: flex; align-items: center; gap: 14px; }
-  .nav-brand img { height: 66px; width: auto; }
+  .nav-brand img { height: 58px; width: 58px; object-fit: contain; background: #fff; border-radius: 10px; padding: 5px; }
   .nav-brand-text { color: #fff; font-size: 13px; font-weight: 500; line-height: 1.4; }
   .nav-links { display: flex; gap: 1rem; align-items: center; }
   .nav-links a { color: rgba(255,255,255,0.82); font-size: 12px; text-decoration: none; }
@@ -32,7 +32,7 @@
   /* ── LOGIN STATE ── */
   .login-wrap { min-height: calc(100vh - 72px); display: flex; align-items: center; justify-content: center; padding: 3rem 1.5rem; }
   .login-card { background: #fff; border-radius: 16px; padding: 2.75rem 2.5rem; width: 100%; max-width: 420px; box-shadow: 0 8px 40px rgba(0,0,0,0.1); text-align: center; }
-  .login-card img { height: 64px; width: auto; margin-bottom: 1.25rem; }
+  .login-card img { height: 110px; width: auto; margin-bottom: 1.25rem; }
   .login-card h2 { font-size: 20px; font-weight: 600; color: #1a1b5b; margin-bottom: 4px; }
   .login-card .login-org { font-size: 13px; color: #888; margin-bottom: 2rem; }
   .login-field { text-align: left; margin-bottom: 1rem; }
@@ -178,7 +178,7 @@
 
   @media (max-width: 768px) {
     nav { padding: 0 1.25rem; flex-wrap: wrap; height: auto; min-height: 64px; position: relative; }
-    .nav-brand img { height: 42px; }
+    .nav-brand img { height: 42px; width: 42px; padding: 4px; border-radius: 8px; }
     .nav-brand-text { font-size: 12px; }
     .nav-hamburger { display: flex; margin-left: auto; }
     .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: #1a1b5b; border-top: 3px solid #c8a227; padding: 0.5rem 0 1.25rem; z-index: 999; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
@@ -228,7 +228,7 @@
 
 <nav>
   <a href="index.html" class="nav-brand" style="text-decoration:none;">
-    <img src="images/logo2026.jpg" alt="Byron Area Chamber of Commerce">
+    <img src="images/logo.jpg" alt="Byron Area Chamber of Commerce">
     <span class="nav-brand-text"><span class="nav-brand-title">Byron Area</span><span class="nav-brand-sub">Chamber of Commerce</span></span>
   </a>
   <button class="nav-hamburger" onclick="toggleMobileNav()" aria-label="Toggle navigation">
@@ -266,7 +266,7 @@
 <div id="portal-login">
   <div class="login-wrap">
     <div class="login-card">
-      <img src="images/logo2026.jpg" alt="Byron Area Chamber of Commerce">
+      <img src="images/logo.jpg" alt="Byron Area Chamber of Commerce">
       <h2>Member Center</h2>
       <p class="login-org">Byron Area Chamber of Commerce</p>
       <div class="login-field">
