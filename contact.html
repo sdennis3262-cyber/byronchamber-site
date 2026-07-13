@@ -315,6 +315,39 @@
     <a href="https://maps.google.com/?q=232+W+2nd+St,+Byron,+IL+61010" target="_blank" style="background:#1a1b5b;color:#fff;text-decoration:none;padding:11px 22px;border-radius:7px;font-size:13px;font-weight:600;white-space:nowrap;">Get Directions &rarr;</a>
   </div>
 
+  <div id="newsletter" style="background:#1a1b5b;border-radius:16px;padding:2.5rem 2.5rem 2.25rem;margin-top:2.5rem;">
+    <div style="font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#c8a227;margin-bottom:8px;">Stay in the Loop</div>
+    <h2 style="font-size:21px;font-weight:600;color:#fff;margin:0 0 6px;">Get the Chamber newsletter</h2>
+    <p style="font-size:14px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:1.5rem;max-width:560px;">Local events, member news, and what's happening in Byron — delivered to your inbox. No spam, just Byron.</p>
+    <div id="nl-form">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;" class="form-row">
+        <div class="form-group">
+          <label style="color:rgba(255,255,255,0.7);">First name</label>
+          <input type="text" placeholder="First name">
+        </div>
+        <div class="form-group">
+          <label style="color:rgba(255,255,255,0.7);">Last name</label>
+          <input type="text" placeholder="Last name">
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem;" class="form-row">
+        <div class="form-group">
+          <label style="color:rgba(255,255,255,0.7);">Email</label>
+          <input type="email" placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+          <label style="color:rgba(255,255,255,0.7);">Business name (optional)</label>
+          <input type="text" placeholder="Your business">
+        </div>
+      </div>
+      <button class="btn-gold" style="font-size:14px;padding:12px 32px;" onclick="nlSignup()">Sign Me Up</button>
+    </div>
+    <div id="nl-success" style="display:none;padding:1rem 0 0.5rem;">
+      <span style="font-size:16px;font-weight:600;color:#fff;">&#10003;&nbsp; Thanks — you're on the list.</span>
+      <p style="font-size:13px;color:rgba(255,255,255,0.6);margin-top:6px;">Keep an eye out for the next newsletter.</p>
+    </div>
+  </div>
+
 </div>
 
 <footer>
@@ -327,6 +360,10 @@
   </div>
 </footer>
 <script>
+function nlSignup() {
+  document.getElementById('nl-form').style.display = 'none';
+  document.getElementById('nl-success').style.display = 'block';
+}
 function toggleMobileNav() {
   document.querySelector('.nav-links').classList.toggle('mobile-open');
 }

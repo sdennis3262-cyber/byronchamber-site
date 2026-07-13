@@ -145,6 +145,24 @@
   .cta-banner h2 { color: #fff; font-size: 2rem; font-weight: 600; margin-bottom: 0.75rem; }
   .cta-banner p { color: rgba(255,255,255,0.75); font-size: 16px; max-width: 520px; margin: 0 auto 2rem; line-height: 1.7; }
 
+  .nl-strip { background: #f7f7f5; border-top: 1px solid #ececec; padding: 2rem 2.5rem; }
+  .nl-strip-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+  .nl-strip-label { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #c8a227; margin-bottom: 4px; }
+  .nl-strip-text h3 { font-size: 17px; font-weight: 600; color: #1a1b5b; margin-bottom: 2px; }
+  .nl-strip-sub { font-size: 12.5px; color: #888; }
+  .nl-strip-form { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .nl-strip-form input { border: 1.5px solid #ddd; border-radius: 7px; padding: 10px 12px; font-size: 13px; font-family: 'Inter', sans-serif; color: #1a1a2e; background: #fff; outline: none; width: 150px; }
+  .nl-strip-form input:focus { border-color: #c8a227; }
+  .nl-strip-form .btn-gold { font-size: 13px; }
+  .nl-strip-success span { font-size: 15px; font-weight: 600; color: #1a1b5b; }
+  @media (max-width: 768px) {
+    .nl-strip { padding: 1.75rem 1.25rem; }
+    .nl-strip-inner { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .nl-strip-form { width: 100%; }
+    .nl-strip-form input { width: 100%; }
+    .nl-strip-form .btn-gold { width: 100%; }
+  }
+
   .sponsors { padding: 2.5rem; background: #f7f7f5; }
   .sponsors-label { text-align: center; font-size: 11px; font-weight: 600; color: #999; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.5rem; }
   .sponsors-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
@@ -565,6 +583,26 @@
   </div>
 </div>
 
+<div class="nl-strip">
+  <div class="nl-strip-inner">
+    <div class="nl-strip-text">
+      <p class="nl-strip-label">Stay in the Loop</p>
+      <h3>Get the Chamber newsletter</h3>
+      <p class="nl-strip-sub">Local events, member news, and what's happening in Byron.</p>
+    </div>
+    <div class="nl-strip-form" id="nl-strip-form">
+      <input type="text" placeholder="First name">
+      <input type="text" placeholder="Last name">
+      <input type="email" placeholder="Email">
+      <input type="text" placeholder="Business (optional)">
+      <button class="btn-gold" onclick="nlStripSignup()">Sign Up</button>
+    </div>
+    <div class="nl-strip-success" id="nl-strip-success" style="display:none;">
+      <span>&#10003;&nbsp; Thanks — you're on the list.</span>
+    </div>
+  </div>
+</div>
+
 <footer>
   <div class="footer-grid">
     <div class="footer-logo">
@@ -610,6 +648,10 @@
 </footer>
 
 <script>
+function nlStripSignup() {
+  document.getElementById('nl-strip-form').style.display = 'none';
+  document.getElementById('nl-strip-success').style.display = 'block';
+}
 function toggleMobileNav() {
   document.querySelector('.nav-links').classList.toggle('mobile-open');
 }
