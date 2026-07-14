@@ -490,9 +490,8 @@ function openBizModal(b) {
     var q = encodeURIComponent(b.name + ' ' + b.address);
     rows += '<div class="bm-row"><span><span class="bm-label">Address</span><span class="bm-value">' + escHtml(b.address) + '</span></span>' +
             '<span class="bm-actions">' +
-            '<a class="bm-action" href="https://maps.apple.com/?q=' + q + '" target="_blank" rel="noopener">&#63743; Maps</a>' +
-            '<a class="bm-action" href="https://maps.google.com/?q=' + q + '" target="_blank" rel="noopener">Google</a>' +
-            '<a class="bm-action" href="https://waze.com/ul?q=' + q + '&navigate=yes" target="_blank" rel="noopener">Waze</a>' +
+            '<a class="bm-action" href="https://maps.apple.com/?q=' + q + '" target="_blank" rel="noopener">&#63743; Apple Maps</a>' +
+            '<a class="bm-action" href="https://maps.google.com/?q=' + q + '" target="_blank" rel="noopener">Google Maps</a>' +
             '</span></div>';
   }
   var desc = b.description
